@@ -24,11 +24,10 @@ fun SplashScreen(navController: NavController) {
     )
 
     LaunchedEffect(key1 = true) {
-        // Delay for 5 seconds
         delay(5000L)
-
-        // Navigate to the "introduction" destination
-        navController.navigate("introduction")
+        navController.navigate("introduction") {
+            popUpTo("splashScreen") { inclusive = true }
+        }
     }
 
     Box(
@@ -42,4 +41,12 @@ fun SplashScreen(navController: NavController) {
                 .size(200.dp)
         )
     }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun SplashPreview() {
+    val navController = rememberNavController()
+    SplashScreen(navController)
 }
