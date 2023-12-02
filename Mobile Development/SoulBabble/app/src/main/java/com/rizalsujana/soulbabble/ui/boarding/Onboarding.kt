@@ -1,9 +1,8 @@
-package com.rizalsujana.soulbabble
+package com.rizalsujana.soulbabble.ui.boarding
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -18,27 +17,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import com.rizalsujana.soulbabble.data.OnBoardingData
+import com.rizalsujana.soulbabble.ui.utils.OnBoardingItem
 import kotlinx.coroutines.launch
 
 @ExperimentalPagerApi
 @Composable
 fun OnBoarding(navController: NavController) {
-    val items = OnBoardingItems.getData()
+    val items = OnBoardingData.items
     val scope = rememberCoroutineScope()
     val pageState = rememberPagerState()
-
     Column(modifier = Modifier.fillMaxSize()) {
         TopSection(
             onBackClick = {
@@ -52,17 +47,21 @@ fun OnBoarding(navController: NavController) {
                 }
             }
         )
-
         HorizontalPager(
             count = items.size,
             state = pageState,
             modifier = Modifier
                 .fillMaxHeight(0.9f)
                 .fillMaxWidth()
+                .padding(16.dp)
         ) { page ->
             OnBoardingItem(items = items[page])
         }
-        BottomSection(size = items.size, index = pageState.currentPage) {
+        BottomSection(
+            size = items.size,
+            index = pageState.currentPage,
+            navController = navController,
+        ) {
             if (pageState.currentPage + 1 < items.size) scope.launch {
                 pageState.scrollToPage(pageState.currentPage + 1)
             }
@@ -82,7 +81,6 @@ fun TopSection(onBackClick: () -> Unit = {}, onSkipClick: () -> Unit = {}) {
         IconButton(onClick = onBackClick, modifier = Modifier.align(Alignment.CenterStart)) {
             Icon(imageVector = Icons.Outlined.KeyboardArrowLeft, contentDescription = null)
         }
-
         // Skip Button
         TextButton(
             onClick = onSkipClick,
@@ -95,35 +93,47 @@ fun TopSection(onBackClick: () -> Unit = {}, onSkipClick: () -> Unit = {}) {
 }
 
 @Composable
-fun BottomSection(size: Int, index: Int, onButtonClick: () -> Unit = {}) {
+fun BottomSection(
+    size: Int,
+    index: Int,
+    navController: NavController,
+    onButtonClick: () -> Unit = {},
+    onPageChange: (Int) -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
     ) {
-        // Indicators
         Indicators(size, index)
 
-        // FAB Next
-        /* FloatingActionButton(
-             onClick = onButtonClick,
-            // backgroundColor = MaterialTheme.colorScheme.primary,
-            // contentColor = MaterialTheme.colorScheme.onPrimary,
-             modifier = Modifier.align(Alignment.CenterEnd)
-         ) {
-             Icon(imageVector = Icons.Outlined.KeyboardArrowRight, contentDescription = "Next")
-         }*/
-
         FloatingActionButton(
-            onClick = { /* do something */ },
+            onClick = onButtonClick,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+            modifier = Modifier.align(Alignment.CenterEnd)
+        ) {
+            Icon(imageVector = Icons.Outlined.KeyboardArrowRight, contentDescription = "Next")
+        }
+
+        val isLastItem = index == size - 1
+        FloatingActionButton(
+            onClick = {
+                if (isLastItem) {
+                    navController.navigate("auth")
+                } else {
+                    onPageChange(index + 1)
+                }
+            },
             containerColor = Color.Black,
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .clip(RoundedCornerShape(15.dp, 15.dp, 15.dp, 15.dp))
         ) {
-            Icon(Icons.Outlined.KeyboardArrowRight,
+            Icon(
+                Icons.Outlined.KeyboardArrowRight,
                 tint = Color.White,
-                contentDescription = "Localized description")
+                contentDescription = "Localized description"
+            )
         }
     }
 }
@@ -158,61 +168,6 @@ fun Indicator(isSelected: Boolean) {
             )
     ) {
 
-    }
-}
-
-class OnBoardingItems(
-    val image: Int,
-    val title: Int,
-    val desc: Int
-) {
-    companion object{
-        fun getData(): List<OnBoardingItems>{
-            return listOf(
-                OnBoardingItems(R.drawable.ic_launcher_background, R.string.app_name, R.string.app_name),
-                OnBoardingItems(R.drawable.ic_launcher_background, R.string.app_name, R.string.app_name),
-                OnBoardingItems(R.drawable.ic_launcher_background, R.string.app_name, R.string.app_name)
-            )
-        }
-    }
-}
-
-
-@Composable
-fun OnBoardingItem(items: OnBoardingItems) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Image(
-            painter = painterResource(id = items.image),
-            contentDescription = "Image1",
-            modifier = Modifier.padding(start = 50.dp, end = 50.dp)
-        )
-
-        Spacer(modifier = Modifier.height(25.dp))
-
-        Text(
-            text = stringResource(id = items.title),
-            style = MaterialTheme.typography.headlineMedium,
-            // fontSize = 24.sp,
-            color = MaterialTheme.colorScheme.onBackground,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            letterSpacing = 1.sp,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-            text = stringResource(id = items.desc),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onBackground,
-            fontWeight = FontWeight.Light,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(10.dp),
-            letterSpacing = 1.sp,
-        )
     }
 }
 
