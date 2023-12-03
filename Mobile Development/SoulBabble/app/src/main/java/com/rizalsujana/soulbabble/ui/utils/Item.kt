@@ -56,7 +56,7 @@ fun OnBoardingItem(items: OnBoardingItems) {
         Text(
             text = items.desc,
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onBackground,
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
             fontWeight = FontWeight.Light,
             textAlign = TextAlign.Center,
             letterSpacing = 1.sp,

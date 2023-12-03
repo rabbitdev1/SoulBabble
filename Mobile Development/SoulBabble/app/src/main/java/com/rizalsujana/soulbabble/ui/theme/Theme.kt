@@ -18,7 +18,7 @@ import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
     primary = Color(0xFF146C94),
-    secondary = Color(0xFF146C94),
+    secondary = Color(0xFFF7F4EB),
     tertiary = Color(0xFF146C94),
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),
@@ -31,9 +31,9 @@ private val DarkColorScheme = darkColorScheme(
 
 private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF146C94),
-    secondary = Color(0xFF146C94),
+    secondary = Color(0xFFF7F4EB),
     tertiary = Color(0xFF146C94),
-            background = Color(0xFFFFFBFE),
+    background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),
     onPrimary = Color.White,
     onSecondary = Color.White,
@@ -46,7 +46,7 @@ private val LightColorScheme = lightColorScheme(
 fun SoulBabbleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
