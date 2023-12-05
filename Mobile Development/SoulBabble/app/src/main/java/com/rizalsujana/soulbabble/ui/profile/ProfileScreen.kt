@@ -332,13 +332,15 @@ fun jsonDataPersonal(): JSONArray {
 fun jsonDataGeneral(): JSONArray {
     val jsonArray = JSONArray()
 
+
+
     val pusatBantuan = JSONObject()
     pusatBantuan.put("label", "Pusat Bantuan")
     pusatBantuan.put("url", "https://github.com/react-native-webview/react-native-webview/issues/1619")
     jsonArray.put(pusatBantuan)
 
     val syaratKetentuan = JSONObject()
-    syaratKetentuan.put("label", "Syarat & Ketentuan")
+    syaratKetentuan.put("label", "Syarat & Ketentuan 2")
     syaratKetentuan.put("url", "https://example.com/syarat-ketentuan")
     jsonArray.put(syaratKetentuan)
 
@@ -356,6 +358,7 @@ fun jsonDataGeneral(): JSONArray {
 @Composable
 fun ProfileScreenPreview() {
     val navController = rememberNavController()
+
     val viewModel: AuthenticationViewModel = viewModel()
     ProfileScreen(navController,viewModel)
 }
