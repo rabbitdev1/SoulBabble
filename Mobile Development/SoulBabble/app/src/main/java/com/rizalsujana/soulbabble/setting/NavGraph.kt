@@ -2,21 +2,20 @@ package com.rizalsujana.soulbabble.setting
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.rizalsujana.soulbabble.notification.NotificationScreen
 import com.rizalsujana.soulbabble.ui.auth.Authentication
-import com.rizalsujana.soulbabble.ui.auth.AuthenticationViewModel
 import com.rizalsujana.soulbabble.ui.boarding.OnBoarding
 import com.rizalsujana.soulbabble.ui.boarding.SplashScreen
 import com.rizalsujana.soulbabble.ui.community.CommunityScreen
 import com.rizalsujana.soulbabble.ui.consultation.ConsultationScreen
 import com.rizalsujana.soulbabble.ui.home.HomeScreen
+import com.rizalsujana.soulbabble.ui.profile.DetailUserScreen
 import com.rizalsujana.soulbabble.ui.profile.ProfileScreen
 import com.rizalsujana.soulbabble.ui.tracker.TrackerScreen
 import com.rizalsujana.soulbabble.ui.utils.WebviewScreen
@@ -25,7 +24,6 @@ import com.rizalsujana.soulbabble.ui.utils.WebviewScreen
 @Composable
 fun NavGraph() {
     val navController = rememberNavController()
-    val viewModel: AuthenticationViewModel = viewModel()
     NavHost(navController = navController, startDestination = "splashScreen") {
         composable("splashScreen") { SplashScreen(navController) }
         composable("onboarding") { OnBoarding(navController) }
@@ -35,7 +33,7 @@ fun NavGraph() {
         composable("community") { CommunityScreen(navController) }
         composable("consultation") { ConsultationScreen(navController) }
 
-        composable("profile") { ProfileScreen(navController,viewModel) }
+        composable("profile") { ProfileScreen(navController) }
         composable(
             route = "webview/{url}/{title}",
             arguments = listOf(
@@ -47,6 +45,8 @@ fun NavGraph() {
             val title = backStackEntry.arguments?.getString("title") ?: ""
             WebviewScreen(navController,url, title)
         }
+        composable("detail-profile") { DetailUserScreen(navController) }
+        composable("notification") { NotificationScreen(navController) }
 
     }
 }

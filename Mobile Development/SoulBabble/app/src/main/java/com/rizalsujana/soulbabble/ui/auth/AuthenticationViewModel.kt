@@ -31,10 +31,6 @@ class AuthenticationViewModel : ViewModel() {
         }
     }
 
-    fun logOut() {
-        auth.signOut()
-        _authenticationState.value = AuthenticationState.UNAUTHENTICATED
-    }
 
     fun authenticateWithGoogle(account: GoogleSignInAccount) {
         viewModelScope.launch {
@@ -42,9 +38,6 @@ class AuthenticationViewModel : ViewModel() {
                 val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                 auth.signInWithCredential(credential).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        val user = auth.currentUser
-                        Log.d("TAG", "User Profile: ${user?.uid}, ${user?.displayName}, ${user?.email}, ${user?.photoUrl}")
-                        // Update UI or notify about successful authentication
                         _authenticationState.value = AuthenticationState.AUTHENTICATED
                     } else {
                         task.exception?.let {

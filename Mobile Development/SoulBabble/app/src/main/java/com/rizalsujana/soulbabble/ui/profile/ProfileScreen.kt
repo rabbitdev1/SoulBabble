@@ -1,22 +1,22 @@
 package com.rizalsujana.soulbabble.ui.profile
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
@@ -31,10 +31,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -46,23 +53,30 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.rememberAsyncImagePainter
 import com.rizalsujana.soulbabble.R
+import com.rizalsujana.soulbabble.data.UserProfile
 import com.rizalsujana.soulbabble.setting.BottomNavigationBar
-import com.rizalsujana.soulbabble.ui.auth.AuthenticationViewModel
+import com.rizalsujana.soulbabble.ui.utils.ItemGeneralProfile
+import com.rizalsujana.soulbabble.utils.PreferenceManager
 import org.json.JSONArray
-import org.json.JSONObject
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "PrivateResource")
 @ExperimentalMaterial3Api
 @Composable
 fun ProfileScreen(
     navController: NavHostController
-                  ,viewModel: AuthenticationViewModel
 ) {
-    val dataGeneral = jsonDataGeneral()
-    val dataPersonal = jsonDataPersonal()
+    val viewModel: ProfileViewModel = viewModel()
+    val dataGeneral by viewModel.getGeneralData().observeAsState(JSONArray())
+    val dataPersonal by viewModel.getPersonalData().observeAsState(JSONArray())
+    val context = LocalContext.current
+    val userProfile = remember { mutableStateOf(UserProfile("", "", "", null)) }
 
-            Scaffold(
+    LaunchedEffect(Unit) {
+        userProfile.value = PreferenceManager.getUserProfile(context)
+    }
+
+    Scaffold(
         topBar = {
             TopAppBar(
                 title = {
@@ -82,7 +96,7 @@ fun ProfileScreen(
                 actions = {
                     IconButton(
                         onClick = {
-                            navController.popBackStack()
+                            navController.navigate("notification")
                         }
                     ) {
                         Icon(
@@ -102,35 +116,49 @@ fun ProfileScreen(
         Box(
             modifier = Modifier
                 .background(Color(0xFFF5F5F6))
-            .fillMaxWidth()
+                .fillMaxWidth()
                 .fillMaxHeight()
                 .padding(innerPadding)
         ) {
 
-            LazyColumn (
-                modifier = Modifier.padding(start=16.dp,end=16.dp,top=0.dp, bottom = 0.dp),
-                ) {
+            LazyColumn(
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 0.dp, bottom = 0.dp),
+            ) {
                 item {
                     Spacer(modifier = Modifier.height(16.dp))
                     Box(
                         modifier = Modifier
-                            .background(MaterialTheme.colorScheme.onPrimary, shape = RoundedCornerShape(8.dp))
+                            .background(
+                                MaterialTheme.colorScheme.onPrimary,
+                                shape = RoundedCornerShape(8.dp)
+                            )
                             .fillMaxWidth()
-                            .border(width = 1.dp, color = Color(0xFFDADADA), shape = RoundedCornerShape(8.dp))
+                            .border(
+                                width = 1.dp,
+                                color = Color(0xFFDADADA),
+                                shape = RoundedCornerShape(8.dp)
+                            )
                     ) {
                         Row(
-                            modifier = Modifier.padding(8.dp),
+                            modifier = Modifier.padding(12.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.ic_profile),
-                                contentDescription = "Profile Image",
-                                modifier = Modifier.size(100.dp)
-                            )
+                            Box(
+                                modifier = Modifier
+                                    .size(80.dp)
+                                    .clip(shape = CircleShape)
+                            ) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(model = userProfile.value.photoUrl),
+                                    contentDescription = "Profile Image",
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentScale = ContentScale.Crop
+                                )
+                            }
                             Spacer(modifier = Modifier.width(8.dp))
                             Column(modifier = Modifier.fillMaxWidth()) {
                                 Text(
-                                    text = "Nama",
+                                    text = userProfile.value.displayName.toString(),
                                     color = MaterialTheme.colorScheme.primary,
                                     textAlign = TextAlign.Center,
                                     letterSpacing = 1.sp,
@@ -142,7 +170,7 @@ fun ProfileScreen(
                                 )
                                 Text(
                                     color = Color.Black,
-                                    text = "email@example.com",
+                                    text = userProfile.value.email.toString(),
                                     style = TextStyle(
                                         fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
                                         fontWeight = FontWeight.Light,
@@ -174,45 +202,11 @@ fun ProfileScreen(
                     if (index > 0) {
                         Spacer(modifier = Modifier.height(8.dp))
                     }
-                    Button(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .border(width = 1.dp, color = Color(0xFFDADADA), shape = RoundedCornerShape(4.dp))
-                            .height(50.dp)
-                            .padding(0.dp),
-                        shape = RoundedCornerShape(4.dp),
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        contentPadding = PaddingValues(
-                            start = 8.dp,
-                            top = 4.dp,
-                            end = 8.dp,
-                            bottom = 4.dp,
-                        ),
-                        onClick = {
-                            navController.navigate(path)
-                        }
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                color = Color.Black,
-                                text = label,
-                                style = TextStyle(
-                                    fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
-                                    fontWeight = FontWeight.Normal,
-                                    fontSize = 16.sp
-                                )
-                            )
-                            Spacer(modifier = Modifier.weight(1f))
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_arrow_right),
-                                contentDescription = "Icon",
-                                modifier = Modifier.size(19.dp),
-                                tint = Color.Black
-                            )
-                        }
-                    }
+                    ItemGeneralProfile(
+                        modifier = Modifier.fillMaxWidth(),
+                        label = label,
+                        onClick = { navController.navigate(path) },
+                    )
                 }
                 item {
                     Spacer(modifier = Modifier.height(8.dp))
@@ -234,58 +228,30 @@ fun ProfileScreen(
                     if (index > 0) {
                         Spacer(modifier = Modifier.height(8.dp))
                     }
-                    Button(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .border(width = 1.dp, color = Color(0xFFDADADA), shape = RoundedCornerShape(4.dp))
-                            .height(50.dp)
-                            .padding(0.dp),
-                        shape = RoundedCornerShape(4.dp),
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        contentPadding = PaddingValues(
-                            start = 8.dp,
-                            top = 4.dp,
-                            end = 8.dp,
-                            bottom = 4.dp,
-                        ),
+                    ItemGeneralProfile(
+                        modifier = Modifier.fillMaxWidth(),
+                        label = label,
                         onClick = {
                             val encodedUrl = Uri.encode(url)
                             navController.navigate("webview/$label/$encodedUrl")
-                        }
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                color = Color.Black,
-                                text = label,
-                                style = TextStyle(
-                                    fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
-                                    fontWeight = FontWeight.Normal,
-                                    fontSize = 16.sp
-                                )
-                            )
-                            Spacer(modifier = Modifier.weight(1f))
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_arrow_right),
-                                contentDescription = "Icon",
-                                modifier = Modifier.size(19.dp),
-                                tint = Color.Black
-                            )
-                        }
-                    }
+                        },
+                    )
                 }
                 item {
                     Spacer(modifier = Modifier.height(8.dp))
                     Button(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .border(width = 1.dp, color = Color(0xFFF83B00), shape = RoundedCornerShape(40.dp))
+                            .border(
+                                width = 1.dp,
+                                color = Color(0xFFF83B00),
+                                shape = RoundedCornerShape(40.dp)
+                            )
                             .height(50.dp)
                             .padding(0.dp),
                         colors = ButtonDefaults.buttonColors(Color.White),
                         onClick = {
-                            //                viewModel.logOut()
+                            viewModel.logOut()
                             navController.navigate("auth") {
                                 popUpTo("home") { inclusive = true }
                             }
@@ -308,57 +274,11 @@ fun ProfileScreen(
     }
 }
 
-
-fun jsonDataPersonal(): JSONArray {
-    val jsonArray = JSONArray()
-
-    val detailPengguna = JSONObject()
-    detailPengguna.put("label", "Detail Pengguna")
-    detailPengguna.put("path", "detail-profile")
-    jsonArray.put(detailPengguna)
-
-    val postingan = JSONObject()
-    postingan.put("label", "Postingan")
-    postingan.put("path", "post")
-    jsonArray.put(postingan)
-
-    val notifikasi = JSONObject()
-    notifikasi.put("label", "Notifikasi")
-    notifikasi.put("path", "notification")
-    jsonArray.put(notifikasi)
-
-    return jsonArray
-}
-fun jsonDataGeneral(): JSONArray {
-    val jsonArray = JSONArray()
-
-
-
-    val pusatBantuan = JSONObject()
-    pusatBantuan.put("label", "Pusat Bantuan")
-    pusatBantuan.put("url", "https://github.com/react-native-webview/react-native-webview/issues/1619")
-    jsonArray.put(pusatBantuan)
-
-    val syaratKetentuan = JSONObject()
-    syaratKetentuan.put("label", "Syarat & Ketentuan 2")
-    syaratKetentuan.put("url", "https://example.com/syarat-ketentuan")
-    jsonArray.put(syaratKetentuan)
-
-    val kebijakanPrivasi = JSONObject()
-    kebijakanPrivasi.put("label", "Kebijakan Privasi")
-    kebijakanPrivasi.put("url", "https://example.com/kebijakan-privasi")
-    jsonArray.put(kebijakanPrivasi)
-
-    return jsonArray
-}
-
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Preview(showBackground = true)
 @Composable
 fun ProfileScreenPreview() {
     val navController = rememberNavController()
 
-    val viewModel: AuthenticationViewModel = viewModel()
-    ProfileScreen(navController,viewModel)
+    ProfileScreen(navController)
 }

@@ -1,6 +1,7 @@
 package com.rizalsujana.soulbabble.data
 
 import com.rizalsujana.soulbabble.R
+import org.json.JSONArray
 
 object OnBoardingData {
     val items = listOf(
@@ -26,3 +27,25 @@ object OnBoardingData {
         )
     )
 }
+
+val dataDummyNotification = JSONArray(
+    """
+    [
+        {
+            "title": "Notifikasi 1",
+            "description": "Deskripsi Notifikasi 1",
+            "date": "2023-12-06"
+        },
+        {
+            "title": "Notifikasi 2",
+            "description": "Deskripsi Notifikasi 2",
+            "date": "2023-12-07"
+        },
+        {
+            "title": "Notifikasi 3",
+            "description": "Deskripsi Notifikasi 3",
+            "date": "2023-12-08"
+        }
+    ]
+    """
+)

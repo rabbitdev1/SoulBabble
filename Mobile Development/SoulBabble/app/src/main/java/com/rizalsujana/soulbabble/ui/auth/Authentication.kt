@@ -45,7 +45,9 @@ import androidx.navigation.NavHostController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
 import com.rizalsujana.soulbabble.R
+import com.rizalsujana.soulbabble.utils.PreferenceManager
 
 @Composable
 fun Authentication(
@@ -60,6 +62,17 @@ fun Authentication(
     LaunchedEffect(authenticationState.value) {
         when (authenticationState.value) {
             AuthenticationViewModel.AuthenticationState.AUTHENTICATED -> {
+                val user = FirebaseAuth.getInstance().currentUser
+                Log.d("TAG", "User Profile: ${user?.uid}, ${user?.displayName}, ${user?.email}, ${user?.photoUrl}")
+                user?.let {
+                    PreferenceManager.saveUserProfile(
+                        context,
+                        it.uid,
+                        it.displayName,
+                        it.email,
+                        it.photoUrl
+                    )
+                }
                 navController.navigate("home") {
                     popUpTo("auth") { inclusive = true }
                 }
