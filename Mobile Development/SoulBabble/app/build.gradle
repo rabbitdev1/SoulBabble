@@ -4,11 +4,11 @@
      id 'com.google.gms.google-services'
 }
 android {
-    namespace 'com.rizalsujana.soulbabble'
+    namespace 'id.soulbabble.bangkit'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.rizalsujana.soulbabble"
+        applicationId "id.soulbabble.bangkit"
         minSdk 26
         targetSdk 33
         versionCode 1

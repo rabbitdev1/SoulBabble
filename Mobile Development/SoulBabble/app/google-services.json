@@ -1,41 +1,49 @@
 {
   "project_info": {
-    "project_number": "428253121467",
-    "project_id": "test-soulbubble",
-    "storage_bucket": "test-soulbubble.appspot.com"
+    "project_number": "135895698473",
+    "project_id": "soulbabble-406714",
+    "storage_bucket": "soulbabble-406714.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:428253121467:android:a389e0a14c6d9d839f929e",
+        "mobilesdk_app_id": "1:135895698473:android:9fc4daa8cc8c86c7f4a038",
         "android_client_info": {
-          "package_name": "com.rizalsujana.soulbabble"
+          "package_name": "id.soulbabble.bangkit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "428253121467-24hn56udm0p5mp185q2sknbh9td2pkji.apps.googleusercontent.com",
+          "client_id": "135895698473-chia6te3hdv184rshoadi9mfgd0t0o8l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.rizalsujana.soulbabble",
+            "package_name": "id.soulbabble.bangkit",
+            "certificate_hash": "ff1993e4faa6b7ff009622521502d09b18d824af"
+          }
+        },
+        {
+          "client_id": "135895698473-ou80c7bgropsudv95g8ftq2gh1c8h8cp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.soulbabble.bangkit",
             "certificate_hash": "aebc00cc3d94833bdae559207702694854751d5c"
           }
         },
         {
-          "client_id": "428253121467-t820l8j7dsj3cq7ivqc4il8elgtsc79l.apps.googleusercontent.com",
+          "client_id": "135895698473-44498e101tdu226on688g4git5argujm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB-iTey1HzaK-SdnnIo01Ons9WgUDTZyAE"
+          "current_key": "AIzaSyBrjlflBBuw61nCfQlRDmtxN2TIkv9s2bE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "428253121467-t820l8j7dsj3cq7ivqc4il8elgtsc79l.apps.googleusercontent.com",
+              "client_id": "135895698473-44498e101tdu226on688g4git5argujm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
