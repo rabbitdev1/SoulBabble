@@ -235,6 +235,7 @@ fun ItemInterest(
         )
     }
 }
+
 @Composable
 fun ItemNewTrackMood(
     name: String,
@@ -272,6 +273,47 @@ fun ItemNewTrackMood(
         )
     }
 }
+
+
+@Composable
+fun ItemMoodWeekly(
+    name: String,
+    emoticon: String,
+    cheking:Boolean,
+    onClick: () -> Unit
+){
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth()
+            .clickable { onClick() }
+    ) {
+        Box(
+            modifier = Modifier
+                .size(50.dp)
+                .background(
+                    color = if (cheking) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onPrimary,
+                    shape = RoundedCornerShape(4.dp)
+                )
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = emoticon,
+                style = TextStyle(
+                    fontSize = 30.sp
+                ),
+            )
+        }
+        Text(
+            text = name,
+            style = TextStyle(
+                fontSize = 10.sp
+            ),
+        )
+    }
+}
+
 
 @Composable
 fun ItemWhyTrackMood(

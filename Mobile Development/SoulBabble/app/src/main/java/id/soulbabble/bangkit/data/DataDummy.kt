@@ -27,6 +27,7 @@ object OnBoardingData {
         )
     )
 }
+
 val dataDummyNotification = JSONArray(
     """
     [
@@ -121,6 +122,55 @@ val dataDummyIntersting = JSONArray(
     """
 )
 
+val dataDummyWeeklyMood = JSONArray(
+    """
+        [
+            {
+        "days": "Senin",
+            "date":"03-12-2023",
+            "emoticon":"😔",
+            "cheking":false
+            },
+            {
+        "days": "Selasa",
+            "date":"04-12-2023",
+            "emoticon":"😔",
+            "cheking":false
+            },
+            {
+        "days": "Rabu",
+            "date":"05-12-2023",
+            "emoticon":"😔",
+            "cheking":false
+            },
+            {
+        "days": "Kamis",
+            "date":"06-12-2023",
+            "emoticon":"😔",
+            "cheking":true
+            },
+            {
+        "days": "Jumat",
+            "date":"07-12-2023",
+            "emoticon":"😔",
+            "cheking":true
+            },
+            {
+        "days": "Sabtu",
+            "date":"08-12-2023",
+            "emoticon":"😔",
+            "cheking":true
+            },
+            {
+        "days": "Minggu",
+            "date":"09-12-2023",
+            "emoticon":"😔",
+            "cheking":true
+            }
+        ]
+    """
+
+)
 
 val dataDummyEmoticon = JSONArray(
     """
@@ -251,3 +301,35 @@ val dataDummyTrackSourceEmotion = JSONArray(
 ]
         """
 )
+//
+//val dataDummyProfile = JSONArray(
+//    """
+//        {
+//          "error": false,
+//          "message": "success",
+//          "loginResult": {
+//            "userId": "user-yj5pc_LARC_AgK61",
+//            "name": "Arif Faizin",
+//            "listmood": [
+//              {
+//                "date": "2023-12-07",
+//                "type": "very_bad",
+//                "positive": [
+//                  "kegigihan",
+//                  "manja",
+//                  "ketersediaan"
+//                ],
+//                "negative": [
+//                  "kemarahan",
+//                  "iri hati"
+//                ],
+//                "sourceEmotion": [
+//                  "pekerjaan",
+//                  "diri sendiri"
+//                ]
+//              }
+//            ]
+//          }
+//        }
+//    """
+//)

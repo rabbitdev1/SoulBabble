@@ -296,7 +296,6 @@ fun HomeScreen(
                                         emoticon = emoticon,
                                         onClick = {
                                             navController.navigate("tracking-mood/$id/$name")
-
                                         },
                                     )
                                 }
