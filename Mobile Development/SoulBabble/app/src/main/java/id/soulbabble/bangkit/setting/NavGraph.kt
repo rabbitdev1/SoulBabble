@@ -13,10 +13,11 @@ import id.soulbabble.bangkit.notification.NotificationScreen
 import id.soulbabble.bangkit.ui.auth.Authentication
 import id.soulbabble.bangkit.ui.boarding.OnBoarding
 import id.soulbabble.bangkit.ui.boarding.SplashScreen
-import id.soulbabble.bangkit.ui.community.CommunityScreen
 import id.soulbabble.bangkit.ui.consultation.ConsultationScreen
 import id.soulbabble.bangkit.ui.home.HomeScreen
 import id.soulbabble.bangkit.ui.home.TrackingMoodScreen
+import id.soulbabble.bangkit.ui.journaling.JournalingScreen
+import id.soulbabble.bangkit.ui.journaling.NewJournalingScreen
 import id.soulbabble.bangkit.ui.profile.DetailUserScreen
 import id.soulbabble.bangkit.ui.profile.ProfileScreen
 import id.soulbabble.bangkit.ui.tracker.TrackerScreen
@@ -33,7 +34,7 @@ fun NavGraph() {
         composable("auth") { Authentication(navController) }
         composable("home") { HomeScreen(navController) }
         composable("tracker") { TrackerScreen(navController) }
-        composable("community") { CommunityScreen(navController) }
+        composable("journaling") { JournalingScreen(navController) }
         composable("consultation") { ConsultationScreen(navController) }
 
         composable("profile") { ProfileScreen(navController) }
@@ -50,6 +51,7 @@ fun NavGraph() {
         }
         composable("detail-profile") { DetailUserScreen(navController) }
         composable("notification") { NotificationScreen(navController) }
+        composable("new-journaling") { NewJournalingScreen(navController) }
         composable(
             "tracking-mood/{id}/{name}",
             arguments = listOf(navArgument("id") { type = NavType.StringType },

@@ -54,11 +54,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import id.soulbabble.bangkit.data.UserProfile
-import id.soulbabble.bangkit.data.dataDummyEmoticon
 import id.soulbabble.bangkit.data.dataDummyIntersting
 import id.soulbabble.bangkit.setting.BottomNavigationBar
 import id.soulbabble.bangkit.ui.utils.ItemInterest
-import id.soulbabble.bangkit.ui.utils.ItemNewTrackMood
 import id.soulbabble.bangkit.utils.PreferenceManager
 import id.soulbabble.bangkit.R
 
@@ -217,7 +215,7 @@ fun HomeScreen(
                                         )
                                     }
                                 }
-                                Spacer(modifier = Modifier.width(4.dp))
+                                Spacer(modifier = Modifier.width(8.dp))
                                 Column(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -251,57 +249,7 @@ fun HomeScreen(
                             }
                         }
                     }
-                    Box(
-                        modifier = Modifier
-                            .padding(start = 16.dp, end = 16.dp, top = 0.dp, bottom = 0.dp)
-                            .fillMaxWidth()
-                    ) {
-                        Column(
-                            verticalArrangement = Arrangement.spacedBy(8.dp),
-                            modifier = Modifier
-                                .background(
-                                    MaterialTheme.colorScheme.onPrimary,
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .fillMaxWidth()
-                                .border(
-                                    width = 1.dp,
-                                    color = Color(0xFFDADADA),
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                        ) {
-                            Text(
-                                modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 12.dp),
-                                text = "Bagaimana perasaanmu hari ini?",
-                                color = MaterialTheme.colorScheme.onBackground,
-                                style = TextStyle(
-                                    fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 16.sp
-                                )
-                            )
-                            LazyRow(
-                                modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp)
-                                    .fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement =Arrangement.SpaceBetween,
-                            ) {
-                                items(dataDummyEmoticon.length()) { index ->
-                                    val item = dataDummyEmoticon.getJSONObject(index)
-                                    val name = item.getString("name")
-                                    val id = item.getString("id")
-                                    val emoticon = item.getString("emoticon")
-                                    ItemNewTrackMood(
-                                        name = name,
-                                        emoticon = emoticon,
-                                        onClick = {
-                                            navController.navigate("tracking-mood/$id/$name")
-                                        },
-                                    )
-                                }
-                            }
-                        }
-                    }
+
                 }
             }
             item(span = { GridItemSpan(2) }) {
@@ -408,15 +356,6 @@ fun HomeScreen(
                                     fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 14.sp
-                                )
-                            )
-                            Text(
-                                text = "You and 126 others Appreciate this.",
-                                color = MaterialTheme.colorScheme.onBackground,
-                                style = TextStyle(
-                                    fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
-                                    fontWeight = FontWeight.Light,
-                                    fontSize = 10.sp
                                 )
                             )
                         }

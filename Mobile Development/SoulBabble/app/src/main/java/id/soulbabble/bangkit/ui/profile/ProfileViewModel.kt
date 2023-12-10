@@ -37,7 +37,7 @@ class ProfileViewModel : ViewModel() {
 
         val postingan = JSONObject().apply {
             put("label", "Postingan")
-            put("path", "post")
+            put("path", "journaling")
         }
         jsonArray.put(postingan)
 

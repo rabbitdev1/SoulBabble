@@ -4,7 +4,6 @@ import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,7 +48,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -68,10 +66,9 @@ import id.soulbabble.bangkit.data.dataDummyEmoticon
 import id.soulbabble.bangkit.data.dataDummyIntersting
 import id.soulbabble.bangkit.data.dataDummyWeeklyMood
 import id.soulbabble.bangkit.setting.BottomNavigationBar
-import id.soulbabble.bangkit.ui.home.HomeViewModel
 import id.soulbabble.bangkit.ui.utils.ItemInterest
+import id.soulbabble.bangkit.ui.utils.ItemListEmoticonInterest
 import id.soulbabble.bangkit.ui.utils.ItemMoodWeekly
-import id.soulbabble.bangkit.ui.utils.ItemNewTrackMood
 import id.soulbabble.bangkit.utils.PreferenceManager
 
 @ExperimentalFoundationApi
@@ -83,7 +80,7 @@ fun TrackerScreen(
     val tabs = listOf("Check-in", "Insights")
     var selectedTab by remember { mutableIntStateOf(0) }
 
-    val viewModel: HomeViewModel = viewModel()
+    val viewModel: TrackerViewModel = viewModel()
     val context = LocalContext.current
     val userProfile = remember { mutableStateOf(UserProfile("", "", "", null)) }
 
@@ -97,7 +94,7 @@ fun TrackerScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = "Profile",
+                            text = "Tracker Mood",
                             color = MaterialTheme.colorScheme.onPrimary,
                             textAlign = TextAlign.Center,
                             letterSpacing = 1.sp,
@@ -426,7 +423,76 @@ fun TrackerScreen(
             }
 
             1 -> {
-                // Tampilkan konten untuk Tab 2
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(1),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier
+                        .background(Color(0xFFF5F5F6))
+                        .fillMaxSize()
+                        .padding(innerPadding)
+
+                ) {
+                    item(span = { GridItemSpan(2) }) {
+                        Column(
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier
+                                .padding(start = 16.dp, end = 16.dp, top = 16.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Emosi yang sering kamu rasakan",
+                                color = MaterialTheme.colorScheme.onBackground,
+                                style = TextStyle(
+                                    fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp
+                                )
+                            )
+                            EmoticonChart()
+                        }
+                    }
+                    item(span = { GridItemSpan(1) }) {
+                        Column(
+                            modifier = Modifier
+                                .padding(start = 16.dp, end = 16.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Emosi yang sering kamu rasakan",
+                                color = MaterialTheme.colorScheme.onBackground,
+                                style = TextStyle(
+                                    fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp
+                                )
+                            )
+                        }
+                    }
+                    items(dataDummyEmoticon.length()) { index ->
+                        val item = dataDummyEmoticon.getJSONObject(index)
+                        val name = item.getString("name")
+                        val emoticon = item.getString("emoticon")
+                        val total = item.getInt("total")
+
+                        ItemListEmoticonInterest(
+                            name = name,
+                            emoticon = emoticon,
+                            total = total,
+                            onClick = {
+//                                val encodedUrl = Uri.encode(url)
+//                                navController.navigate("webview/$title/$encodedUrl")
+                            },
+                        )
+                    }
+                    item(span = { GridItemSpan(2) }) {
+                        Spacer(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .height(5.dp)
+                                .background(Color(0xFFEDEEF0))
+                        )
+                    }
+                }
             }
         }
 

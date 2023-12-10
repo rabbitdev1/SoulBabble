@@ -128,43 +128,43 @@ val dataDummyWeeklyMood = JSONArray(
             {
         "days": "Senin",
             "date":"03-12-2023",
-            "emoticon":"😔",
+            "emoticon":"❌",
             "cheking":false
             },
             {
         "days": "Selasa",
             "date":"04-12-2023",
-            "emoticon":"😔",
+            "emoticon":"❌",
             "cheking":false
             },
             {
         "days": "Rabu",
             "date":"05-12-2023",
-            "emoticon":"😔",
+            "emoticon":"❌",
             "cheking":false
             },
             {
         "days": "Kamis",
             "date":"06-12-2023",
-            "emoticon":"😔",
+            "emoticon":"❌",
             "cheking":true
             },
             {
         "days": "Jumat",
             "date":"07-12-2023",
-            "emoticon":"😔",
+            "emoticon":"❌",
             "cheking":true
             },
             {
         "days": "Sabtu",
             "date":"08-12-2023",
-            "emoticon":"😔",
+            "emoticon":"❌",
             "cheking":true
             },
             {
         "days": "Minggu",
             "date":"09-12-2023",
-            "emoticon":"😔",
+            "emoticon":"❌",
             "cheking":true
             }
         ]
@@ -178,27 +178,32 @@ val dataDummyEmoticon = JSONArray(
             {
         "id": "very_bad",
             "name":"Sangat Buruk",
-            "emoticon":"😔"
+            "emoticon":"😔",
+            "total":"10"
             },
             {
         "id": "bad",
             "name":"Buruk",
-            "emoticon":"☹️"
+            "emoticon":"🥲️",
+            "total":"10"
             },
             {
         "id": "neutral",
             "name":"Biasa",
-            "emoticon":"🙂"
+            "emoticon":"🙂",
+            "total":"10"
             },
             {
         "id": "good",
             "name":"Baik",
-            "emoticon":"😊"
+            "emoticon":"😊",
+            "total":"10"
             },
             {
         "id": "very_good",
             "name":"Sangat Baik",
-            "emoticon":"😁"
+            "emoticon":"😁",
+            "total":"10"
             }
         ]
     """
@@ -298,6 +303,19 @@ val dataDummyTrackSourceEmotion = JSONArray(
     {"type":"external", "name":"teknologi baru"},
     {"type":"internal", "name":"stres"},
     {"type":"internal", "name":"ketidakpastian masa depan"}
+]
+        """
+)
+val dataDummyJournaling = JSONArray(
+    """
+        [
+    {"userid":"dsfgsgsdfs","date":"12-12-2022","post":"Lorem ipsum basfasfsgsdgdfg sdghsdfhsdf sdfhsdbfhjbsdsd sdhfgsjfh"},
+    {"userid":"dsfgsgsdfs","date":"12-12-2022","post":"Lorem ipsum basfasfsgsdgdfg sdghsdfhsdf sdfhsdbfhjbsdsd sdhfgsjfh"},
+    {"userid":"dsfgsgsdfs","date":"12-12-2022","post":"Lorem ipsum basfasfsgsdgdfg sdghsdfhsdf sdfhsdbfhjbsdsd sdhfgsjfh"},
+    {"userid":"dsfgsgsdfs","date":"12-12-2022","post":"Lorem ipsum basfasfsgsdgdfg sdghsdfhsdf sdfhsdbfhjbsdsd sdhfgsjfh"},
+    {"userid":"dsfgsgsdfs","date":"12-12-2022","post":"Lorem ipsum basfasfsgsdgdfg sdghsdfhsdf sdfhsdbfhjbsdsd sdhfgsjfh"},
+    {"userid":"dsfgsgsdfs","date":"12-12-2022","post":"Lorem ipsum basfasfsgsdgdfg sdghsdfhsdf sdfhsdbfhjbsdsd sdhfgsjfh"}
+  
 ]
         """
 )

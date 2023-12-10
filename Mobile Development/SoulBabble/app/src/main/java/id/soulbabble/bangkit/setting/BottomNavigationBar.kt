@@ -50,13 +50,13 @@ fun BottomNavigationBar(navController: NavHostController) {
             icon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_community),
-                    contentDescription = "Community",
+                    contentDescription = "journaling",
                     modifier = Modifier.size(30.dp),
-                    tint = if (navController.currentDestination?.route == "community") MaterialTheme.colorScheme.primary else Color.Gray
+                    tint = if (navController.currentDestination?.route == "journaling") MaterialTheme.colorScheme.primary else Color.Gray
                 )
             },
-            selected = navController.currentDestination?.route == "community",
-            onClick = { navController.navigate("community") },
+            selected = navController.currentDestination?.route == "journaling",
+            onClick = { navController.navigate("journaling") },
             selectedContentColor =MaterialTheme.colorScheme.primary
         )
         BottomNavigationItem(

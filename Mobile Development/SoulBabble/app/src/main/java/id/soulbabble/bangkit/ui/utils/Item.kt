@@ -1,5 +1,6 @@
 package id.soulbabble.bangkit.ui.utils
 
+import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,6 +31,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -237,41 +240,174 @@ fun ItemInterest(
 }
 
 @Composable
-fun ItemNewTrackMood(
+fun ItemJournaling(
+    post: String,
+    image: Uri?,
+    username: String,
+    date: String,
+    onClick: () -> Unit
+) {
+        Column(
+            modifier = Modifier
+                .background(
+                    Color(0xFFFFFFFF),
+                )
+                .fillMaxWidth()
+                .clickable { onClick() }
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(
+                    start = 12.dp,
+                    end = 12.dp,
+                    top = 12.dp,
+                    bottom = 8.dp
+                ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(shape = CircleShape)
+                        .background(
+                            MaterialTheme.colorScheme.secondary,
+                            shape = RoundedCornerShape(4.dp)
+                        )
+                ) {
+                    Image(
+                        painter = rememberAsyncImagePainter(model =image),
+                        contentDescription = "Emot Image",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) {
+                    Text(
+                        text = username,
+                        color = MaterialTheme.colorScheme.primary,
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp
+                        )
+                    )
+                    Text(
+                        color = Color.Black,
+                        text = date,
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
+                            fontWeight = FontWeight.Light,
+                            fontSize = 12.sp
+                        )
+                    )
+                }
+            }
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(
+                    start = 12.dp,
+                    end = 12.dp,
+                    top = 0.dp,
+                    bottom = 12.dp
+                ),
+            ) {
+                Text(
+                    text = post,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    style = TextStyle(
+                        fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp
+                    )
+                )
+            }
+    }
+}
+@Composable
+fun ItemListEmoticonInterest(
     name: String,
     emoticon: String,
+    total: Int,
     onClick: () -> Unit
 ){
-    Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
-            .clickable { onClick() }
+    Box(
+        modifier = Modifier
+            .padding(start = 16.dp, end = 16.dp, top = 0.dp, bottom = 0.dp)
+            .fillMaxWidth()
     ) {
         Box(
             modifier = Modifier
-                .size(50.dp)
                 .background(
-                    MaterialTheme.colorScheme.secondary,
-                    shape = RoundedCornerShape(4.dp)
+                    MaterialTheme.colorScheme.onPrimary,
+                    shape = RoundedCornerShape(8.dp)
                 )
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
+                .fillMaxWidth()
+                .border(
+                    width = 1.dp,
+                    color = Color(0xFFDADADA),
+                    shape = RoundedCornerShape(8.dp)
+                )
         ) {
-            Text(
-                text = emoticon,
-                style = TextStyle(
-                    fontSize = 30.sp
-                ),
-            )
+            Row(
+                modifier = Modifier.padding(12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .background(
+                            MaterialTheme.colorScheme.secondary,
+                            shape = RoundedCornerShape(4.dp)
+                        )
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = emoticon,
+                        style = TextStyle(
+                            fontSize = 30.sp
+                        ),
+                    )
+                }
+                Spacer(modifier = Modifier.width(4.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) {
+                    Text(
+                        text = name,
+                        color = MaterialTheme.colorScheme.primary,
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp
+                        )
+                    )
+                    Text(
+                        color = Color.Black,
+                        text = "Total Emosi pada bulan ini : $total",
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
+                            fontWeight = FontWeight.Light,
+                            fontSize = 12.sp
+                        )
+                    )
+                }
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_right),
+                    contentDescription = "Icon",
+                    modifier = Modifier.size(22.dp),
+                    tint = Color.Black
+                )
+            }
         }
-        Text(
-            text = name,
-            style = TextStyle(
-                fontSize = 10.sp
-            ),
-        )
     }
+
 }
 
 
@@ -285,7 +421,8 @@ fun ItemMoodWeekly(
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clickable { onClick() }
     ) {
         Box(
@@ -343,7 +480,8 @@ fun ItemWhyTrackMood(
                 width = 1.dp,
                 color = Color(0xFF19A7CE),
                 shape = RoundedCornerShape(8.dp)
-            ) .clickable { onClick() },
+            )
+            .clickable { onClick() },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
