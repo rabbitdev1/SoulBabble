@@ -1,4 +1,4 @@
-package id.soulbabble.bangkit.chat
+package id.soulbabble.bangkit.ui.consultation
 
 import androidx.lifecycle.ViewModel
 

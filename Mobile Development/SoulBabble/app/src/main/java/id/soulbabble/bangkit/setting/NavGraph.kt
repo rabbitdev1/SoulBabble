@@ -13,9 +13,10 @@ import id.soulbabble.bangkit.notification.NotificationScreen
 import id.soulbabble.bangkit.ui.auth.Authentication
 import id.soulbabble.bangkit.ui.boarding.OnBoarding
 import id.soulbabble.bangkit.ui.boarding.SplashScreen
-import id.soulbabble.bangkit.ui.consultation.ConsultationScreen
+import id.soulbabble.bangkit.ui.consultation.ChatScreen
 import id.soulbabble.bangkit.ui.home.HomeScreen
 import id.soulbabble.bangkit.ui.home.TrackingMoodScreen
+import id.soulbabble.bangkit.ui.journaling.ConsultationScreen
 import id.soulbabble.bangkit.ui.journaling.JournalingScreen
 import id.soulbabble.bangkit.ui.journaling.NewJournalingScreen
 import id.soulbabble.bangkit.ui.profile.DetailUserScreen
@@ -36,8 +37,9 @@ fun NavGraph() {
         composable("tracker") { TrackerScreen(navController) }
         composable("journaling") { JournalingScreen(navController) }
         composable("consultation") { ConsultationScreen(navController) }
+        composable("chat-bot") { ChatScreen(navController) }
 
-        composable("profile") { ProfileScreen(navController) }
+                composable("profile") { ProfileScreen(navController) }
         composable(
             route = "webview/{url}/{title}",
             arguments = listOf(

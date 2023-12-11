@@ -319,14 +319,97 @@ fun ItemJournaling(
                     text = post,
                     color = MaterialTheme.colorScheme.onBackground,
                     style = TextStyle(
-                        fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
-                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                         fontSize = 14.sp
                     )
                 )
             }
     }
 }
+
+@Composable
+fun ItemListChat(
+    post: String,
+    image: Uri?,
+    username: String,
+    date: String,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .background(
+                Color(0xFFFFFFFF),
+            )
+            .fillMaxWidth()
+            .clickable { onClick() }
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(
+                start = 12.dp,
+                end = 12.dp,
+                top = 12.dp,
+                bottom = 8.dp
+            ),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(shape = CircleShape)
+                    .background(
+                        MaterialTheme.colorScheme.secondary,
+                        shape = RoundedCornerShape(4.dp)
+                    )
+            ) {
+                Image(
+                    painter = rememberAsyncImagePainter(model =image),
+                    contentDescription = "Emot Image",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) {
+                Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.Bottom,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ){
+                    Text(
+                        text = username,
+                        color = MaterialTheme.colorScheme.primary,
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp
+                        )
+                    )
+                    Text(
+                        color = Color.Black,
+                        text = date,
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
+                            fontWeight = FontWeight.Light,
+                            fontSize = 12.sp
+                        )
+                    )
+                }
+                Text(
+                    text = post,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    style = TextStyle(
+                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
+                        fontSize = 14.sp
+                    )
+                )
+            }
+        }
+    }
+}
+
 @Composable
 fun ItemListEmoticonInterest(
     name: String,
