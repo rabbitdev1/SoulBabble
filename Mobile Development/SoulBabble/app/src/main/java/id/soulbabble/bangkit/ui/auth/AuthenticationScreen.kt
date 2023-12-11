@@ -48,7 +48,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import id.soulbabble.bangkit.utils.PreferenceManager
 import id.soulbabble.bangkit.R
-
 @Composable
 fun Authentication(
     navController: NavHostController,

@@ -59,7 +59,6 @@ import id.soulbabble.bangkit.setting.BottomNavigationBar
 import id.soulbabble.bangkit.ui.utils.ItemInterest
 import id.soulbabble.bangkit.utils.PreferenceManager
 import id.soulbabble.bangkit.R
-
 @ExperimentalFoundationApi
 @ExperimentalMaterial3Api
 @Composable

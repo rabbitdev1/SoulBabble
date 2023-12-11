@@ -13,7 +13,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import id.soulbabble.bangkit.R
-
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     BottomNavigation(
