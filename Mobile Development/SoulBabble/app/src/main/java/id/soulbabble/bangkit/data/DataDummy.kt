@@ -319,6 +319,16 @@ val dataDummyJournaling = JSONArray(
 ]
         """
 )
+
+
+val dummyMessages: List<Pair<String, Boolean>> = listOf(
+    "Hi, thanks for accompanying me today. really enjoyed today i like it" to true,
+    "Oh it's okay i like it too babe" to false,
+    "Next time, we will meet again?" to true,
+    "Soon we go to a restaurant that is very viral yups ;)" to true,
+    "Oke babe :)" to false
+)
+
 //
 //val dataDummyProfile = JSONArray(
 //    """

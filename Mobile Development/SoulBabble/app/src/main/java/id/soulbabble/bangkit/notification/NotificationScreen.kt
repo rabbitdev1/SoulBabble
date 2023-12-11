@@ -31,7 +31,6 @@ import androidx.navigation.compose.rememberNavController
 import id.soulbabble.bangkit.data.dataDummyNotification
 import id.soulbabble.bangkit.ui.utils.ItemNotification
 import id.soulbabble.bangkit.R
-
 @ExperimentalMaterial3Api
 @Composable
 fun NotificationScreen(
