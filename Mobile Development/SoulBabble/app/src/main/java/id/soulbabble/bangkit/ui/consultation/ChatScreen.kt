@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -93,20 +94,20 @@ fun ChatScreen(
                         )
                     )
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
-                actions = {
+                navigationIcon = {
                     IconButton(
                         onClick = {
-                            navController.navigate("notification")
+                            navController.popBackStack()
                         }
                     ) {
                         Icon(
-                            Icons.Default.Notifications,
-                            contentDescription = "Notifications",
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Kembali",
                             tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
                 },
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.primary)
