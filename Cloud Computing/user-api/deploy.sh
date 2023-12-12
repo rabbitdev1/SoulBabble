@@ -1,9 +1,9 @@
-GOOGLE_PROJECT_ID=ancient-dragon-403014
-CLOUD_RUN_SERVICE=soulbabble-user-api
-INSTANCE_CONNECTION_NAME=ancient-dragon-403014:asia-southeast2:soulbabble
-DB_USER=root
-DB_PASS=soulbabbledatabase
-DB_NAME=soulbbaledatabase
+GOOGLE_PROJECT_ID=
+CLOUD_RUN_SERVICE=
+INSTANCE_CONNECTION_NAME=
+DB_USER=
+DB_PASS=
+DB_NAME=
 gcloud builds submit -tag gcr.io/$GOOGLE_PROJECT_ID/$CLOUD_RUN_SERVICE \
     --project=$GOOGLE_PROJECT_ID
 
