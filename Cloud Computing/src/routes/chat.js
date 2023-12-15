@@ -1,5 +1,8 @@
 const mysql = require('mysql2/promise');
 const dbConfig = require('../db/db-config');
+const express = require('express');
+const router = express.Router();
+
 
 const pool = mysql.createPool(dbConfig);
 
