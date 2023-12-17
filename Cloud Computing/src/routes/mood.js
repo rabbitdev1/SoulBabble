@@ -29,10 +29,10 @@ app.get('/mood-tracker', (req, res) => {
   const { sbuser_id, date } = req.query;
 
   const sql = `
-    SELECT c.fullname, t.mood, t.date
+    SELECT c.fullname, t.mood, t.timestamp
     FROM community c
     LEFT JOIN tracker t ON c.post_id = t.post_id
-    WHERE c.sbuser_id = ? AND DATE(t.date) = ?
+    WHERE c.sbuser_id = ? AND DATE(t.timestamp) = ?
   `;
 
   db.query(sql, [sbuser_id, date], (err, result) => {
@@ -45,16 +45,16 @@ app.get('/mood-tracker', (req, res) => {
   });
 });
 
-// Endpoint untuk menyimpan mood ke dalam tabel tracker
-app.post('/mood-tracker', (req, res) => {
-  const { sbuser_id, post_id, message_id, fullname, mood } = req.body;
+// Endpoint untuk menyimpan mood ke dalam tabel mood
+app.post('/mood', (req, res) => {
+  const { sbuser_id, post_id, message_id, fullname, mood, timestamp } = req.body;
 
   const sql = `
-    INSERT INTO tracker (post_id, sbuser_id, message_id, fullname, mood, date)
-    VALUES (?, ?, ?, ?, ?, CURRENT_DATE())
+    INSERT INTO mood (sbuser_id, post_id, message_id, fullname, mood, timestamp)
+    VALUES (?, ?, ?, ?, ?, ?)
   `;
 
-  db.query(sql, [post_id, sbuser_id, message_id, fullname, mood], (err, result) => {
+  db.query(sql, [sbuser_id, post_id, message_id, fullname, mood, timestamp], (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send('Internal Server Error');
