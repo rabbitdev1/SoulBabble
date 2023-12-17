@@ -38,7 +38,10 @@ router.post('/register', async (req, res) => {
       [fullname, id_google,email,photoUrl]
     );
 
-    res.status(201).json({ message: 'User registered successfully' });
+    // Jika data berhasil disimpan, buat token JWT
+    const token = jwt.sign({ identifier: email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    res.status(201).json({ token }); // Mengembalikan nilai token sebagai respon
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
