@@ -59,6 +59,7 @@ import id.soulbabble.bangkit.setting.BottomNavigationBar
 import id.soulbabble.bangkit.ui.utils.ItemGeneralProfile
 import id.soulbabble.bangkit.utils.PreferenceManager
 import id.soulbabble.bangkit.R
+import id.soulbabble.bangkit.ui.utils.ToastUtils
 import org.json.JSONArray
 
 @ExperimentalMaterial3Api
@@ -71,11 +72,24 @@ fun ProfileScreen(
     val dataPersonal by viewModel.getPersonalData().observeAsState(JSONArray())
     val context = LocalContext.current
     val userProfile = remember { mutableStateOf(UserProfile("", "", "", null)) }
+    val navigateToAuth by viewModel.navigateToAuth.observeAsState()
+    val toastMessage by viewModel.toastMessage.observeAsState()
+
+    toastMessage?.let {
+        ToastUtils.showToast(LocalContext.current, it)
+        viewModel.resetToastMessage()
+    }
 
     LaunchedEffect(Unit) {
         userProfile.value = PreferenceManager.getUserProfile(context)
     }
-
+    LaunchedEffect(navigateToAuth) {
+        if (navigateToAuth == true) {
+            navController.navigate("auth") {
+                popUpTo("home") { inclusive = true }
+            }
+        }
+    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -252,9 +266,6 @@ fun ProfileScreen(
                         colors = ButtonDefaults.buttonColors(Color.White),
                         onClick = {
                             viewModel.logOut()
-                            navController.navigate("auth") {
-                                popUpTo("home") { inclusive = true }
-                            }
                         }
                     ) {
                         Text(

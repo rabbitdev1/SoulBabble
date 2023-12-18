@@ -26,17 +26,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import id.soulbabble.bangkit.data.dataDummyNotification
 import id.soulbabble.bangkit.ui.utils.ItemNotification
 import id.soulbabble.bangkit.R
+import id.soulbabble.bangkit.ui.consultation.ChatViewModel
+
 @ExperimentalMaterial3Api
 @Composable
 fun NotificationScreen(
     navController: NavHostController
 ) {
-
+    val viewModel: NotificationViewModel = viewModel()
     Scaffold(
         topBar = {
             TopAppBar(

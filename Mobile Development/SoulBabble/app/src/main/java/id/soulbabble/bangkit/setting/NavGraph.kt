@@ -1,6 +1,7 @@
 package id.soulbabble.bangkit.setting
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
@@ -24,6 +25,7 @@ import id.soulbabble.bangkit.ui.profile.ProfileScreen
 import id.soulbabble.bangkit.ui.tracker.TrackerScreen
 import id.soulbabble.bangkit.ui.utils.WebviewScreen
 
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Composable

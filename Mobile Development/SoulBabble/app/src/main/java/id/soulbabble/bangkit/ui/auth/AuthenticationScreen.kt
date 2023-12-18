@@ -1,8 +1,12 @@
 package id.soulbabble.bangkit.ui.auth
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -20,11 +24,13 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,21 +54,30 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import id.soulbabble.bangkit.utils.PreferenceManager
 import id.soulbabble.bangkit.R
+import id.soulbabble.bangkit.ui.utils.ToastUtils
+
 @Composable
 fun Authentication(
     navController: NavHostController,
 ) {
     val viewModel: AuthenticationViewModel = viewModel()
     val authenticationState = viewModel.authenticationState.observeAsState()
+    val navigateToHome by viewModel.navigateToHome.observeAsState()
     val context = LocalContext.current
     val token = stringResource(R.string.web_client_id)
+    val isLoading by viewModel.isLoading.observeAsState(false)
 
+    val toastMessage by viewModel.toastMessage.observeAsState()
+
+    toastMessage?.let {
+            ToastUtils.showToast(LocalContext.current, it)
+            viewModel.resetToastMessage()
+    }
 
     LaunchedEffect(authenticationState.value) {
         when (authenticationState.value) {
             AuthenticationViewModel.AuthenticationState.AUTHENTICATED -> {
                 val user = FirebaseAuth.getInstance().currentUser
-                Log.d("TAG", "User Profile: ${user?.uid}, ${user?.displayName}, ${user?.email}, ${user?.photoUrl}")
                 user?.let {
                     PreferenceManager.saveUserProfile(
                         context,
@@ -72,14 +87,17 @@ fun Authentication(
                         it.photoUrl
                     )
                 }
-                navController.navigate("home") {
-                    popUpTo("auth") { inclusive = true }
-                }
             }
             else -> {}
         }
     }
-
+    LaunchedEffect(navigateToHome) {
+        if (navigateToHome == true) {
+            navController.navigate("home") {
+                popUpTo("auth") { inclusive = true }
+            }
+        }
+    }
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
     ) { activityResult ->
@@ -89,9 +107,11 @@ fun Authentication(
                     .getResult(ApiException::class.java)
                 viewModel.authenticateWithGoogle(account)
             } catch (e: ApiException) {
+                viewModel.setLoading(false)
                 Log.w("TAG", "Google Sign-in Failed: ${e.message}", e)
             }
         } else {
+            viewModel.setLoading(false)
             Log.d("TAG", "User cancelled the sign-in process")
         }
     }
@@ -145,33 +165,13 @@ fun Authentication(
                     fontSize = 14.sp
                 )
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                Button(
-                    onClick = {
-                        val gso = GoogleSignInOptions
-                            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                            .requestIdToken(token)
-                            .requestEmail()
-                            .build()
-                        val googleSignInClient = GoogleSignIn.getClient(context, gso)
-                        launcher.launch(googleSignInClient.signInIntent)
-                    },
-                    colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onPrimary)
-                ) {
-                    Icon(
-                        modifier = Modifier
-                            .width(20.dp)
-                            .height(20.dp),
-                        painter = painterResource(id = R.drawable.ic_google),
-                        contentDescription = "Google sign-in",
-                        tint = Color.Unspecified
-                    )
-                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                    Text(
-                        text = "Sign in with Google",
-                        color = MaterialTheme.colorScheme.primary,
-                        textAlign = TextAlign.Center
-                    )
-                }
+                GoogleSignInButton(
+                    launcher = launcher,
+                    token = token,
+                    context = context,
+                    isLoading = isLoading,
+                    onLoadingChange = viewModel::setLoading
+                )
                 Spacer(Modifier.size(8.dp))
                 Column(
                     modifier = Modifier.fillMaxWidth(),
@@ -196,6 +196,50 @@ fun Authentication(
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun GoogleSignInButton(
+    launcher: ActivityResultLauncher<Intent>,
+    token: String,
+    context: Context,
+    isLoading: Boolean,
+    onLoadingChange: (Boolean) -> Unit
+) {
+
+    if (isLoading) {
+        // Display a loading indicator
+        CircularProgressIndicator()
+    } else {
+        // Display the Google Sign-In Button
+        Button(
+            onClick = {
+                onLoadingChange(true)
+                val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(token)
+                    .requestEmail()
+                    .build()
+                val googleSignInClient = GoogleSignIn.getClient(context, gso)
+                launcher.launch(googleSignInClient.signInIntent)
+            },
+            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onPrimary)
+        ) {
+            Icon(
+                modifier = Modifier
+                    .width(20.dp)
+                    .height(20.dp),
+                painter = painterResource(id = R.drawable.ic_google),
+                contentDescription = "Google sign-in",
+                tint = Color.Unspecified
+            )
+            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+            Text(
+                text = "Sign in with Google",
+                color = MaterialTheme.colorScheme.primary,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
