@@ -12,6 +12,7 @@ object PreferenceManager {
     private const val KEY_USER_DISPLAY_NAME = "user_display_name"
     private const val KEY_USER_EMAIL = "user_email"
     private const val KEY_USER_PHOTO_URL = "user_photo_url"
+    private const val KEY_USER_TOKEN = "user_token"
 
     fun isFirstRun(context: Context): Boolean {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -32,6 +33,26 @@ object PreferenceManager {
             putString(KEY_USER_DISPLAY_NAME, displayName)
             putString(KEY_USER_EMAIL, email)
             putString(KEY_USER_PHOTO_URL, photoUrl?.toString())
+            apply()
+        }
+    }
+    fun saveToken(context: Context, token: String) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        sharedPreferences.edit {
+            putString(KEY_USER_TOKEN, token)
+            apply()
+        }
+    }
+
+    fun getToken(context: Context): String? {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return sharedPreferences.getString(KEY_USER_TOKEN, null)
+    }
+
+    fun clearToken(context: Context) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        sharedPreferences.edit {
+            remove(KEY_USER_TOKEN)
             apply()
         }
     }

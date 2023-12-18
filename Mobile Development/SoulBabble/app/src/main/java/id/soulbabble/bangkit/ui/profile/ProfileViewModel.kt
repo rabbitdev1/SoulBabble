@@ -1,16 +1,40 @@
 package id.soulbabble.bangkit.ui.profile
 
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.google.firebase.auth.FirebaseAuth
+import id.soulbabble.bangkit.data.ApiService
+import id.soulbabble.bangkit.data.ErrorResponse
+import id.soulbabble.bangkit.data.LogOutResponse
+import id.soulbabble.bangkit.data.RetrofitClient
 import id.soulbabble.bangkit.ui.auth.AuthenticationViewModel
+import id.soulbabble.bangkit.utils.PreferenceManager
+import okhttp3.ResponseBody
 import org.json.JSONArray
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Converter
+import retrofit2.Response
+import java.io.IOException
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(application: Application) : AndroidViewModel(application) {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val _authenticationState = MutableLiveData<AuthenticationViewModel.AuthenticationState>()
+    private val _authenticationState =
+        MutableLiveData<AuthenticationViewModel.AuthenticationState>()
+    private val apiService = RetrofitClient.createService(ApiService::class.java)
+
+    private val token = PreferenceManager.getToken(application)
+
+    private val _navigateToAuth = MutableLiveData<Boolean>()
+    val navigateToAuth: LiveData<Boolean> = _navigateToAuth
+
+    private val _toastMessage = MutableLiveData<String?>()
+    val toastMessage: LiveData<String?> = _toastMessage
 
     fun getPersonalData() = liveData {
         emit(jsonDataPersonal())
@@ -20,10 +44,57 @@ class ProfileViewModel : ViewModel() {
         emit(jsonDataGeneral())
     }
 
-
     fun logOut() {
-        auth.signOut()
-        _authenticationState.value = AuthenticationViewModel.AuthenticationState.UNAUTHENTICATED
+        if (token != null) {
+            logoutUser(token)
+        }
+        println(token)
+    }
+
+    private fun logoutUser(authorization: String) {
+        val application = getApplication<Application>()
+        apiService.logoutUser(authorization).enqueue(object : Callback<LogOutResponse> {
+            override fun onResponse(
+                call: Call<LogOutResponse>,
+                response: Response<LogOutResponse>
+            ) {
+                if (response.isSuccessful) {
+                    _navigateToAuth.value = true
+                    PreferenceManager.clearToken(application)
+                    _toastMessage.value = response.body()?.message!!
+                    auth.signOut()
+                    _authenticationState.value =
+                        AuthenticationViewModel.AuthenticationState.UNAUTHENTICATED
+                } else {
+                    val errorResponse = parseError(response)
+                    val errorMessage = "Logout Failed: ${errorResponse?.error ?: "Unknown error"}"
+                    _toastMessage.value = errorMessage
+                }
+            }
+
+            override fun onFailure(call: Call<LogOutResponse>, t: Throwable) {
+                val error = "Logout Failed: ${t.message}"
+                Log.e("Authentication", error, t)
+                _toastMessage.value = error
+            }
+        })
+    }
+
+    private fun parseError(response: Response<*>): ErrorResponse? {
+        val converter: Converter<ResponseBody, ErrorResponse> =
+            RetrofitClient.retrofit.responseBodyConverter(
+                ErrorResponse::class.java,
+                arrayOfNulls<Annotation>(0)
+            )
+        return try {
+            response.errorBody()?.let { converter.convert(it) }
+        } catch (e: IOException) {
+            null
+        }
+    }
+
+    fun resetToastMessage() {
+        _toastMessage.value = null
     }
 
     private fun jsonDataPersonal(): JSONArray {

@@ -1,4 +1,5 @@
 @file:Suppress("DEPRECATION")
+
 package id.soulbabble.bangkit.ui.boarding
 
 import androidx.compose.foundation.background
@@ -7,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -17,42 +19,50 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavController) {
-        val composition by rememberLottieComposition(
-            spec = LottieCompositionSpec.Asset("lottie_splash.json")
-        )
+    val composition by rememberLottieComposition(
+        spec = LottieCompositionSpec.Asset("lottie_splash.json")
+    )
 
-        val progress by animateLottieCompositionAsState(
-            composition = composition,
-            iterations = LottieConstants.IterateForever
-        )
-
-        LaunchedEffect(key1 = true) {
-            delay(3000L)
-            val isFirstRun = PreferenceManager.isFirstRun(navController.context)
-            if (isFirstRun) {
-                navController.navigate("onboarding") {
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        iterations = LottieConstants.IterateForever
+    )
+    val context = LocalContext.current
+    val token = PreferenceManager.getToken(context)
+    LaunchedEffect(key1 = true) {
+        delay(3000L)
+        println(token)
+        val isFirstRun = PreferenceManager.isFirstRun(navController.context)
+        if (isFirstRun) {
+            navController.navigate("onboarding") {
+                popUpTo("splashScreen") { inclusive = true }
+            }
+            PreferenceManager.setFirstRun(navController.context, false)
+        } else {
+            if (token != null) {
+                navController.navigate("home") {
                     popUpTo("splashScreen") { inclusive = true }
                 }
-                PreferenceManager.setFirstRun(navController.context, false)
             } else {
                 navController.navigate("auth") {
                     popUpTo("splashScreen") { inclusive = true }
                 }
             }
-
         }
-        Box(
+
+    }
+    Box(
+        modifier = Modifier
+            .background(color = MaterialTheme.colorScheme.primary)
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        LottieAnimation(
+            composition = composition,
+            progress = progress,
             modifier = Modifier
-                .background(color = MaterialTheme.colorScheme.primary)
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center,
-        ) {
-            LottieAnimation(
-                composition = composition,
-                progress = progress,
-                modifier = Modifier
-                    .size(200.dp)
-            )
+                .size(200.dp)
+        )
     }
 }
 

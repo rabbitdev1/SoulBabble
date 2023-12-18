@@ -2,7 +2,6 @@ package id.soulbabble.bangkit.data
 
 import android.net.Uri
 
-
 data class OnBoardingItems(
     val image: Int,
     val title: String,
