@@ -40,41 +40,6 @@ val dataDummyNotification = JSONArray(
             "title": "Notifikasi 2",
             "description": "Ini adalah deskripsi yang lebih panjang untuk Notifikasi 2. Deskripsi ini berisi lebih banyak teks dan informasi tentang notifikasi ini. Notifikasi ini akan memberikan lebih banyak detail kepada pengguna.",
             "date": "2023-12-07"
-        },
-        {
-            "title": "Notifikasi 3",
-            "description": "Ini adalah deskripsi yang lebih panjang untuk Notifikasi 3. Deskripsi ini berisi lebih banyak teks dan informasi tentang notifikasi ini. Notifikasi ini akan memberikan lebih banyak detail kepada pengguna.",
-            "date": "2023-12-08"
-        },
-        {
-            "title": "Notifikasi 4",
-            "description": "Ini adalah deskripsi yang lebih panjang untuk Notifikasi 4. Deskripsi ini berisi lebih banyak teks dan informasi tentang notifikasi ini. Notifikasi ini akan memberikan lebih banyak detail kepada pengguna.",
-            "date": "2023-12-09"
-        },
-        {
-            "title": "Notifikasi 5",
-            "description": "Ini adalah deskripsi yang lebih panjang untuk Notifikasi 5. Deskripsi ini berisi lebih banyak teks dan informasi tentang notifikasi ini. Notifikasi ini akan memberikan lebih banyak detail kepada pengguna.",
-            "date": "2023-12-10"
-        },
-        {
-            "title": "Notifikasi 4",
-            "description": "Ini adalah deskripsi yang lebih panjang untuk Notifikasi 4. Deskripsi ini berisi lebih banyak teks dan informasi tentang notifikasi ini. Notifikasi ini akan memberikan lebih banyak detail kepada pengguna.",
-            "date": "2023-12-09"
-        },
-        {
-            "title": "Notifikasi 5",
-            "description": "Ini adalah deskripsi yang lebih panjang untuk Notifikasi 5. Deskripsi ini berisi lebih banyak teks dan informasi tentang notifikasi ini. Notifikasi ini akan memberikan lebih banyak detail kepada pengguna.",
-            "date": "2023-12-10"
-        },
-        {
-            "title": "Notifikasi 4",
-            "description": "Ini adalah deskripsi yang lebih panjang untuk Notifikasi 4. Deskripsi ini berisi lebih banyak teks dan informasi tentang notifikasi ini. Notifikasi ini akan memberikan lebih banyak detail kepada pengguna.",
-            "date": "2023-12-09"
-        },
-        {
-            "title": "Notifikasi 5",
-            "description": "Ini adalah deskripsi yang lebih panjang untuk Notifikasi 5. Deskripsi ini berisi lebih banyak teks dan informasi tentang notifikasi ini. Notifikasi ini akan memberikan lebih banyak detail kepada pengguna.",
-            "date": "2023-12-10"
         }
     ]
     """
