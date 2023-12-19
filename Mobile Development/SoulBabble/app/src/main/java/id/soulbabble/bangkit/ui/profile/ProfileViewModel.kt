@@ -126,19 +126,19 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
         val pusatBantuan = JSONObject().apply {
             put("label", "Pusat Bantuan")
-            put("url", "https://github.com/react-native-webview/react-native-webview/issues/1619")
+            put("url", "https://soubabble.com/help")
         }
         jsonArray.put(pusatBantuan)
 
         val syaratKetentuan = JSONObject().apply {
             put("label", "Syarat & Ketentuan")
-            put("url", "https://example.com/syarat-ketentuan")
+            put("url", "https://soubabble.com/syarat-ketentuan")
         }
         jsonArray.put(syaratKetentuan)
 
         val kebijakanPrivasi = JSONObject().apply {
             put("label", "Kebijakan Privasi")
-            put("url", "https://example.com/kebijakan-privasi")
+            put("url", "https://soubabble.com/kebijakan-privasi")
         }
         jsonArray.put(kebijakanPrivasi)
 

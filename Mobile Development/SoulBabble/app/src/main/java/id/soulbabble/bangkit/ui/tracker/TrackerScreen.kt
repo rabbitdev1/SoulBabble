@@ -227,26 +227,21 @@ fun TrackerScreen(
                                     modifier = Modifier
                                         .size(50.dp)
                                         .background(
-                                            MaterialTheme.colorScheme.onPrimary,
+                                            MaterialTheme.colorScheme.secondary,
                                             shape = RoundedCornerShape(4.dp)
-                                        )
+                                        ),
+                                    contentAlignment = Alignment.Center
                                 ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .padding(8.dp)
-                                            .clip(shape = CircleShape)
-                                            .background(
-                                                Color.Blue,
-                                                shape = RoundedCornerShape(4.dp)
-                                            )
-                                    ) {
-                                        Image(
-                                            painter = rememberAsyncImagePainter(model = userProfile.value.photoUrl),
-                                            contentDescription = "Emot Image",
-                                            modifier = Modifier.fillMaxSize(),
-                                            contentScale = ContentScale.Crop
-                                        )
-                                    }
+                                    Text(
+                                        text = "\uD83D\uDE01",
+                                        color = MaterialTheme.colorScheme.primary,
+                                        style = TextStyle(
+                                            fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 24.sp
+                                        ),
+                                        modifier = Modifier.align(Alignment.Center)
+                                    )
                                 }
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Column(
@@ -264,7 +259,7 @@ fun TrackerScreen(
                                         )
                                     )
                                     Text(
-                                        text = "Lorem Ipsum",
+                                        text = "Sangat Bahagia",
                                         color = MaterialTheme.colorScheme.primary,
                                         style = TextStyle(
                                             fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
@@ -272,72 +267,6 @@ fun TrackerScreen(
                                             fontSize = 16.sp
                                         )
                                     )
-                                }
-                            }
-                            Row(
-                                modifier = Modifier,
-                                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    color = Color.Black,
-                                    text = "Emosi Positif : ",
-                                    style = TextStyle(
-                                        fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
-                                        fontWeight = FontWeight.Light,
-                                        fontSize = 12.sp
-                                    )
-                                )
-                                Box(modifier = Modifier
-                                    .background(
-                                        Color(0x9A19A7CE),
-                                        shape = RoundedCornerShape(4.dp)
-                                    )){
-                                    Box(modifier = Modifier.padding(4.dp)
-                                    ){
-                                        Text(
-                                            color = Color.Black,
-                                            text = "Emosi 1, Emosi 2, Emosi 4",
-                                            style = TextStyle(
-                                                fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
-                                                fontWeight = FontWeight.Light,
-                                                fontSize = 10.sp
-                                            )
-                                        )
-                                    }
-                                }
-                            }
-                            Row(
-                                modifier = Modifier,
-                                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    color = Color.Black,
-                                    text = "Emosi Negatif : ",
-                                    style = TextStyle(
-                                        fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
-                                        fontWeight = FontWeight.Light,
-                                        fontSize = 12.sp
-                                    )
-                                )
-                                Box(modifier = Modifier
-                                    .background(
-                                        Color(0x9A19A7CE),
-                                        shape = RoundedCornerShape(4.dp)
-                                    )){
-                                    Box(modifier = Modifier.padding(4.dp)
-                                    ){
-                                        Text(
-                                            color = Color.Black,
-                                            text = "Emosi 1, Emosi 2, Emosi 4",
-                                            style = TextStyle(
-                                                fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
-                                                fontWeight = FontWeight.Light,
-                                                fontSize = 10.sp
-                                            )
-                                        )
-                                    }
                                 }
                             }
                             Row(
@@ -363,7 +292,7 @@ fun TrackerScreen(
                                     ){
                                         Text(
                                             color = Color.Black,
-                                            text = "Emosi 1, Emosi 2, Emosi 4",
+                                            text = "Kesuksesan, Koneksi Sosial, Rasa Syukur, ...",
                                             style = TextStyle(
                                                 fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
                                                 fontWeight = FontWeight.Light,

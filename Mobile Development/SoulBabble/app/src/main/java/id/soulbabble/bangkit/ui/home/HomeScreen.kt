@@ -6,6 +6,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -65,6 +66,7 @@ import id.soulbabble.bangkit.R
 import id.soulbabble.bangkit.data.JournalEntry
 import id.soulbabble.bangkit.data.UserProfile
 import id.soulbabble.bangkit.data.dataDummyIntersting
+import id.soulbabble.bangkit.notification.NotificationViewModel
 import id.soulbabble.bangkit.setting.BottomNavigationBar
 import id.soulbabble.bangkit.ui.journaling.JorunalingViewModel
 import id.soulbabble.bangkit.ui.journaling.Result
@@ -245,8 +247,11 @@ fun HomeScreen(
                                     )
                             ) {
                                 Row(
-                                    modifier = Modifier.padding(12.dp),
-                                    verticalAlignment = Alignment.CenterVertically
+                                    modifier = Modifier.padding(12.dp) .clickable {
+                                        navController.navigate("tracker")
+                                    },
+                                    verticalAlignment = Alignment.CenterVertically,
+
                                 ) {
                                     Box(
                                         modifier = Modifier
@@ -254,24 +259,19 @@ fun HomeScreen(
                                             .background(
                                                 MaterialTheme.colorScheme.secondary,
                                                 shape = RoundedCornerShape(4.dp)
-                                            )
+                                            ),
+                                        contentAlignment = Alignment.Center
                                     ) {
-                                        Box(
-                                            modifier = Modifier
-                                                .padding(8.dp)
-                                                .clip(shape = CircleShape)
-                                                .background(
-                                                    Color.Blue,
-                                                    shape = RoundedCornerShape(4.dp)
-                                                )
-                                        ) {
-                                            Image(
-                                                painter = rememberAsyncImagePainter(model = userProfile.value.photoUrl),
-                                                contentDescription = "Emot Image",
-                                                modifier = Modifier.fillMaxSize(),
-                                                contentScale = ContentScale.Crop
-                                            )
-                                        }
+                                        Text(
+                                            text = "\uD83D\uDE01",
+                                            color = MaterialTheme.colorScheme.primary,
+                                            style = TextStyle(
+                                                fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
+                                                fontWeight = FontWeight.Bold,
+                                                fontSize = 24.sp
+                                            ),
+                                            modifier = Modifier.align(Alignment.Center)
+                                        )
                                     }
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Column(
@@ -280,7 +280,7 @@ fun HomeScreen(
                                             .weight(1f)
                                     ) {
                                         Text(
-                                            text = "Lorem Ipsum",
+                                            text = "Sangat Bahagia",
                                             color = MaterialTheme.colorScheme.primary,
                                             style = TextStyle(
                                                 fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
@@ -290,7 +290,7 @@ fun HomeScreen(
                                         )
                                         Text(
                                             color = Color.Black,
-                                            text = "Lorem Ipsum",
+                                            text = "Jangan tertekan oleh pencapaian orang lain.",
                                             style = TextStyle(
                                                 fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
                                                 fontWeight = FontWeight.Light,

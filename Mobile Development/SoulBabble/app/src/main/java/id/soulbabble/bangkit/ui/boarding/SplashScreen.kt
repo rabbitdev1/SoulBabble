@@ -2,6 +2,7 @@
 
 package id.soulbabble.bangkit.ui.boarding
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -9,16 +10,27 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.*
+import id.soulbabble.bangkit.R
+import id.soulbabble.bangkit.notification.NotificationViewModel
 import id.soulbabble.bangkit.utils.PreferenceManager
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavController) {
+    val notificationViewModel: NotificationViewModel = viewModel()
+    val context = LocalContext.current
+    LaunchedEffect(key1 = true) {
+        notificationViewModel.startShowingNotifications(
+            context = context,
+        )
+    }
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("lottie_splash.json")
     )
@@ -27,7 +39,6 @@ fun SplashScreen(navController: NavController) {
         composition = composition,
         iterations = LottieConstants.IterateForever
     )
-    val context = LocalContext.current
     val token = PreferenceManager.getToken(context)
     LaunchedEffect(key1 = true) {
         delay(3000L)
@@ -57,12 +68,20 @@ fun SplashScreen(navController: NavController) {
             .fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        LottieAnimation(
-            composition = composition,
-            progress = progress,
+//        LottieAnimation(
+//            composition = composition,
+//            progress = progress,
+//            modifier = Modifier
+//                .size(200.dp)
+//        )
+        Image(
+            painter = painterResource(id =  R.drawable.iconlogo),
+            contentDescription = "Image1",
             modifier = Modifier
-                .size(200.dp)
+                .width(200.dp)
+                .height(200.dp)
         )
+
     }
 }
 

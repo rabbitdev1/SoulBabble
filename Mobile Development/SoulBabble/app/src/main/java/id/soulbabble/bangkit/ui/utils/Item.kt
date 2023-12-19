@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -224,17 +225,19 @@ fun ItemInterest(
         )
         Text(
             text = description,
+            maxLines = 3,
             style = TextStyle(
-                fontSize = 12.sp
+                fontSize = 12.sp,
             ),
-            modifier = Modifier.padding(top = 4.dp)
+            modifier = Modifier.padding(top = 4.dp),
+            overflow = TextOverflow.Ellipsis, fontSize = 12.sp
         )
         Text(
             text = date,
             style = TextStyle(
-                fontSize = 12.sp
+                fontSize = 12.sp,
             ),
-            modifier = Modifier.padding(top = 4.dp)
+            modifier = Modifier.padding(top = 4.dp),
         )
     }
 }
@@ -399,11 +402,14 @@ fun ItemListChat(
                 }
                 Text(
                     text = post,
+                    maxLines = 1,
                     color = MaterialTheme.colorScheme.onBackground,
                     style = TextStyle(
                         fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
-                        fontSize = 14.sp
-                    )
+                        fontSize = 14.sp,
+                    ),
+                    modifier = Modifier.padding(top = 4.dp),
+                    overflow = TextOverflow.Ellipsis, fontSize = 14.sp
                 )
             }
         }
