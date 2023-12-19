@@ -1,70 +1,77 @@
+// app.js
+
 const express = require('express');
-const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const { loadModel } = require('./your_ml_model_util'); // Sesuaikan dengan lokasi utilitas Anda untuk memuat model
+
+// Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json());
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Konfigurasi koneksi ke database MySQL
+// MySQL Connection
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  database: process.env.DB_NAME,
 });
 
 db.connect((err) => {
   if (err) {
-    console.error('Error connecting to database:', err);
+    console.error('Error connecting to MySQL:', err);
   } else {
-    console.log('Connected to database');
+    console.log('Connected to MySQL');
   }
 });
 
-// Endpoint untuk mendapatkan data Mood Tracker
-app.get('/mood-tracker', (req, res) => {
-  const { sbuser_id, date } = req.query;
+// Routes
+app.get('/', (req, res) => {
+  res.send('Hello, Mood Tracker API!');
+});
 
-  const sql = `
-    SELECT c.fullname, t.mood, t.timestamp
-    FROM community c
-    LEFT JOIN tracker t ON c.post_id = t.post_id
-    WHERE c.sbuser_id = ? AND DATE(t.timestamp) = ?
+// GET route to retrieve and calculate mood using ML model
+app.get('/mood/:sbuser_id', (req, res) => {
+  const sbuser_id = req.params.sbuser_id;
+
+  // Ambil data dari tabel community
+  const sqlCommunity = `
+    SELECT message
+    FROM community
+    WHERE sbuser_id = ?;
   `;
 
-  db.query(sql, [sbuser_id, date], (err, result) => {
+  db.query(sqlCommunity, [sbuser_id], (err, resultCommunity) => {
     if (err) {
-      console.error(err);
-      res.status(500).send('Internal Server Error');
+      console.error('Error retrieving community posts:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
     } else {
-      res.status(200).json(result);
+      const communityPosts = resultCommunity.map((row) => row.message);
+
+      // Contoh: Logika perhitungan mood menggunakan model ML (sesuaikan dengan model Anda)
+      const moodResult = predictMoodUsingMLModel(communityPosts);
+
+      res.json({ community_posts: communityPosts, mood_result: moodResult });
     }
   });
 });
 
-// Endpoint untuk menyimpan mood ke dalam tabel mood
-app.post('/mood', (req, res) => {
-  const { sbuser_id, post_id, message_id, fullname, mood, timestamp } = req.body;
+// Fungsi untuk memuat dan menggunakan model ML (sesuaikan dengan model Anda)
+function predictMoodUsingMLModel(communityPosts) {
+    const mlModel = loadModel(); // Memuat model ML yang telah dilatih
+    const inputFeatures = preprocessData(communityPosts); // Sesuaikan dengan preprocessing yang diperlukan
+    const predictedMood = mlModel.predict(inputFeatures);
+    return predictedMood;
+  }
 
-  const sql = `
-    INSERT INTO mood (sbuser_id, post_id, message_id, fullname, mood, timestamp)
-    VALUES (?, ?, ?, ?, ?, ?)
-  `;
-
-  db.query(sql, [sbuser_id, post_id, message_id, fullname, mood, timestamp], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Internal Server Error');
-    } else {
-      res.status(200).send('Mood saved successfully');
-    }
-  });
-});
-
-// Menjalankan server pada port yang telah ditentukan
+// Start Server
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
