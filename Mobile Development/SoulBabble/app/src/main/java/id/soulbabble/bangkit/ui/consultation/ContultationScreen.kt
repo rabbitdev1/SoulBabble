@@ -33,18 +33,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import coil.compose.rememberAsyncImagePainter
 import id.soulbabble.bangkit.data.UserProfile
 import id.soulbabble.bangkit.setting.BottomNavigationBar
 import id.soulbabble.bangkit.utils.PreferenceManager
 import id.soulbabble.bangkit.R
-import id.soulbabble.bangkit.data.dataDummyJournaling
+import id.soulbabble.bangkit.data.dataDummyConcultation
 import id.soulbabble.bangkit.ui.consultation.ChatViewModel
-import id.soulbabble.bangkit.ui.home.HomeViewModel
-import id.soulbabble.bangkit.ui.utils.ItemJournaling
 import id.soulbabble.bangkit.ui.utils.ItemListChat
 
 @ExperimentalFoundationApi
@@ -107,15 +105,17 @@ fun ConsultationScreen(
                 .padding(innerPadding)
 
         ) {
-            items(dataDummyJournaling.length()) { index ->
-                val item = dataDummyJournaling.getJSONObject(index)
+            items(dataDummyConcultation.length()) { index ->
+                val item = dataDummyConcultation.getJSONObject(index)
                 val userID = item.getString("userid")
+                val name = item.getString("name")
+                val profile = item.getString("profile")
                 val date = item.getString("date")
                 val post = item.getString("post")
 
                 ItemListChat(
-                    username =userProfile.value.displayName.toString(),
-                    image = userProfile.value.photoUrl,
+                    username =name,
+                    image = profile.toUri(),
                     date = date,
                     post = post,
                 ) {

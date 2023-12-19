@@ -123,7 +123,7 @@ fun Authentication(
         verticalArrangement = Arrangement.Bottom
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = painterResource(id = R.drawable.iconlogodark),
             contentDescription = "App Bg",
             modifier = Modifier
                 .weight(1f)
