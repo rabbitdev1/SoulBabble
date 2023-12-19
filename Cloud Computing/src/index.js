@@ -14,9 +14,9 @@ app.use('/auth', authRoutes);
 app.use('/journal', journalRouter);
 app.use('/chatbot', chatRoutes);
 
-app.get('/predict', async (req, res) => {
+app.post('/predict', async (req, res) => {
   try {
-      const response = await axios.get(`https://soulbabble-py-api-v6deafcxhq-uc.a.run.app/predict?st=${encodeURIComponent(req.query.st)}`);
+      const response = await axios.post(`https://soulbabble-py-api-v6deafcxhq-uc.a.run.app/predict?st=${encodeURIComponent(req.query.st)}`);
       res.json(response.data);
   } catch (error) {
       res.status(500).send(error.message);
