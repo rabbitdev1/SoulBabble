@@ -36,9 +36,11 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled false
             buildConfigField "String", "BASE_URL", '"https://soulbabble-m7ypvgqqlq-uc.a.run.app/"'
+            buildConfigField "String", "BASE_URL_1", '"https://soulbabble-js-api-v6deafcxhq-et.a.run.app/"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            buildConfigField "String", "BASE_URL_1", '"https://soulbabble-js-api-v6deafcxhq-et.a.run.app/"'
             buildConfigField "String", "BASE_URL",  '"https://soulbabble-m7ypvgqqlq-uc.a.run.app/"'
         }
     }

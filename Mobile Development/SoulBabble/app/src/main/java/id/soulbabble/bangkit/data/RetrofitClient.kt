@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     private const val BASE_URL = BuildConfig.BASE_URL
-    private const val BASE_URL1 = "https://soulbabble-js-api-v6deafcxhq-et.a.run.app/"
+    private const val BASE_URL1 = BuildConfig.BASE_URL_1
 
      private val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
      private val client = OkHttpClient.Builder()

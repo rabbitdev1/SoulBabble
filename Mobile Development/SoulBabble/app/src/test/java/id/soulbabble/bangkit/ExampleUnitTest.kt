@@ -1,4 +1,4 @@
-package com.rizalsujana.bangkit
+package id.soulbabble.bangkit
 
 import org.junit.Test
 
