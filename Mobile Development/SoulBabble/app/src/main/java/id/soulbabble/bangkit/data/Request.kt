@@ -11,6 +11,11 @@ data class RegisterRequest(
     val photoUrl: String
 )
 
+data class PredictionRequest(val data: Int)
+
+data class PredictionwithKataRequest(val data: String)
+
+
 data class PostJournalRequest(
     val fullname: String,
     val message: String

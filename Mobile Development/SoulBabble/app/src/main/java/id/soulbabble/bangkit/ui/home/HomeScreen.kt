@@ -66,7 +66,6 @@ import id.soulbabble.bangkit.R
 import id.soulbabble.bangkit.data.JournalEntry
 import id.soulbabble.bangkit.data.UserProfile
 import id.soulbabble.bangkit.data.dataDummyIntersting
-import id.soulbabble.bangkit.notification.NotificationViewModel
 import id.soulbabble.bangkit.setting.BottomNavigationBar
 import id.soulbabble.bangkit.ui.journaling.JorunalingViewModel
 import id.soulbabble.bangkit.ui.journaling.Result
@@ -75,6 +74,7 @@ import id.soulbabble.bangkit.ui.utils.formatDate
 import id.soulbabble.bangkit.utils.PreferenceManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 @ExperimentalFoundationApi
 @ExperimentalMaterial3Api
@@ -91,12 +91,18 @@ fun HomeScreen(
     val coroutineScope = rememberCoroutineScope()
     var journalEntries by remember { mutableStateOf<List<JournalEntry>>(emptyList()) }
 
+    var moodTracker by remember { mutableStateOf("Mood Tidak Tersedia") }
+    var emoji_Unicode by remember { mutableStateOf("\uD83D\uDE22") }
+    var moodTrackerMSg by remember { mutableStateOf("Tidak Ada Mood yang Tersedia, Silahkan Bikin Journaling") }
+
+
     LaunchedEffect(Unit) {
         userProfile.value = PreferenceManager.getUserProfile(context)
     }
 
     val refreshJournal = {
         userProfile.value = PreferenceManager.getUserProfile(context)
+
         userProfile.value.displayName?.let { displayName ->
             viewModelJournal.getJournal(displayName) { result ->
                 when (result) {
@@ -105,6 +111,69 @@ fun HomeScreen(
                         if (entries.isNotEmpty()) {
                             val entryToShow = entries.last()
                             journalEntries = listOf(entryToShow)
+                            val sbuserId = entryToShow.sbuserId
+                            Log.e("List API MSG", "sbuserId: $sbuserId")
+                            viewModel.getpredict(sbuserId) { result ->
+                                when (result) {
+                                    is Result.Success -> {
+                                        val response = result.data
+                                        val msg = response.msg
+                                        Log.d("API Call", "Message: $msg")
+                                        val emot = when (msg) {
+                                            "antisipasi" -> "Emosi Antisipasi"
+                                            "jijik" -> "Emosi Jijik"
+                                            "marah" -> "Emosi Marah"
+                                            "percaya" -> "Emosi Percaya"
+                                            "sedih" -> "Emosi Sedih"
+                                            "senang" -> "Emosi Senang"
+                                            "takut" -> "Emosi Takut"
+                                            "terkejut" -> "Emosi Terkejut"
+                                            else -> "Emosi Tidak Dikenali"
+                                        }
+                                        val emojiUnicode = when (emot) {
+                                            "Emosi Antisipasi" -> "\uD83D\uDE01"
+                                            "Emosi Jijik" -> "\uD83D\uDE12"
+                                            "Emosi Marah" -> "\uD83D\uDE21"
+                                            "Emosi Percaya" -> "\uD83D\uDC4D"
+                                            "Emosi Sedih" -> "\uD83D\uDE22"
+                                            "Emosi Senang" -> "\uD83D\uDE03"
+                                            "Emosi Takut" -> "\uD83D\uDE31"
+                                            "Emosi Terkejut" -> "\uD83E\uDD2E"
+                                            else -> "\uD83D\uDE2B"
+                                        }
+                                        moodTracker = emot
+                                        emoji_Unicode = emojiUnicode
+
+
+                                        viewModel.getPredictWithKatakata(msg) { result ->
+                                            when (result) {
+                                                is Result.Success -> {
+                                                    val response = result.data
+                                                    val msg = response.msg
+                                                    Log.d("API Call", "Message: $msg")
+                                                    moodTrackerMSg = msg
+                                                }
+
+                                                is Result.Error -> {
+                                                    val errorMessage =
+                                                        "Failed to predict: ${result.exception.message}"
+                                                    Log.e("API Call", errorMessage)
+                                                }
+                                            }
+                                            isLoading = false
+                                        }
+
+                                    }
+
+                                    is Result.Error -> {
+                                        val errorMessage =
+                                            "Failed to fetch journal: ${result.exception.message}"
+                                        Log.e("API Call", errorMessage)
+                                    }
+                                }
+                                isLoading = false
+                            }
+
                         }
                     }
 
@@ -128,15 +197,12 @@ fun HomeScreen(
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) },
     ) { innerPadding ->
-        SwipeRefresh(
-            state = swipeRefreshState,
-            onRefresh = {
-                coroutineScope.launch {
-                    isLoading = true
-                    refreshJournal()
-                }
+        SwipeRefresh(state = swipeRefreshState, onRefresh = {
+            coroutineScope.launch {
+                isLoading = true
+                refreshJournal()
             }
-        ) {
+        }) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(1),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -156,20 +222,15 @@ fun HomeScreen(
                             .height(170.dp)
                     )
                     Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     ) {
                         Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth()
                         ) {
                             Row(
                                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                                 modifier = Modifier.padding(
-                                    start = 16.dp,
-                                    end = 16.dp,
-                                    top = 40.dp,
-                                    bottom = 16.dp
+                                    start = 16.dp, end = 16.dp, top = 40.dp, bottom = 16.dp
                                 ),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
@@ -214,11 +275,9 @@ fun HomeScreen(
                                 Box(
                                     modifier = Modifier
                                 ) {
-                                    IconButton(
-                                        onClick = {
-                                            navController.navigate("notification")
-                                        }
-                                    ) {
+                                    IconButton(onClick = {
+                                        navController.navigate("notification")
+                                    }) {
                                         Icon(
                                             Icons.Default.Notifications,
                                             contentDescription = "Notifications",
@@ -230,7 +289,9 @@ fun HomeScreen(
                         }
                         Box(
                             modifier = Modifier
-                                .padding(start = 16.dp, end = 16.dp, top = 0.dp, bottom = 0.dp)
+                                .padding(
+                                    start = 16.dp, end = 16.dp, top = 0.dp, bottom = 0.dp
+                                )
                                 .fillMaxWidth()
                         ) {
                             Box(
@@ -247,23 +308,28 @@ fun HomeScreen(
                                     )
                             ) {
                                 Row(
-                                    modifier = Modifier.padding(12.dp) .clickable {
-                                        navController.navigate("tracker")
-                                    },
+                                    modifier = Modifier
+                                        .padding(12.dp)
+                                        .clickable {
+                                            if (moodTracker == "Mood Tidak Tersedia") {
+                                                navController.navigate("journaling")
+                                            } else {
+                                                navController.navigate("tracker")
+                                            }
+                                        },
                                     verticalAlignment = Alignment.CenterVertically,
 
-                                ) {
+                                    ) {
                                     Box(
                                         modifier = Modifier
                                             .size(50.dp)
                                             .background(
                                                 MaterialTheme.colorScheme.secondary,
                                                 shape = RoundedCornerShape(4.dp)
-                                            ),
-                                        contentAlignment = Alignment.Center
+                                            ), contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            text = "\uD83D\uDE01",
+                                            text = emoji_Unicode,
                                             color = MaterialTheme.colorScheme.primary,
                                             style = TextStyle(
                                                 fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
@@ -280,7 +346,11 @@ fun HomeScreen(
                                             .weight(1f)
                                     ) {
                                         Text(
-                                            text = "Sangat Bahagia",
+                                            text = moodTracker.replaceFirstChar {
+                                                if (it.isLowerCase()) it.titlecase(
+                                                    Locale.ROOT
+                                                ) else it.toString()
+                                            },
                                             color = MaterialTheme.colorScheme.primary,
                                             style = TextStyle(
                                                 fontFamily = FontFamily(Font(R.font.plus_jakarta_bold)),
@@ -290,7 +360,11 @@ fun HomeScreen(
                                         )
                                         Text(
                                             color = Color.Black,
-                                            text = "Jangan tertekan oleh pencapaian orang lain.",
+                                            text = moodTrackerMSg.replaceFirstChar {
+                                                if (it.isLowerCase()) it.titlecase(
+                                                    Locale.ROOT
+                                                ) else it.toString()
+                                            },
                                             style = TextStyle(
                                                 fontFamily = FontFamily(Font(R.font.plus_jakarta_light)),
                                                 fontWeight = FontWeight.Light,
@@ -364,7 +438,9 @@ fun HomeScreen(
                     items(journalEntries) { entry ->
                         Card(
                             modifier = Modifier
-                                .padding(start = 16.dp, end = 16.dp, top = 2.dp, bottom = 2.dp)
+                                .padding(
+                                    start = 16.dp, end = 16.dp, top = 2.dp, bottom = 2.dp
+                                )
                                 .fillMaxWidth(),
                             elevation = 4.dp,
                             shape = RoundedCornerShape(8.dp),

@@ -27,3 +27,6 @@ data class JournalEntry(
     @SerializedName("message") val message: String,
     @SerializedName("timestamp") val timestamp: String
 )
+
+
+data class PredictionResponse(val msg: String)
