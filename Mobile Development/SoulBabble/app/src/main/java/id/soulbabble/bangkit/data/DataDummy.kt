@@ -362,7 +362,7 @@ val dataDummyIntersting = JSONArray(
         },
         {
   "title": "5 Cara Menjaga Kesehatan Mental di Era Digital",
-  "image": "https://images.unsplash.com/photo-1642707735136-548d53a25125?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y291bnR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=80",
+  "image": "https://2.bp.blogspot.com/-Jc0lzwHfjx0/W82Kd2I9GhI/AAAAAAAACCI/GA6gR6eDeRoCkTvWDgwdJw4YAqrF_WPKgCLcBGAs/s1600/Relax.Enjoy%2Ba%2Bcup.Smile..jpg",
   "description": "Era digital telah membawa banyak kemudahan dan keuntungan, tetapi juga tantangan yang dapat berdampak pada kesehatan mental. Berikut adalah 5 cara untuk menjaga kesehatan mental di era digital:
 
 * **Batasi penggunaan media sosial.** Media sosial dapat menjadi sumber stres dan kecemasan jika digunakan secara berlebihan. Batasi waktu penggunaan media sosial Anda, dan fokuslah pada aktivitas yang lebih positif.
@@ -375,7 +375,7 @@ val dataDummyIntersting = JSONArray(
 },
 {
   "title": "10 Tanda-Tanda Depresi yang Harus Diwaspadai",
-  "image": "https://images.unsplash.com/photo-1642707735136-548d53a25125?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGF0YSB8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=80",
+  "image": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/sbPrdYC9JbiqEHbKkXU2n/original/076900100_1600221937-Tanda-Tanda-Depresi-pada-Remaja-yang-Perlu-Anda-Waspadai-shutterstock_1279028389.jpg",
   "description": "Depresi adalah gangguan kesehatan mental yang ditandai dengan perasaan sedih, putus asa, dan kehilangan minat dalam aktivitas yang biasa dinikmati. Jika Anda mengalami beberapa tanda-tanda berikut, sebaiknya segera periksakan diri ke dokter atau psikolog:
 
 * **Perasaan sedih, putus asa, atau hilang harapan yang berlangsung selama dua minggu atau lebih.**
@@ -393,7 +393,7 @@ Jika Anda mengalami salah satu tanda-tanda di atas, jangan ragu untuk meminta ba
 },
 {
   "title": "8 Manfaat Meditasi untuk Kesehatan Mental",
-  "image": "https://images.unsplash.com/photo-1525178529480-f2646c922546?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fG1hcnRpY2FsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+  "image": "https://oriflakes.com/wp-content/uploads/2023/02/220518-1.jpg",
   "description": "Meditasi adalah praktik yang melibatkan fokus pada saat ini dan kesadaran diri. Meditasi telah terbukti memiliki banyak manfaat untuk kesehatan mental, termasuk:
 
 * **Mengurangi stres dan kecemasan**
@@ -407,52 +407,6 @@ Jika Anda mengalami salah satu tanda-tanda di atas, jangan ragu untuk meminta ba
 Meditasi dapat dilakukan dengan berbagai cara, seperti meditasi duduk, meditasi berjalan, atau meditasi pernapasan. Jika Anda ingin mencoba meditasi, ada banyak sumber daya yang tersedia untuk membantu Anda memulai.",
   "url": "https://www.alodokter.com/manfaat-meditasi",
   "date": "2023-12-21"
-},
-{
-  "title": "9 Tanda-Tanda Gangguan Kecemasan yang Harus Diwaspadai",
-  "image": "https://images.unsplash.com/photo-1521950616879-e989d1309603?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTE3fG1hcnRpY2FsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-  "description": "Gangguan kecemasan adalah gangguan kesehatan mental yang ditandai dengan perasaan cemas atau khawatir yang berlebihan dan tidak proporsional terhadap situasinya. Jika Anda mengalami beberapa tanda-tanda berikut, sebaiknya segera periksakan diri ke dokter atau psikolog:
-
-* **Perasaan cemas atau khawatir yang berlebihan dan tidak proporsional terhadap situasinya.**
-* **Kesulitan mengendalikan pikiran atau kecemasan.**
-* **Perubahan fisik, seperti detak jantung yang cepat, berkeringat, atau gemetar.**
-* **Menghindari situasi atau tempat yang memicu kecemasan.**
-* **Memiliki kesulitan berkonsentrasi atau membuat keputusan.**
-* **Memiliki kesulitan tidur.**
-* **Memiliki masalah di tempat kerja atau sekolah.**
-* **Memiliki masalah hubungan interpersonal.**
-
-Jika Anda mengalami salah satu tanda-tanda di atas, jangan ragu untuk meminta bantuan profesional. Gangguan kecemasan dapat diobati, dan Anda tidak perlu melaluinya sendiri.",
-  "url": "https://www.halodoc.com/gangguan-mental/tanda-tanda-gangguan-kecemasan",
-  "date": "2023-12-22"
-},
-{
-  "title": "5 Cara Mengelola Stres di Masa Pandemi",
-  "image": "https://images.unsplash.com/photo-1627796009036-0d757c95349?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTE3fG1hcnRpY2FsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-  "description": "Pandemi COVID-19 telah menyebabkan banyak perubahan dalam kehidupan kita, termasuk perubahan yang dapat menimbulkan stres. Berikut adalah beberapa cara untuk mengelola stres di masa pandemi:
-
-* **Batasi paparan informasi tentang pandemi.** Terlalu banyak informasi tentang pandemi dapat membuat Anda merasa cemas atau khawatir.
-* **Lakukan aktivitas yang Anda sukai.** Luangkan waktu untuk melakukan hal-hal yang membuat Anda bahagia dan rileks.
-* **Hubungi orang yang Anda percayai.** Berbagi perasaan dengan orang yang Anda percayai dapat membantu Anda merasa lebih baik.
-* **Luangkan waktu untuk diri sendiri.** Penting untuk meluangkan waktu untuk diri sendiri, bahkan di tengah kesibukan.
-* **Carilah bantuan profesional jika diperlukan.** Jika Anda merasa stresnya tidak dapat diatasi sendiri, jangan ragu untuk mencari bantuan profesional.",
-  "url": "https://www.alodokter.com/mengelola-stres-di-masa-pandemi",
-  "date": "2023-12-23"
-},
-{
-  "title": "7 Penyebab Gangguan Bipolar yang Perlu Anda Ketahui",
-  "image": "https://images.unsplash.com/photo-1510860136024-68779491085e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTY4fG1hcnRpY2FsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-  "description": "Gangguan bipolar adalah gangguan kesehatan mental yang ditandai dengan perubahan suasana hati yang ekstrem, dari mania (senang dan bersemangat secara berlebihan) ke depresi (sedih dan putus asa). Penyebab gangguan bipolar masih belum sepenuhnya dipahami, tetapi ada beberapa faktor yang diduga berperan, termasuk:
-
-* **Genetik.** Gangguan bipolar memiliki komponen genetik yang kuat. Jika Anda memiliki anggota keluarga yang menderita gangguan bipolar, Anda memiliki risiko lebih tinggi untuk mengalaminya.
-* **Stres.** Stres dapat memicu episode mania atau depresi pada orang dengan gangguan bipolar.
-* **Perubahan hormon.** Perubahan hormon, seperti yang terjadi selama kehamilan atau menopause, dapat memicu episode mania atau depresi pada orang dengan gangguan bipolar.
-* **Penggunaan obat-obatan.** Beberapa obat-obatan, seperti obat-obatan terlarang, dapat memicu episode mania atau depresi pada orang dengan gangguan bipolar.
-* **Cedera kepala.** Cedera kepala dapat meningkatkan risiko gangguan bipolar.
-
-Jika Anda mengalami perubahan suasana hati yang ekstrem, sebaiknya segera periksakan diri ke dokter atau psikolog. Gangguan bipolar dapat diobati, dan Anda tidak perlu melaluinya sendiri.",
-  "url": "https://www.alodokter.com/penyebab-gangguan-bipolar",
-  "date": "2023-12-24"
 }
     ]
     """

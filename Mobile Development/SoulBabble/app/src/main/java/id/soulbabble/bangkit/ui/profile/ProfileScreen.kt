@@ -86,7 +86,7 @@ fun ProfileScreen(
     LaunchedEffect(navigateToAuth) {
         if (navigateToAuth == true) {
             navController.navigate("auth") {
-                popUpTo("home") { inclusive = true }
+                popUpTo("home") { inclusive = false }
             }
         }
     }

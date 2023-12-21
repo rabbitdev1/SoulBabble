@@ -58,17 +58,17 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
                 call: Call<LogOutResponse>,
                 response: Response<LogOutResponse>
             ) {
+                auth.signOut()
+                _authenticationState.value =
+                    AuthenticationViewModel.AuthenticationState.UNAUTHENTICATED
+                _navigateToAuth.value = true
                 if (response.isSuccessful) {
-                    _navigateToAuth.value = true
                     PreferenceManager.clearToken(application)
                     _toastMessage.value = response.body()?.message!!
-                    auth.signOut()
-                    _authenticationState.value =
-                        AuthenticationViewModel.AuthenticationState.UNAUTHENTICATED
                 } else {
-                    val errorResponse = parseError(response)
-                    val errorMessage = "Logout Failed: ${errorResponse?.error ?: "Unknown error"}"
-                    _toastMessage.value = errorMessage
+//                    val errorResponse = parseError(response)
+//                    val errorMessage = "Logout Failed: ${errorResponse?.error ?: "Unknown error"}"
+//                    _toastMessage.value = errorMessage
                 }
             }
 
