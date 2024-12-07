@@ -1,136 +1,35 @@
-import random
 import json
-from itertools import combinations
+import csv
 
-# Data input
-emosi = ["sangat buruk", "buruk", "netral", "baik", "sangat baik"]
-emosi_positif = ["antusias", "gembira", "bahagia", "takjub"]
-emosi_negatif = ["marah", "takut", "stress", "kecewa"]
-sumber = ["sekolah", "kantor", "keluarga"]
+# Fungsi untuk mengonversi JSON ke CSV
+def json_to_csv(json_file, csv_file):
+    # Membuka dan membaca data JSON dari file
+    with open(json_file, 'r', encoding='utf-8') as file:
+        data_json = json.load(file)
+    
+    # Membuka file CSV untuk menulis
+    with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        
+        # Menulis header CSV
+        writer.writerow(["Level_Emosi",  "Tipe_Emosi", "Sumber_Emosi", "Pertanyaan_Analisis", "Rekomendasi"])
+        
+        # Menulis data
+        # Menggabungkan pertanyaan dan rekomendasi menjadi string tunggal
+        pertanyaan_str = " | ".join(data_json["Pertanyaan_Analisis"])
+        
+        # Menulis data dalam format CSV
+        writer.writerow([
+            data_json["Level_Emosi"],
+            data_json["Tipe_Emosi"],
+            data_json["Sumber_Emosi"],
+            pertanyaan_str
+        ])
 
-# Daftar rekomendasi berdasarkan kategori emosi dan sumber
-rekomendasi_dict = {
-    "positif": {
-        "sekolah": [
-            "Cobalah berbicara dengan teman-teman di sekolah untuk berbagi kebahagiaan.",
-            "Bergabunglah dalam kegiatan ekstrakurikuler yang dapat membuatmu lebih antusias dan gembira.",
-            "Luangkan waktu untuk menikmati hobi yang kamu suka setelah pelajaran atau di sela waktu luang.",
-            "Jangan lupa untuk bersyukur atas hal-hal positif yang terjadi di kehidupan sekolahmu.",
-            "Ajak teman-teman di sekolah untuk merayakan kebahagiaan bersama."
-        ],
-        "kantor": [
-            "Berbicaralah dengan rekan kerja untuk berbagi kebahagiaan dan meningkatkan semangat di tempat kerja.",
-            "Lakukan aktivitas fisik di sela waktu kantor untuk meningkatkan produktivitas dan semangat.",
-            "Cobalah untuk menjaga suasana hati yang positif dengan memulai hari dengan kebahagiaan.",
-            "Berkumpul dengan kolega setelah kerja untuk merayakan pencapaian kecil.",
-            "Jangan lupa untuk bersyukur atas kesempatan dan pencapaian di tempat kerja."
-        ],
-        "keluarga": [
-            "Bicarakan kebahagiaanmu dengan keluarga untuk berbagi kebahagiaan dan mempererat ikatan.",
-            "Luangkan waktu bersama keluarga untuk melakukan aktivitas yang menyenangkan.",
-            "Rayakan kebahagiaanmu dengan makan bersama keluarga.",
-            "Bersyukurlah atas dukungan keluarga yang selalu ada.",
-            "Berkumpul dengan keluarga untuk merayakan hal-hal positif yang terjadi dalam hidupmu."
-        ]
-    },
-    "negatif": {
-        "sekolah": [
-            "Cobalah untuk berbicara dengan teman di sekolah untuk meredakan stres dan tekanan.",
-            "Lakukan aktivitas fisik seperti olahraga ringan untuk mengurangi ketegangan di sekolah.",
-            "Ambil waktu sejenak untuk diri sendiri di ruang yang tenang untuk menenangkan pikiran.",
-            "Coba lakukan meditasi atau relaksasi di sela waktu istirahat sekolah untuk mengurangi stres.",
-            "Jangan ragu untuk meminta dukungan dari teman atau guru untuk membantu meredakan tekanan."
-        ],
-        "kantor": [
-            "Cobalah untuk berjalan-jalan sebentar di sekitar kantor untuk meredakan stres.",
-            "Ambil waktu untuk diri sendiri dan lakukan hobi yang menyenangkan di luar jam kerja.",
-            "Bicarakan masalah pekerjaan dengan atasan atau rekan kerja untuk mendapatkan solusi bersama.",
-            "Coba lakukan meditasi atau teknik pernapasan di ruang kerja untuk menenangkan pikiran.",
-            "Jangan ragu untuk meminta dukungan dari tim atau atasan jika merasa terbebani."
-        ],
-        "keluarga": [
-            "Bicarakan masalah yang sedang kamu hadapi dengan anggota keluarga untuk mendapatkan perspektif yang berbeda.",
-            "Luangkan waktu untuk refleksi diri dan berbicara dengan keluarga untuk mendapatkan dukungan moral.",
-            "Jangan terburu-buru dalam membuat keputusan penting; diskusikan dengan keluarga agar lebih bijak.",
-            "Cobalah untuk menjaga keseimbangan antara pekerjaan dan kehidupan keluarga.",
-            "Jangan ragu untuk meminta dukungan dari keluarga jika merasa tertekan atau cemas."
-        ]
-    },
-    "netral": {
-        "sekolah": [
-            "Ambil napas dalam-dalam dan fokus pada hal-hal positif yang dapat dibagikan dengan teman-teman di sekolah.",
-            "Cobalah untuk berpikir jernih dan tidak terburu-buru dalam mengambil keputusan di sekolah.",
-            "Luangkan waktu untuk perencanaan dan refleksi diri dalam kegiatan sekolah.",
-            "Jangan terburu-buru dalam membuat keputusan penting di sekolah; pastikan keputusan yang diambil sudah matang.",
-            "Cobalah untuk menjaga keseimbangan antara pelajaran dan waktu pribadi di sekolah."
-        ],
-        "kantor": [
-            "Ambil napas dalam-dalam dan fokus pada tugas yang ada di kantor untuk meningkatkan produktivitas.",
-            "Cobalah untuk berpikir jernih dalam menghadapi masalah di kantor dan jangan terburu-buru mengambil keputusan.",
-            "Luangkan waktu untuk merencanakan tugas-tugas kantor dan prioritaskan pekerjaan penting.",
-            "Jangan terburu-buru dalam membuat keputusan penting di kantor; pastikan keputusan tersebut tepat.",
-            "Cobalah menjaga keseimbangan antara waktu kerja dan istirahat agar tetap produktif dan seimbang."
-        ],
-        "keluarga": [
-            "Ambil napas dalam-dalam dan fokus pada hal-hal positif yang bisa dibicarakan dengan keluarga.",
-            "Cobalah untuk berpikir jernih dan tidak terburu-buru dalam mengambil keputusan yang melibatkan keluarga.",
-            "Luangkan waktu untuk refleksi diri dan perencanaan bersama keluarga.",
-            "Jangan terburu-buru dalam membuat keputusan penting terkait keluarga, diskusikan dengan anggota keluarga lainnya.",
-            "Cobalah untuk menjaga keseimbangan antara pekerjaan dan kehidupan keluarga agar keduanya tetap terjaga."
-        ]
-    }
-}
+# Path ke file JSON dan file CSV yang ingin dibuat
+json_file_path = 'data_set.json'  # Ganti dengan path file JSON kamu
+csv_file_path = 'data_set.csv'    # Nama file CSV yang ingin dibuat
 
-# Fungsi untuk menghasilkan kombinasi positif dan negatif
-def get_combinations(values):
-    # Menghasilkan semua kombinasi panjang 0 sampai panjang list
-    return [list(comb) for r in range(len(values)+1) for comb in combinations(values, r)]
-
-# Fungsi untuk membuat dataset
-def create_dataset():
-    dataset = []
-
-    # Menghasilkan semua kombinasi untuk emosi_positif dan emosi_negatif
-    emosi_pos_combinations = get_combinations(emosi_positif)
-    emosi_neg_combinations = get_combinations(emosi_negatif)
-
-    # Iterasi semua kemungkinan kombinasi emosi dan sumber
-    for emosi_item in emosi:
-        for sumber_item in sumber:
-            # Tentukan emosi_positif dan emosi_negatif berdasarkan kategori emosi
-            if emosi_item in ["baik", "sangat baik"]:
-                emosi_pos_values = emosi_pos_combinations  # Semua kombinasi emosi positif
-                emosi_neg_values = get_combinations(emosi_negatif)  # Semua kombinasi emosi negatif (termasuk kosong)
-                rekomendasi = random.choice(rekomendasi_dict["positif"][sumber_item])  # Pilih satu rekomendasi positif
-            elif emosi_item in ["buruk", "sangat buruk"]:
-                emosi_pos_values = get_combinations(emosi_positif)  # Semua kombinasi emosi positif (termasuk kosong)
-                emosi_neg_values = emosi_neg_combinations  # Semua kombinasi emosi negatif
-                rekomendasi = random.choice(rekomendasi_dict["negatif"][sumber_item])  # Pilih satu rekomendasi negatif
-            else:
-                emosi_pos_values = get_combinations(emosi_positif)  # Semua kombinasi emosi positif
-                emosi_neg_values = get_combinations(emosi_negatif)  # Semua kombinasi emosi negatif
-                rekomendasi = random.choice(rekomendasi_dict["netral"][sumber_item])  # Pilih satu rekomendasi netral
-
-            # Membuat dataset untuk setiap kombinasi
-            for pos_comb in emosi_pos_values:
-                for neg_comb in emosi_neg_values:
-                    data = {
-                        "emosi": emosi_item,
-                        "emosi_positif": pos_comb,
-                        "emosi_negatif": neg_comb,
-                        "sumber": sumber_item,
-                        "rekomendasi": rekomendasi  # Menambahkan rekomendasi satu per satu
-                    }
-                    dataset.append(data)
-
-    return dataset
-
-# Membuat dataset
-dataset = create_dataset()
-
-# Menyimpan dataset dalam format JSON
-with open('models/dataset.json', 'w') as json_file:
-    json.dump(dataset, json_file, indent=4)
-
-# Menampilkan konfirmasi
-print("Dataset telah disimpan di 'models/dataset.json'")
+# Menyimpan JSON ke dalam file CSV
+json_to_csv(json_file_path, csv_file_path)
+print("File CSV berhasil dibuat!")
