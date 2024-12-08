@@ -3,10 +3,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 from keras.optimizers import Adam
 import numpy as np
-import joblib  # Import joblib untuk menyimpan objek
+import joblib
 
 # Langkah 1: Membaca data dari CSV
 data = pd.read_csv('models/data_set.csv')
@@ -23,7 +23,7 @@ print(f"Data yang memiliki nilai NaN: \n{data.isnull().sum()}")
 data['Input_Text'] = data['Level_Emosi'] + " " + data['Tipe_Emosi'] + " " + data['Sumber_Emosi']
 
 # Menggunakan TfidfVectorizer untuk mengubah teks menjadi fitur numerik
-vectorizer = TfidfVectorizer(max_features=5000)  # 5000 kata fitur teratas
+vectorizer = TfidfVectorizer(max_features=1500)  # Menggunakan 1500 fitur teratas untuk menghindari overfitting
 X = vectorizer.fit_transform(data['Input_Text']).toarray()  # Fitur numerik
 
 # Langkah 3: Encoding target (Pertanyaan_Analisis) menjadi label numerik
@@ -32,20 +32,16 @@ y = label_encoder.fit_transform(data['Pertanyaan_Analisis'])  # Target yang ingi
 
 # Langkah 4: Memeriksa jumlah data dan membagi dataset
 # Membagi data menjadi training dan testing set (80% train, 20% test)
-if len(data) > 1:
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-else:
-    # Jika hanya ada satu data, gunakan seluruh data untuk pelatihan
-    print("Data terlalu kecil untuk dibagi. Menggunakan seluruh data untuk pelatihan.")
-    X_train, X_test, y_train, y_test = X, X, y, y
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Langkah 5: Membangun model Neural Network (ANN)
 model = Sequential()
 
-# Layer input (dengan 5000 fitur dari TfidfVectorizer)
-model.add(Dense(512, input_dim=X_train.shape[1], activation='relu'))
-model.add(Dense(256, activation='relu'))
+# Layer input (dengan 1500 fitur dari TfidfVectorizer)
+model.add(Dense(256, input_dim=X_train.shape[1], activation='relu'))
+model.add(Dropout(0.3))  # Dropout untuk mengurangi overfitting
 model.add(Dense(128, activation='relu'))
+model.add(Dropout(0.3))  # Dropout untuk mengurangi overfitting
 model.add(Dense(64, activation='relu'))
 
 # Output layer (jumlah pertanyaan analisis)
@@ -55,7 +51,7 @@ model.add(Dense(len(set(y)), activation='softmax'))  # Jumlah pertanyaan yang be
 model.compile(loss='sparse_categorical_crossentropy', optimizer=Adam(), metrics=['accuracy'])
 
 # Langkah 6: Melatih model
-model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_test, y_test))
+model.fit(X_train, y_train, epochs=50, batch_size=16, validation_data=(X_test, y_test))  # Mengurangi epoch agar sesuai dengan data kecil
 
 # Langkah 7: Evaluasi model
 score = model.evaluate(X_test, y_test)
