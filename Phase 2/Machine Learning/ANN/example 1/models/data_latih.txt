@@ -1,4 +1,0 @@
-emosi = ["sangat buruk", "buruk", "netral", "baik", "sangat baik"]
-# emosi_positif= ["antusias", "gembira", "takjub", "bahagia", "terinspirasi", "bangga", "lega", "puas", "kagum", "terharu", "senang", "rileks", "optimis", "syukur", "bersemangat"]
-# emosi_negatif= ["marah", "takut", "stress", "kecewa", "bosan", "iri", "cemburu", "bersalah", "kesepian", "sedih", "gelisah", "frustrasi", "murung", "jengkel"]
-# sumber=  ["sekolah", "kantor", "pertemanan", "keluarga", "kerjaan", "hobi", "perjalanan", "teknologi", "lingkungan fisik", "kesehatan fisik", "peristiwa sosial", "hubungan romantis", "keuangan", "penampilan fisik", "prestasi", "kegagalan", "kehilangan", "penerimaan sosial", "identitas diri"]

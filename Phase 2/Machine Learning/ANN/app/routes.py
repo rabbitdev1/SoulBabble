@@ -1,15 +1,16 @@
+
 import joblib
 import numpy as np
 from keras.models import load_model
-from flask import Flask, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 
 # Inisialisasi Flask
-app = Flask(__name__)
+main = Blueprint('main', __name__)
 
 # Memuat model, TfidfVectorizer, dan LabelEncoder
-model = load_model('models/emotion_tracking_model.h5')  # Memuat model
-vectorizer = joblib.load('models/vectorizer.pkl')  # Memuat TfidfVectorizer
-label_encoder = joblib.load('models/label_encoder.pkl')  # Memuat LabelEncoder
+model = load_model('app/models/emotion_tracking_model.h5')  # Memuat model
+vectorizer = joblib.load('app/models/vectorizer.pkl')  # Memuat TfidfVectorizer
+label_encoder = joblib.load('app/models/label_encoder.pkl')  # Memuat LabelEncoder
 
 # Data input
 data = {
@@ -43,7 +44,7 @@ def predict_question(level_emosi, tipe_emosi, sumber_emosi):
     return split_questions
 
 # Rute utama (homepage)
-@app.route("/", methods=["GET", "POST"])
+@main.route("/", methods=["GET", "POST"])
 def index():
     predicted_questions = None
     
@@ -59,6 +60,16 @@ def index():
     # Menampilkan halaman
     return render_template("index.html", data=data, predicted_questions=predicted_questions)
 
-# Menjalankan aplikasi Flask
-if __name__ == "__main__":
-    app.run(debug=True)
+# Rute untuk menyimpan pertanyaan
+@main.route("/save", methods=["POST"])
+def save_question():
+    predicted_questions = request.form.getlist("predicted_question")
+    
+    if predicted_questions:
+        # Simpan pertanyaan (misalnya di file atau database)
+        for question in predicted_questions:
+            print(f"Pertanyaan disimpan: {question}")
+        # Anda bisa menambahkan kode untuk menyimpan pertanyaan ke database atau file jika diperlukan
+    
+    # Setelah pertanyaan disimpan, redirect ke halaman utama
+    return redirect(url_for('main.index'))
