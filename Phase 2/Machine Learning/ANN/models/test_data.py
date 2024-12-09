@@ -1,11 +1,11 @@
 import joblib
 import numpy as np
-from keras.models import load_model
+from tensorflow.keras.models import load_model  # Menggunakan tensorflow.keras
 
 # Langkah 1: Memuat Model, TfidfVectorizer, dan LabelEncoder
-model = load_model('models/emotion_tracking_model.h5')  # Memuat model
-vectorizer = joblib.load('models/vectorizer.pkl')  # Memuat TfidfVectorizer
-label_encoder = joblib.load('models/label_encoder.pkl')  # Memuat LabelEncoder
+model = load_model('app/models/emotion_tracking_model.keras')  # Memuat model
+vectorizer = joblib.load('app/models/vectorizer.pkl')  # Memuat TfidfVectorizer
+label_encoder = joblib.load('app/models/label_encoder.pkl')  # Memuat LabelEncoder
 
 # Langkah 2: Fungsi untuk Melakukan Prediksi
 def predict_question(level_emosi, tipe_emosi, sumber_emosi):
@@ -27,7 +27,6 @@ def predict_question(level_emosi, tipe_emosi, sumber_emosi):
     return predicted_question
 
 # Langkah 3: Contoh Data Test (Input baru)
-# Misalnya kita ingin menguji dengan input berikut
 test_data = [
     ("Sangat Buruk", "Kecewa", "Sekolah"),
     ("Sedang", "Marah", "Sekolah"),

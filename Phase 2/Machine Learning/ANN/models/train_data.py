@@ -58,10 +58,10 @@ score = model.evaluate(X_test, y_test)
 print(f"Model Accuracy: {score[1]*100:.2f}%")
 
 # Menyimpan model untuk penggunaan selanjutnya
-model.save("models/emotion_tracking_model.h5")
+model.save("app/models/emotion_tracking_model.h5")
 
 # Menyimpan TfidfVectorizer dan LabelEncoder untuk penggunaan selanjutnya
-joblib.dump(vectorizer, 'models/vectorizer.pkl')  # Menyimpan TfidfVectorizer
-joblib.dump(label_encoder, 'models/label_encoder.pkl')  # Menyimpan LabelEncoder
+joblib.dump(vectorizer, 'app/models/vectorizer.pkl')  # Menyimpan TfidfVectorizer
+joblib.dump(label_encoder, 'app/models/label_encoder.pkl')  # Menyimpan LabelEncoder
 
 print("Model, TfidfVectorizer, dan LabelEncoder berhasil disimpan!")

@@ -117,7 +117,7 @@ for level in data["Level_Emosi"]:
         })
 
 # Menyimpan hasil ke dalam file JSON
-output_file = 'generated_emotions_with_questions.json'
+output_file = 'app/models/generated_emotions_with_questions.json'
 with open(output_file, 'w', encoding='utf-8') as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 

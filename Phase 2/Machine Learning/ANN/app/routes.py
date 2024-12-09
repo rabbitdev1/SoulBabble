@@ -8,7 +8,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 main = Blueprint('main', __name__)
 
 # Memuat model, TfidfVectorizer, dan LabelEncoder
-model = load_model('app/models/emotion_tracking_model.h5')  # Memuat model
+model = load_model('app/models/emotion_tracking_model.keras')  # Memuat model
 vectorizer = joblib.load('app/models/vectorizer.pkl')  # Memuat TfidfVectorizer
 label_encoder = joblib.load('app/models/label_encoder.pkl')  # Memuat LabelEncoder
 

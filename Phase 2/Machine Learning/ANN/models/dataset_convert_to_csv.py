@@ -28,8 +28,8 @@ def json_to_csv(json_file, csv_file):
             ])
 
 # Path ke file JSON dan file CSV yang ingin dibuat
-json_file_path = 'models/data_set.json'  # Ganti dengan path file JSON kamu
-csv_file_path = 'models/data_set.csv'    # Nama file CSV yang ingin dibuat
+json_file_path = 'app/models/data_set.json'  # Ganti dengan path file JSON kamu
+csv_file_path = 'app/models/data_set.csv'    # Nama file CSV yang ingin dibuat
 
 # Menyimpan JSON ke dalam file CSV
 json_to_csv(json_file_path, csv_file_path)
