@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/Phase 2/Machine Learning/ANN/venv
+/Phase 2/Machine Learning/venv
 /.pnp
 .pnp.js
 

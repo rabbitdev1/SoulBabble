@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Pertanyaan Emosi</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <h1>Prediksi Pertanyaan Berdasarkan Emosi</h1>
+    
+    <!-- Form input untuk Level Emosi, Tipe Emosi, dan Sumber Emosi -->
+    <form id="emotion-form" method="POST">
+        <label for="level_emosi">Level Emosi:</label>
+        <select name="level_emosi" id="level_emosi">
+            {% for level in data['Level_Emosi'] %}
+                <option value="{{ level }}">{{ level }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="tipe_emosi">Tipe Emosi:</label>
+        <select name="tipe_emosi" id="tipe_emosi">
+            {% for tipe in data['Tipe_Emosi'] %}
+                <option value="{{ tipe }}">{{ tipe }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="sumber_emosi">Sumber Emosi:</label>
+        <select name="sumber_emosi" id="sumber_emosi">
+            {% for tipe in data['sumber_emosi'] %}
+            <option value="{{ tipe }}">{{ tipe }}</option>
+        {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Prediksi</button>
+    </form>
+    
+    {% if predicted_questions %}
+        <div class="predicted-question">
+            <form method="POST" action="/save">
+            <h2>Masukkan Pertanyaan Berdasarkan Prediksi:</h2>
+                {% for question in predicted_questions %}
+                    <div class="question">
+                        <h4>{{ question }}</h4>
+                        <input type="text" name="predicted_question" placeholder="Masukkan pertanyaan disini" value="" />
+                    </div>
+                {% endfor %}
+                <button type="submit" onclick="convertToJSON(event)">Simpan Pertanyaan</button>
+            </form>
+        </div>
+    {% endif %}
+
+    <!-- Tempat untuk menampilkan JSON -->
+    <div id="json-output" class="json-output" style="display: none;">
+        <h3>Output JSON:</h3>
+        <pre id="json-display"></pre>
+    </div>
+
+    <script>
+        function convertToJSON(event) {
+            event.preventDefault(); // Mencegah form dikirimkan secara otomatis
+
+            // Mengambil nilai dari form
+            const levelEmosi = document.getElementById('level_emosi').value;
+            const tipeEmosi = document.getElementById('tipe_emosi').value;
+            const sumberEmosi = document.getElementById('sumber_emosi').value;
+
+            // Mengambil data dari semua input pertanyaan
+            const questions = [];
+            const inputs = document.querySelectorAll('input[name="predicted_question"]');
+            
+            // Mengambil pertanyaan yang dimasukkan oleh pengguna
+            inputs.forEach(input => {
+                if (input.value.trim()) {
+                    questions.push(input.value.trim());
+                }
+            });
+
+            // Menyertakan pertanyaan yang sudah diprediksi
+            const predictedQuestions = {{ predicted_questions|tojson }};
+            
+            // Membuat objek JSON dengan predicted_questions, user_provided_questions, dan data emosi
+            const jsonData = {
+                level_emosi: levelEmosi,
+                tipe_emosi: tipeEmosi,
+                sumber_emosi: sumberEmosi,
+                predicted_questions: predictedQuestions,
+                user_provided_questions: questions
+            };
+
+            // Menampilkan JSON di halaman
+            document.getElementById('json-output').style.display = 'block';
+            document.getElementById('json-display').textContent = JSON.stringify(jsonData, null, 2);
+
+            // Jika perlu, bisa kirim data JSON ke server menggunakan AJAX atau fetch API.
+        }
+    </script>
+</body>
+</html>
