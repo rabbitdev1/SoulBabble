@@ -1,92 +1,76 @@
-import re
-from collections import Counter
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.layers import Input, Embedding, Flatten, Dense, Concatenate
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
 
-# Data Emosi (dataset yang sudah ada)
-data_emosi = {
-  "level_emosi": "Sangat Baik",
-  "tipe_emosi": "Optimis",
-  "sumber_emosi": "Sekolah",
-  "predicted_questions": [
-    "Apa yang membuat kamu merasa optimis di Sekolah?",
-    "Apa yang bisa menyebabkan perasaan optimis kamu di Sekolah?",
-    "Bagaimana situasi di Sekolah mempengaruhi perasaan kamu yang optimis?",
-    "Apa yang mempengaruhi perasaan optimis kamu di Sekolah?",
-    "Bagaimana kamu bisa mempertahankan perasaan optimis saat menghadapi tantangan di Sekolah?",
-    "Apa yang membuat kamu merasa optimis di Sekolah, dan bagaimana kamu menjaga pandangan positif tersebut?"
-  ],
-  "user_provided_questions": [
-    "Aku selalu semangat kalau belajar sesuatu yang baru, apalagi kalau materinya seru! Terus, punya teman-teman yang kompak bikin aku jadi lebih enjoy ngejalanin hari-hari di sekolah.",
-    "Salah satunya adalah ketika guru memberikan dukungan dan penjelasan yang jelas, serta ketika ada kesempatan untuk berkembang dan mencoba hal-hal baru. Selain itu, kegiatan ekstrakurikuler juga bikin semangat.",
-    "Situasi sekolah yang kondusif dan lingkungan yang mendukung membuat aku lebih mudah untuk tetap optimis. Kalau aku merasa dihargai dan mendapat perhatian dari teman-teman serta guru, itu semakin membuat aku merasa positif.",
-    "Perasaan optimis aku di sekolah dipengaruhi oleh hal-hal seperti pencapaian kecil dalam belajar, dukungan dari teman-teman, dan suasana kelas yang menyenangkan. Semua itu membuat aku merasa lebih termotivasi.",
-    "Saat menghadapi tantangan, aku mencoba untuk tetap fokus pada solusi dan berpikir positif. Aku juga belajar dari kegagalan dan melihat setiap tantangan sebagai kesempatan untuk tumbuh.",
-    "Yang membuat aku optimis adalah adanya tujuan yang jelas dan motivasi untuk mencapai hal-hal baru. Untuk menjaga pandangan positif, aku berusaha untuk selalu bersyukur, menjaga hubungan baik dengan teman, dan tetap berusaha keras meski ada hambatan."
-  ]
-}
+# Hyperparameters
+num_users = 1000      # Jumlah pengguna
+num_items = 5000      # Jumlah item
+num_moods = 3         # Jumlah mood (sedih, marah, kesal)
+embedding_size = 50   # Ukuran embedding
+batch_size = 32
+epochs = 10
 
-# Daftar kata kunci untuk masing-masing emosi
-emosi_keywords = {
-    "Kecewa": ["kecewa", "tidak dihargai", "tidak diakui", "terabaikan", "tidak puas"],
-    "Frustrasi": ["frustrasi", "kesal", "tertekan", "jengkel", "geram"],
-    "Bingung": ["bingung", "kebingungan", "confused", "terperanjat", "tersesat"],
-    "Bahagia": ["bahagia", "senang", "gembira", "senyum", "positif", "tersenyum"],
-    "Cemas": ["cemas", "khawatir", "panik", "tertekan", "gelisah"],
-    "Marah": ["marah", "kesal", "jengkel", "frustrasi", "geram"],
-    "Kesal": ["kesal", "frustrasi", "marah", "geram", "iri"],
-    "Sedih": ["sedih", "murung", "terpuruk", "kecewa", "hati hancur"],
-    "Tertarik": ["tertarik", "minat", "penasaran", "ingin tahu", "berminat"],
-    "Optimis": ["optimis", "penuh harapan", "positif", "percaya diri", "bersemangat"],
-    "Tenang": ["tenang", "damai", "relaks", "sejuk", "santai"],
-    "Gembira": ["gembira", "senang", "bahagia", "bersemangat", "ceria"],
-    "Puas": ["puas", "terpenuhi", "legawa", "bahagia", "senang"],
-    "Nyaman": ["nyaman", "betah", "tentram", "senang", "aman"],
-    "Bergairah": ["bersemangat", "bergairah", "terinspirasi", "bertekad", "penuh gairah"],
-    "Aneh": ["aneh", "ganjil", "luar biasa", "tidak biasa", "unik"],
-    "Euforis": ["euforis", "bersemangat", "gembira", "penuh energi", "jubile"],
-    "Tertantang": ["tertantang", "bersemangat", "terdorong", "terinspirasi", "tantangan"],
-    "Penuh Harapan": ["penuh harapan", "optimis", "percaya diri", "berharap", "terinspirasi"],
-    "Terinspirasi": ["terinspirasi", "tergerak", "terdorong", "terpacu", "motivasi"],
-    "Panik": ["panik", "cemas", "khawatir", "takut", "bingung"],
-    "Rindu": ["rindu", "merindukan", "terasa kosong", "kangen", "kerinduan"],
-    "Takut": ["takut", "cemas", "khawatir", "bingung", "tertekan"],
-    "Senyum": ["senyum", "tersenyum", "bahagia", "gembira", "positif"],
-    "Terharu": ["terharu", "tersentuh", "terpukau", "terimpressed", "terpesona"],
-    "Bersyukur": ["bersyukur", "terima kasih", "berterima kasih", "berkat", "syukur"],
-    "Malu": ["malu", "canggung", "memalukan", "terhina", "dipermalukan"],
-    "Tersenyum": ["tersenyum", "senyum", "bahagia", "gembira", "positif"],
-    "Terkejut": ["terkejut", "kaget", "terheran", "terperanjat", "bingung"],
-    "Gugup": ["gugup", "cemas", "tertekan", "nervous", "khawatir"],
-    "Gemas":["gemas", "tergesa-gesa", "tertekan", "terpuruk", "cemas"],
-    "Terluka":["terluka", "terluka", "terpuruk", "tergesa-gesa", "tertekan"],
-}
+# Generate sample data (random for demonstration)
+num_samples = 10000
+user_data = np.random.randint(0, num_users, size=num_samples)
+item_data = np.random.randint(0, num_items, size=num_samples)
+mood_data = np.random.randint(0, num_moods, size=num_samples)
+interaction_data = np.random.randint(0, 2, size=num_samples)  # 0 or 1 (like or dislike)
 
-# Fungsi untuk menganalisis emosi dan mengembalikan satu kata (emosi dominan)
-def analisis_emosi(data):
-    # Menyusun list kata kunci yang akan digunakan untuk analisis
-    user_questions = data['user_provided_questions']
+# Input Layer
+user_input = Input(shape=(1,), name='user')
+item_input = Input(shape=(1,), name='item')
+mood_input = Input(shape=(1,), name='mood')
+
+# Embedding Layers
+user_embedding = Embedding(num_users, embedding_size)(user_input)
+item_embedding = Embedding(num_items, embedding_size)(item_input)
+mood_embedding = Embedding(num_moods, embedding_size)(mood_input)
+
+# Flatten the embeddings
+user_flat = Flatten()(user_embedding)
+item_flat = Flatten()(item_embedding)
+mood_flat = Flatten()(mood_embedding)
+
+# Concatenate all embeddings
+concat = Concatenate()([user_flat, item_flat, mood_flat])
+
+# Hidden Layers
+hidden = Dense(128, activation='relu')(concat)
+hidden = Dense(64, activation='relu')(hidden)
+
+# Output Layer
+output = Dense(1, activation='sigmoid')(hidden)
+
+# Model
+model = Model(inputs=[user_input, item_input, mood_input], outputs=output)
+
+# Compile Model
+model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy'])
+
+# Model Summary
+model.summary()
+
+# Training the model
+model.fit([user_data, item_data, mood_data], interaction_data, epochs=epochs, batch_size=batch_size)
+
+# Function to predict and recommend items based on user mood
+def recommend_items_for_user(user_id, mood_id, num_recommendations=10):
+    item_scores = []
+    for item_id in range(num_items):
+        score = model.predict([np.array([user_id]), np.array([item_id]), np.array([mood_id])])
+        item_scores.append((item_id, score[0][0]))  # Save item id with predicted score
     
-    # Menghitung kemunculan kata kunci untuk tiap emosi
-    emosi_terdeteksi = []
-    
-    for question in user_questions:
-        question_lower = question.lower()  # Mengubah kalimat menjadi huruf kecil agar pencocokan lebih mudah
-        
-        # Pencocokan kata kunci untuk setiap emosi
-        for emosi, keywords in emosi_keywords.items():
-            count = sum(1 for word in keywords if re.search(r'\b' + re.escape(word) + r'\b', question_lower))
-            if count > 0:
-                emosi_terdeteksi.extend([emosi] * count)  # Tambahkan emosi yang ditemukan sebanyak jumlah kemunculannya
+    # Sort the scores in descending order
+    item_scores.sort(key=lambda x: x[1], reverse=True)
+    return item_scores[:num_recommendations]  # Return top recommendations
 
-    # Menentukan emosi dominan berdasarkan yang paling sering muncul
-    if emosi_terdeteksi:
-        dominant_emotion = Counter(emosi_terdeteksi).most_common(1)[0][0]  # Mendapatkan emosi yang paling sering muncul
-    else:
-        dominant_emotion = "Tidak Terdeteksi"  # Jika tidak ada emosi yang terdeteksi
-
-    return dominant_emotion
-
-# Menjalankan analisis
-hasil_analisis = analisis_emosi(data_emosi)
-
-# Output hasil analisis emosi
-print("Emosi Dominan:", hasil_analisis)
+# Example: Get recommendations for user_id=1 with mood=2 (kesal)
+user_id = 1
+mood_id = 2  # Mood: Kesal (upset)
+recommendations = recommend_items_for_user(user_id, mood_id)
+print("Top Recommendations (Item ID and Score):")
+for item_id, score in recommendations:
+    print(f"Item ID: {item_id}, Score: {score:.4f}")
