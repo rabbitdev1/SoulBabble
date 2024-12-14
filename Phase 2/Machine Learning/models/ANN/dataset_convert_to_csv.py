@@ -38,7 +38,7 @@ def json_to_csv(json_file, csv_file):
                 item["Level_Emosi"],
                 item["Tipe_Emosi"],
                 item["Sumber_Emosi"],
-                pertanyaan_str[:20]+"...",
+                pertanyaan_str[:60]+"...",
             ])
 
             # Menampilkan data yang sedang diproses di terminal
