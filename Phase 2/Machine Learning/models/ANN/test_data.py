@@ -29,10 +29,9 @@ def predict_question(level_emosi, tipe_emosi, sumber_emosi):
 # Langkah 3: Contoh Data Test (Input baru)
 test_data = [
     ("Sangat Buruk", "Kecewa", "Sekolah"),
-    ("Sedang", "Marah", "Sekolah"),
-    ("Baik", "Bahagia", "Sekolah"),
-    ("Sangat Buruk", "Cemas", "Sekolah"),
-    ("Baik", "Senang", "Sekolah")
+    ("Buruk", "Marah", "Pertemanan"),
+    ("Baik", "Bahagia", "Ekstrakurikuler"),
+    ("Sangat Baik", "Bahagia", "Kesenian")
 ]
 
 # Langkah 4: Mencetak Prediksi untuk Setiap Input
