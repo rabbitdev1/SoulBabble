@@ -1,8 +1,10 @@
 import re
 from collections import Counter
+import pandas as pd
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from IPython.display import display
 
 # Download stopwords dan WordNet
 nltk.download('stopwords')
@@ -71,6 +73,7 @@ emosi_keywords = {
     "Terluka":["terluka", "terluka", "terpuruk", "tergesa-gesa", "tertekan"],
 }
 
+
 # Fungsi untuk membersihkan teks (menghapus stopwords dan melakukan lemmatization)
 def preprocess_text(text):
     # Mengubah kalimat menjadi huruf kecil
@@ -115,5 +118,23 @@ def analisis_emosi(data, top_n=3):
 # Menjalankan analisis untuk 3 emosi dominan
 hasil_analisis = analisis_emosi(data_emosi, top_n=3)
 
-# Output hasil analisis emosi
-print("Emosi Dominan:", hasil_analisis)
+# Membuat tabel untuk Predicted Questions dan User-Provided Questions
+questions_df = pd.DataFrame({
+    "Predicted Questions": data_emosi["predicted_questions"],
+    "User Responses": data_emosi["user_provided_questions"]
+})
+
+# Membuat tabel untuk Ringkasan Emosi
+summary_df = pd.DataFrame({
+    "Level Emosi": [data_emosi["level_emosi"]],
+    "Tipe Emosi": [data_emosi["tipe_emosi"]],
+    "Sumber Emosi": [data_emosi["sumber_emosi"]],
+    "Dominant Emotions": [", ".join(hasil_analisis)]  # Gabungkan hasil analisis menjadi string
+})
+
+# Menampilkan Tabel
+print("Tabel Predicted Questions dan User Responses:")
+display(questions_df)
+
+print("\nRingkasan Emosi Dominan:")
+display(summary_df)

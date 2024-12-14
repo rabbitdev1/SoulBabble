@@ -8,3 +8,4 @@ transformers
 tf-keras
 nltk
 tabulate
+seaborn
