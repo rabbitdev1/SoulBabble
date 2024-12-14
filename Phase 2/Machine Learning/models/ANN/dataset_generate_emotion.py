@@ -4,7 +4,7 @@ import random
 data = {
     "Level_Emosi": ["Sangat Buruk", "Buruk", "Netral", "Baik", "Sangat Baik"],
     "sumber_emosi": [
-        "Sekolah", "Keluarga", "Teman", "Lingkungan", "Pekerjaan", "Kesehatan", "Keuangan", 
+        "Sekolah", "Keluarga", "Pertemanan", "Lingkungan", "Pekerjaan", "Kesehatan", "Keuangan", 
         "Cinta", "Relasi Sosial", "Kegiatan Ekstrakurikuler", "Media Sosial", "Kebebasan Pribadi", 
         "Pendidikan", "Keluarga Besar", "Masyarakat", "Hobi", "Perjalanan", "Kreativitas", "Komunitas", 
         "Budaya", "Kepercayaan Diri", "Teknologi", "Aktivitas Fisik", "Kesenian", "Kebudayaan", "Kebijakan Publik",
