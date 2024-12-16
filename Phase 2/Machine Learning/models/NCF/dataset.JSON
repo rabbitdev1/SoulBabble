@@ -1,0 +1,418 @@
+[
+  {
+    "userID": "1",
+    "emotionDominant": [
+      "Optimis",
+      "Senang",
+      "Damai"
+    ],
+    "reccomendation": [
+      {
+        "title": "The Power of Now",
+        "image": "https://example.com/power_of_now.jpg",
+        "desc": "Buku ini membahas pentingnya hidup di saat ini dan bagaimana menanggulangi stres."
+      }
+    ],
+    "msgEmotion": "Kamu merasa optimis dan senang, dengan kedamaian dalam diri."
+  },
+  {
+    "userID": "2",
+    "emotionDominant": [
+      "Kecewa",
+      "Sedih",
+      "Frustrasi"
+    ],
+    "reccomendation": [
+      {
+        "title": "Dilan 1990",
+        "image": "https://example.com/dilan_1990.jpg",
+        "desc": "Film romantis yang menggugah emosi, cocok untuk yang sedang merasa kecewa dan sedih."
+      }
+    ],
+    "msgEmotion": "Kamu sedang merasa kecewa dan sedih, mungkin memerlukan hiburan yang bisa mengerti perasaanmu."
+  },
+  {
+    "userID": "3",
+    "emotionDominant": [
+      "Cemas",
+      "Takut",
+      "Panik"
+    ],
+    "reccomendation": [
+      {
+        "title": "Lima Naga",
+        "image": "https://example.com/lima_naga.jpg",
+        "desc": "Film horor Indonesia yang bisa membuatmu merinding, cocok untuk menyalurkan rasa cemas dan takut."
+      }
+    ],
+    "msgEmotion": "Kamu merasa cemas dan takut, dengan sedikit perasaan panik."
+  },
+  {
+    "userID": "4",
+    "emotionDominant": [
+      "Bahagia",
+      "Gembira",
+      "Puas"
+    ],
+    "reccomendation": [
+      {
+        "title": "Keluarga Cemara",
+        "image": "https://example.com/keluarga_cemara.jpg",
+        "desc": "Film keluarga yang penuh dengan kebahagiaan dan kehangatan, bisa memberikan perasaan bahagia dan puas."
+      }
+    ],
+    "msgEmotion": "Kamu merasa bahagia dan puas, menikmati kebersamaan dan kebahagiaan."
+  },
+  {
+    "userID": "5",
+    "emotionDominant": [
+      "Bingung",
+      "Gugup",
+      "Cemas"
+    ],
+    "reccomendation": [
+      {
+        "title": "Kopi Hitam",
+        "image": "https://example.com/kopi_hitam.jpg",
+        "desc": "Film drama yang bisa membantumu meresapi perasaan bingung dan gugup, namun dengan twist yang menenangkan."
+      }
+    ],
+    "msgEmotion": "Kamu merasa bingung dan gugup, mungkin ada banyak hal yang mengganggu pikiranmu."
+  },
+  {
+    "userID": "6",
+    "emotionDominant": [
+      "Tertarik",
+      "Euforis",
+      "Bergairah"
+    ],
+    "reccomendation": [
+      {
+        "title": "AADC 2",
+        "image": "https://example.com/aadc_2.jpg",
+        "desc": "Lanjutan film 'Ada Apa dengan Cinta?', penuh dengan chemistry yang menarik dan kisah penuh gairah."
+      }
+    ],
+    "msgEmotion": "Kamu merasa tertarik dan bergairah, ada sesuatu yang menarik perhatianmu."
+  },
+  {
+    "userID": "7",
+    "emotionDominant": [
+      "Terinspirasi",
+      "Penuh Harapan",
+      "Optimis"
+    ],
+    "reccomendation": [
+      {
+        "title": "Laskar Pelangi",
+        "image": "https://example.com/laskar_pelangi.jpg",
+        "desc": "Film yang sangat inspiratif, menceritakan perjuangan untuk meraih mimpi."
+      }
+    ],
+    "msgEmotion": "Kamu merasa terinspirasi dan penuh harapan, ada banyak kemungkinan positif di depanmu."
+  },
+  {
+    "userID": "8",
+    "emotionDominant": [
+      "Tenang",
+      "Damai",
+      "Nyaman"
+    ],
+    "reccomendation": [
+      {
+        "title": "Petualangan Sherina",
+        "image": "https://example.com/petualangan_sherina.jpg",
+        "desc": "Film petualangan anak-anak yang menyenangkan dan penuh kedamaian."
+      }
+    ],
+    "msgEmotion": "Kamu merasa tenang dan nyaman, menikmati ketenangan dalam diri."
+  },
+  {
+    "userID": "9",
+    "emotionDominant": [
+      "Marah",
+      "Kesal",
+      "Frustrasi"
+    ],
+    "reccomendation": [
+      {
+        "title": "Dendam Siapa Takut",
+        "image": "https://example.com/dendam_siapatakut.jpg",
+        "desc": "Film yang penuh dengan ketegangan dan konflik yang bisa menyalurkan emosi marah dan kesal."
+      }
+    ],
+    "msgEmotion": "Kamu merasa marah dan kesal, ada frustrasi yang perlu dikeluarkan."
+  },
+  {
+    "userID": "10",
+    "emotionDominant": [
+      "Terluka",
+      "Sedih",
+      "Frustrasi"
+    ],
+    "reccomendation": [
+      {
+        "title": "Kisah Tiga Roti",
+        "image": "https://example.com/kisah_tiga_roti.jpg",
+        "desc": "Film yang menggugah hati dan menceritakan kisah penuh dengan luka dan kesedihan."
+      }
+    ],
+    "msgEmotion": "Kamu merasa terluka dan sedih, mungkin ada sesuatu yang menggores hatimu."
+  },
+  {
+    "userID": "11",
+    "emotionDominant": [
+      "Gemas",
+      "Tertantang",
+      "Terharu"
+    ],
+    "reccomendation": [
+      {
+        "title": "Garis Waktu",
+        "image": "https://example.com/garis_waktu.jpg",
+        "desc": "Film yang penuh dengan kejutan, tantangan, dan bisa membuatmu merasa gemas dan terharu."
+      }
+    ],
+    "msgEmotion": "Kamu merasa gemas dan terharu, ada hal-hal yang membuatmu tertantang dan ingin tahu lebih banyak."
+  },
+  {
+    "userID": "12",
+    "emotionDominant": [
+      "Senyum",
+      "Bahagia",
+      "Terinspirasi"
+    ],
+    "reccomendation": [
+      {
+        "title": "Surga yang Tak Dirindukan",
+        "image": "https://example.com/surga_yang_tak_dirindukan.jpg",
+        "desc": "Film yang memberikan banyak inspirasi dan kebahagiaan."
+      }
+    ],
+    "msgEmotion": "Kamu merasa tersenyum bahagia dan terinspirasi, hidup penuh dengan kemungkinan."
+  },
+  {
+    "userID": "13",
+    "emotionDominant": [
+      "Terkejut",
+      "Bingung",
+      "Euforis"
+    ],
+    "reccomendation": [
+      {
+        "title": "The Queen of Black Magic",
+        "image": "https://example.com/queen_of_black_magic.jpg",
+        "desc": "Film horor dengan banyak kejutan yang bisa membuatmu terkejut dan euforis."
+      }
+    ],
+    "msgEmotion": "Kamu merasa terkejut dan bingung, mungkin ada sesuatu yang mengejutkan di sekitarmu."
+  },
+  {
+    "userID": "14",
+    "emotionDominant": [
+      "Rindu",
+      "Terharu",
+      "Penuh Harapan"
+    ],
+    "reccomendation": [
+      {
+        "title": "Nanti Kita Cerita Tentang Hari Ini",
+        "image": "https://example.com/nanti_kita_cerita_tentang_hari_ini.jpg",
+        "desc": "Film yang mengharukan tentang kenangan dan harapan."
+      }
+    ],
+    "msgEmotion": "Kamu merasa rindu dan terharu, ada kenangan yang penuh harapan dalam hidupmu."
+  },
+  {
+    "userID": "15",
+    "emotionDominant": [
+      "Bersyukur",
+      "Puas",
+      "Tenang"
+    ],
+    "reccomendation": [
+      {
+        "title": "Jalan Pintas",
+        "image": "https://example.com/jalan_pintas.jpg",
+        "desc": "Film dengan tema tentang kehidupan dan bersyukur atas segala yang dimiliki."
+      }
+    ],
+    "msgEmotion": "Kamu merasa bersyukur dan puas, hidup terasa tenang dan penuh makna."
+  },
+  {
+    "userID": "16",
+    "emotionDominant": [
+      "Malu",
+      "Gugup",
+      "Bingung"
+    ],
+    "reccomendation": [
+      {
+        "title": "Cinta di Langit Biru",
+        "image": "https://example.com/cinta_di_langit_biru.jpg",
+        "desc": "Film romantis yang ringan dan bisa membantu meredakan perasaan malu dan gugup."
+      }
+    ],
+    "msgEmotion": "Kamu merasa malu dan gugup, mungkin ada situasi yang membuatmu canggung."
+  },
+  {
+    "userID": "17",
+    "emotionDominant": [
+      "Tertarik",
+      "Gembira",
+      "Optimis"
+    ],
+    "reccomendation": [
+      {
+        "title": "Cinta Tanpa Alasan",
+        "image": "",
+        "desc": "Film kisah cinta sejati yang penuh gairah dan kebahagiaan, cocok untuk kamu yang merasa puas dan euforis."
+      }
+    ],
+    "msgEmotion": "Kamu merasa puas dan bergairah, ada banyak hal yang membuatmu merasa penuh semangat dan kebahagiaan."
+  },
+  {
+    "userID": "21",
+    "emotionDominant": [
+      "Terkejut",
+      "Euforis",
+      "Gembira"
+    ],
+    "reccomendation": [
+      {
+        "title": "Ada Apa Dengan Cinta?",
+        "image": "https://example.com/ada_apa_dengan_cinta.jpg",
+        "desc": "Film klasik yang penuh dengan kejutan dan kegembiraan, cocok untuk kamu yang ingin merasakan perasaan euforis dan terkejut."
+      }
+    ],
+    "msgEmotion": "Kamu merasa terkejut dan gembira, penuh dengan perasaan tak terduga yang membawa kebahagiaan."
+  },
+  {
+    "userID": "22",
+    "emotionDominant": [
+      "Gugup",
+      "Tersenyum",
+      "Gemas"
+    ],
+    "reccomendation": [
+      {
+        "title": "Dilan 1991",
+        "image": "https://example.com/dilan_1991.jpg",
+        "desc": "Film yang menggugah perasaan dengan cerita yang manis, cocok untuk yang merasa gugup namun ingin tersenyum."
+      }
+    ],
+    "msgEmotion": "Kamu merasa gugup dan tersenyum, ada banyak hal kecil yang membuatmu merasa gemas dan senang."
+  },
+  {
+    "userID": "23",
+    "emotionDominant": [
+      "Tertarik",
+      "Penuh Harapan",
+      "Optimis"
+    ],
+    "reccomendation": [
+      {
+        "title": "Gundala",
+        "image": "https://example.com/gundala.jpg",
+        "desc": "Film superhero Indonesia yang penuh dengan harapan dan cerita yang menarik."
+      }
+    ],
+    "msgEmotion": "Kamu merasa tertarik dan penuh harapan, optimis untuk menghadapi apa yang ada di depan."
+  },
+  {
+    "userID": "24",
+    "emotionDominant": [
+      "Panik",
+      "Cemas",
+      "Marah"
+    ],
+    "reccomendation": [
+      {
+        "title": "Sebelum Iblis Menjemput",
+        "image": "https://example.com/sebelum_iblis_menjemput.jpg",
+        "desc": "Film horor yang penuh ketegangan, bisa membantu meredakan perasaan panik dan cemas."
+      }
+    ],
+    "msgEmotion": "Kamu merasa panik dan cemas, mungkin ada ketegangan yang membuatmu sedikit marah."
+  },
+  {
+    "userID": "25",
+    "emotionDominant": [
+      "Terinspirasi",
+      "Gembira",
+      "Nyaman"
+    ],
+    "reccomendation": [
+      {
+        "title": "The Raid",
+        "image": "https://example.com/the_raid.jpg",
+        "desc": "Film aksi yang inspiratif, penuh dengan aksi yang memotivasi dan bisa memberikan perasaan nyaman."
+      }
+    ],
+    "msgEmotion": "Kamu merasa terinspirasi dan nyaman, penuh semangat setelah menonton film penuh aksi ini."
+  },
+  {
+    "userID": "26",
+    "emotionDominant": [
+      "Sedih",
+      "Terluka",
+      "Kesal"
+    ],
+    "reccomendation": [
+      {
+        "title": "Susah Sinyal",
+        "image": "https://example.com/susah_sinyal.jpg",
+        "desc": "Film drama Indonesia yang menggambarkan konflik batin yang dapat membantu meresapi kesedihan dan rasa terluka."
+      }
+    ],
+    "msgEmotion": "Kamu merasa sedih dan terluka, perasaan kesal yang mungkin ingin dilepaskan."
+  },
+  {
+    "userID": "27",
+    "emotionDominant": [
+      "Bergairah",
+      "Gembira",
+      "Optimis"
+    ],
+    "reccomendation": [
+      {
+        "title": "Tumbal Rumah Angker",
+        "image": "https://example.com/tumbal_rumah_angker.jpg",
+        "desc": "Film horor yang penuh ketegangan dan kejutan, bisa membangkitkan gairah dan semangat petualangan."
+      }
+    ],
+    "msgEmotion": "Kamu merasa bergairah dan penuh semangat, ada energi yang membuatmu optimis dan gembira."
+  },
+  {
+    "userID": "28",
+    "emotionDominant": [
+      "Tertantang",
+      "Gugup",
+      "Bingung"
+    ],
+    "reccomendation": [
+      {
+        "title": "Hujan Bulan Juni",
+        "image": "https://example.com/hujan_bulan_juni.jpg",
+        "desc": "Film romantis yang penuh tantangan dan perasaan bingung, cocok untukmu yang merasa tertantang."
+      }
+    ],
+    "msgEmotion": "Kamu merasa tertantang dan sedikit bingung, ada sesuatu yang menarik perhatianmu namun masih perlu dipahami."
+  },
+  {
+    "userID": "30",
+    "emotionDominant": [
+      "Aneh",
+      "Bingung",
+      "Rindu"
+    ],
+    "reccomendation": [
+      {
+        "title": "Gita Cinta dari SMA",
+        "image": "https://example.com/gita_cinta_dari_sma.jpg",
+        "desc": "Film klasik yang bisa membawa kembali kenangan masa sekolah dan perasaan rindu pada masa lalu."
+      }
+    ],
+    "msgEmotion": "Kamu merasa aneh dan bingung, ada rasa rindu yang muncul tanpa sebab yang jelas."
+  }
+]
