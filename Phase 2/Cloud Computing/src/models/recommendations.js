@@ -10,8 +10,8 @@ const recommendationsModel = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    userId: {
-      type: DataTypes.INTEGER,
+    apiKey: {
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     trackingId: {

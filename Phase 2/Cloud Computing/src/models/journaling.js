@@ -10,8 +10,12 @@ const journalingModel = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    userId: {
-      type: DataTypes.INTEGER,
+    apiKey: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     content: {
@@ -19,7 +23,7 @@ const journalingModel = db.define(
       allowNull: false,
     },
     analysisResult: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING(100),
       allowNull: true,
     },
     createdAt: {

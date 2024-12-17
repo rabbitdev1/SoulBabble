@@ -1,10 +1,10 @@
-import { Sequelize, TEXT } from "sequelize";
+import { Sequelize } from "sequelize";
 import db from "../../config/Database.js";
 
 const { DataTypes } = Sequelize;
 
-const trackingMoodModel = db.define(
-  "tracking_mood", {
+const notificationModel = db.define(
+  "notification", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -14,13 +14,17 @@ const trackingMoodModel = db.define(
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    emotionName: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-    },
-    resultedEmotion: {
+    content: {
       type: DataTypes.TEXT,
       allowNull: false,
+    },
+    type: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -33,4 +37,4 @@ const trackingMoodModel = db.define(
   }
 );
 
-export default trackingMoodModel;
+export default notificationModel;

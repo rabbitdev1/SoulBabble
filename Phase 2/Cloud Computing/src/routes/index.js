@@ -1,12 +1,26 @@
-// src/routes/index.js
 import express from "express";
-import { getUserData, handleGoogleLogin } from "../controllers/UsersController.js";
+import { getUserData } from "../controllers/UsersController/getUserData.js";
+import { handleGoogleLogin } from "../controllers/UsersController/handleGoogleLogin.js";
+import { getEmotionData } from "../controllers/TrackingMoodController/getEmotionData.js";
+import { isAuthenticated } from "../middleware/authMiddleware.js";
+import { getJorunalData } from "../controllers/JournalingController/getJournalData.js";
+import { getRecommedationData } from "../controllers/RecommendationController/getRecommendationData.js";
+import { getTrackingMoodData } from "../controllers/TrackingMoodController/getTrackingMoodData.js";
+import { getDetailRecommedationData } from "../controllers/RecommendationController/getDetailRecommendation.js";
+import { getDetailJournal } from "../controllers/JournalingController/getDetailJournal.js";
+import { getNotificationData } from "../controllers/Notification/getNotificationData.js";
 
 const router = express.Router();
 
 // Define the routes
-router.post("/user", getUserData); 
+router.post("/user", isAuthenticated, getUserData); 
 router.post("/handleLogin", handleGoogleLogin); 
-
+router.post("/getEmotion", isAuthenticated, getEmotionData); 
+router.post("/getJournalingData", isAuthenticated, getJorunalData); 
+router.post("/getDetailJournaling", isAuthenticated, getDetailJournal); 
+router.post("/getRecommedationData", isAuthenticated, getRecommedationData); 
+router.post("/getDetailRecommedation", isAuthenticated, getDetailRecommedationData); 
+router.post("/getTrackingMoodData", isAuthenticated, getTrackingMoodData); 
+router.post("/getNotification", isAuthenticated, getNotificationData); 
 
 export default router;

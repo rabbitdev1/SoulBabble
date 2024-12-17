@@ -7,6 +7,7 @@ import recommendationsModel from "../models/recommendations.js";
 import journalingModel from "../models/journaling.js";
 import trainingDataModel from "../models/trainingData.js";
 import annModel from "../models/annModel.js";
+import notificationModel from "../models/notification.js";
 // Function to synchronize all models
 export const syncModels = async () => {
     try {
@@ -33,6 +34,9 @@ export const syncModels = async () => {
         console.log("Training Data model synced.");
 
         await annModel.sync();
+        console.log("ANN Model synced.");
+
+        await notificationModel.sync();
         console.log("ANN Model synced.");
 
         console.log("All models synchronized successfully.");
