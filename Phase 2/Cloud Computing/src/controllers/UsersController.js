@@ -4,7 +4,7 @@ import userModel from "../models/users.js";
 export const getUserData = async (req, res) => {
   try {
     const { userID } = req.body;
-    const apiKey = req.headers['api-key'];
+    const apiKey = req.headers["api-key"];
     if (!userID || !apiKey) {
       return res.status(400).json({
         status: 400,
@@ -13,7 +13,7 @@ export const getUserData = async (req, res) => {
     }
     const user = await userModel.findOne({
       where: { UID: userID, apiKey: apiKey },
-      attributes: ['fullName', 'email', 'photoUrl'],
+      attributes: ["fullName", "email", "photoUrl"],
     });
     if (!user) {
       return res.status(404).json({
@@ -36,7 +36,6 @@ export const getUserData = async (req, res) => {
   }
 };
 
-
 export const handleGoogleLogin = async (req, res) => {
   try {
     const { UID, fullName, email, photoUrl } = req.body;
@@ -50,7 +49,7 @@ export const handleGoogleLogin = async (req, res) => {
 
     const existingUser = await userModel.findOne({
       where: { UID },
-      attributes: ['UID', 'apiKey'],
+      attributes: ["UID", "apiKey"],
     });
 
     if (existingUser) {
@@ -74,7 +73,7 @@ export const handleGoogleLogin = async (req, res) => {
     return res.status(201).json({
       status: 201,
       msg: "User registered successfully",
-      data: newUser,
+      data: { UID: newUser.UID, apiKey: newUser.apiKey },
     });
   } catch (error) {
     console.error("Error handling login:", error);
