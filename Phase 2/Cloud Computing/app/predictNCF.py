@@ -100,7 +100,7 @@ try:
         logger.info("Generating recommendations")
         if isinstance(emotion_dominant, list):
             if all(isinstance(char, str) and len(char) == 1 for char in emotion_dominant):
-                emotion_dominant = ''.join(emotion_dominant).strip('[]').replace('"', '').split(',')
+                emotion_dominant = ''.join(emotion_dominant).strip('[]').replace('"', '').replace(' ', '').split(',')
 
         emotion_descriptions = {
         "kecewa": "Kamu merasa kecewa karena harapanmu tidak terwujud.",
