@@ -9,6 +9,9 @@ import { getTrackingMoodData } from "../controllers/TrackingMoodController/getTr
 import { getDetailRecommedationData } from "../controllers/RecommendationController/getDetailRecommendation.js";
 import { getDetailJournal } from "../controllers/JournalingController/getDetailJournal.js";
 import { getNotificationData } from "../controllers/Notification/getNotificationData.js";
+import { setEmotionData } from "../controllers/TrackingMoodController/setEmotionData.js";
+import { setProcessNLP } from "../controllers/TrackingMoodController/setProccesNLP.js";
+import { getRecommendations } from "../controllers/TrackingMoodController/getRecommendations.js";
 
 const router = express.Router();
 
@@ -21,6 +24,10 @@ router.post("/getDetailJournaling", isAuthenticated, getDetailJournal);
 router.post("/getRecommedationData", isAuthenticated, getRecommedationData); 
 router.post("/getDetailRecommedation", isAuthenticated, getDetailRecommedationData); 
 router.post("/getTrackingMoodData", isAuthenticated, getTrackingMoodData); 
-router.post("/getNotification", isAuthenticated, getNotificationData); 
+router.post("/getNotification", isAuthenticated, getNotificationData);
+ 
+router.post("/setEmotion", isAuthenticated, setEmotionData); 
+router.post("/setProcessNLP", isAuthenticated, setProcessNLP); 
+router.post("/getRecommendations", isAuthenticated, getRecommendations); 
 
 export default router;

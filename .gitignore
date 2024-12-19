@@ -2,6 +2,7 @@
 
 # dependencies
 /Phase 2/Cloud Computing/node_modules
+/Phase 2/Cloud Computing/venv
 /Phase 2/Machine Learning/venv
 /.pnp
 .pnp.js

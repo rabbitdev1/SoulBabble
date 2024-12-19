@@ -9,7 +9,7 @@ export const getTrackingMoodData = async (req, res) => {
   if (!apiKey) {
     return res.status(400).json({
       status: 400,
-      msg: "API key is required",
+      msg: "Item is required",
     });
   }
 
