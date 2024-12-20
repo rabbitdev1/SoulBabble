@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-<color name="purple_500">#9C27B0</color> <!-- Warna primer -->
-<color name="purple_700">#7B1FA2</color> <!-- Warna sekunder -->
-<color name="teal_200">#03DAC5</color> <!-- Warna sekunder terang -->
-<color name="teal_700">#018786</color> <!-- Warna sekunder gelap -->
-<color name="white">#FFFFFF</color> <!-- Warna putih -->
-<color name="black">#000000</color> <!-- Warna hitam -->
-</resources>
