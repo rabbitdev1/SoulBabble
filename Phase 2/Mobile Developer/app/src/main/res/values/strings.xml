@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Soulbabble</string>
+    <string name="imagesplashscreen">imageSplashScreen</string>
+    <string name="onboardingimage">onboardingImage</string>
+</resources>

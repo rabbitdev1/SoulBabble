@@ -1,0 +1,11 @@
+tensorflow
+numpy
+pandas
+flask
+scikit-learn
+matplotlib
+transformers
+tf-keras
+nltk
+tabulate
+seaborn
