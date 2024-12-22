@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected State -->
+    <item android:drawable="@drawable/account_circle_1" android:state_checked="true"/>
+    <!-- Unselected State -->
+    <item android:drawable="@drawable/account_circle" android:state_checked="false"/>
+</selector>

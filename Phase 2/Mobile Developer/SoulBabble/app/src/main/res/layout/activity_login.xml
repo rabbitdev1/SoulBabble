@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:padding="16dp"
-    tools:context=".LoginActivity">
+    tools:context=".ui.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -16,6 +16,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/soulbabble"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -49,7 +50,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="@string/soulbabble"
-                android:textColor="@color/blue_primary"
+                android:textColor="@color/text_primary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -61,7 +62,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:gravity="center"
                 android:text="@string/masuk_dengan"
-                android:textColor="@color/blue_primary"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp" />
 
             <Button
@@ -78,7 +79,6 @@
                 android:insetTop="0dp"
                 android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:stateListAnimator="@null"
                 android:text="@string/login_with_google"
                 android:textAllCaps="false"
                 android:textSize="12sp"
@@ -94,8 +94,8 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_light"
                 android:gravity="center"
-                android:text="Dengan masuk ke halaman ini, kamu menyetujui Syarat Ketentuan dan Kebijakan Privasi"
-                android:textColor="@color/blue_primary"
+                android:text="@string/dengan_masuk_ke_halaman_ini_kamu_menyetujui_syarat_ketentuan_dan_kebijakan_privasi"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp" />
 
         </LinearLayout>

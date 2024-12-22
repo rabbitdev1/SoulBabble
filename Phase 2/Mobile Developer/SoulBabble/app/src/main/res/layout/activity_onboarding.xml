@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:selectedDotColor="@color/blue_primary" />
+        app:selectedDotColor="@color/primary" />
     <Button
         android:id="@+id/buttonNext"
         android:elevation="0dp"
@@ -54,6 +54,7 @@
         android:layout_marginBottom="24dp"
         android:text="@string/mulai"
         android:background="@drawable/rounded_button"
+        android:textColor="@color/text_on_primary"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

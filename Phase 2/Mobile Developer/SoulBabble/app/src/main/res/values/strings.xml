@@ -14,4 +14,15 @@
     <string name="masuk_dengan">Masuk Dengan :</string>
     <string name="login_with_google">Login with Google</string>
     <string name="skip">Skip</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dengan_masuk_ke_halaman_ini_kamu_menyetujui_syarat_ketentuan_dan_kebijakan_privasi">Dengan masuk ke halaman ini, kamu menyetujui Syarat Ketentuan dan Kebijakan Privasi</string>
+    <string name="journal_terbaru">Journal Terbaru</string>
+    <string name="rekomendasi_untuk_kamu">Rekomendasi untuk Kamu</string>
+    <string name="notification_icon">Notification Icon</string>
+    <string name="bagaimana_perasaanmu_hari_ini">Bagaimana perasaanmu hari ini?</string>
+    <string name="apa_saja_yang_sedang_kamu_nrasakan_sekarang">Apa yang sedang kamu\nrasakan sekarang?</string>
+    <string name="menurut_kamu_emosi_tersebut_n_biasanya_datang_dari_mana">Menurut kamu, emosi tersebut\nbiasanya datang dari mana?</string>
+    <string name="terakhir_silahkan_kamu_jawab_beberapa_pertanyaan_dari_kami">Terakhir, silahkan kamu jawab\nbeberapa pertanyaan dari kami?</string>
+    <string name="selesai">Selesai</string>
 </resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    android:label="navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="id.bangkit.soulbabble.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/trackingMoodFragment"
+        android:name="id.bangkit.soulbabble.ui.TrackingMoodFragment"
+        android:label="fragment_tracking_mood"
+        tools:layout="@layout/fragment_tracking_mood">
+        <action
+            android:id="@+id/action_trackingMoodFragment_to_checkInFragment"
+            app:destination="@id/checkInFragment" />
+    </fragment>
+
+    <fragment
+    android:id="@+id/checkInFragment"
+    android:name="id.bangkit.soulbabble.CheckInFragment"
+    android:label="fragment_check_in"
+    tools:layout="@layout/fragment_check_in" />
+    <fragment
+        android:id="@+id/journalingFragment"
+        android:name="id.bangkit.soulbabble.ui.JournalingFragment"
+        android:label="fragment_journaling"
+        tools:layout="@layout/fragment_journaling" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="id.bangkit.soulbabble.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

@@ -13,15 +13,21 @@
         android:theme="@style/Theme.SoulBabble"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.TrackingMood.InputQuestionsActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.TrackingMood.InputTrackingMood2Activity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.TrackingMood.InputTrackingMood1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.HomeActivity"
             android:exported="false"
-            android:label="@string/title_activity_login" />
+            android:theme="@style/AppTheme.TransparentStatusBar" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.OnboardingActivity"
             android:exported="false" />

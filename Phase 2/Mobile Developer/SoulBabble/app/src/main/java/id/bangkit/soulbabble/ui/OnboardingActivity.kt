@@ -8,11 +8,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-import id.bangkit.soulbabble.LoginActivity
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.OnboardingAdapter
 import id.bangkit.soulbabble.model.OnboardingItem
-import org.w3c.dom.Text
 
 class OnboardingActivity : AppCompatActivity() {
     private lateinit var adapter: OnboardingAdapter

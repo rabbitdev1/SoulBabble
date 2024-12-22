@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue_primary">#146C94</color> <!-- Warna latar utama Splash Screen -->
-    <color name="blue_secondary">#22bcff</color> <!-- Warna aksen biru -->
-    <color name="background_light">#FFFFFF</color> <!-- Warna latar putih untuk layar lainnya -->
-    <color name="text_primary">#000000</color> <!-- Warna teks utama hitam -->
-    <color name="text_secondary">#6D6D6D</color> <!-- Warna teks sekunder abu-abu -->
-    <color name="button_primary">#007BFF</color> <!-- Warna tombol utama -->
-    <color name="accent_orange">#fff4d7</color> <!-- Warna aksen seperti oranye -->
-    <color name="green_natural">#8BC34A</color> <!-- Warna hijau yang digunakan -->
-    <color name="ripple_color">#80FFFFFF</color>
+    <!-- Primary Colors -->
+    <color name="primary">#146C94</color> <!-- Main primary color -->
+    <color name="primary_variant">#125A7D</color> <!-- Darker shade of primary -->
+
+    <!-- Secondary Colors -->
+    <color name="secondary">#22BCFF</color> <!-- Main secondary color -->
+    <color name="secondary_variant">#1AA0E0</color> <!-- Darker shade of secondary -->
+
+    <!-- Background Colors -->
+    <color name="background_light">#FFFFFF</color> <!-- Light background color -->
+    <color name="background_dark">#F5F5F5</color> <!-- Slightly darker background -->
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1B1B1B</color> <!-- Dark text for primary content -->
+    <color name="text_secondary">#9E000000</color> <!-- Light text for secondary content -->
+    <color name="text_on_primary">#ffffff</color> <!-- Text on primary-colored background -->
+    <color name="text_on_secondary">#9E000000</color> <!-- Text on secondary-colored background -->
+
+    <!-- Button Colors -->
+    <color name="button_primary">#007BFF</color> <!-- Primary button color -->
+    <color name="button_primary_pressed">#005BB5</color> <!-- Pressed state for primary button -->
+    <color name="button_secondary">#22BCFF</color> <!-- Secondary button color -->
+
+    <!-- Accent Colors -->
+    <color name="accent_orange">#FFB74D</color> <!-- Orange accent -->
+    <color name="green_accent">#8BC34A</color> <!-- Green accent -->
+    <color name="red_accent">#C34A4A</color> <!-- Green accent -->
+
+    <!-- Ripple Effect Colors -->
+    <color name="ripple_color">#1AFFFFFF</color> <!-- Semi-transparent ripple -->
+
+    <!-- Bottom Navigation Colors -->
+    <color name="bottom_nav_background">#F0FAFF</color> <!-- Background of bottom navigation -->
+    <color name="bottom_nav_item_text_color_inactive">#9E9E9E</color> <!-- Inactive item text -->
+    <color name="bottom_nav_item_text_color_active">#ffffff</color> <!-- Active item text -->
+    <color name="bottom_nav_item_icon_color_inactive">#9E9E9E</color> <!-- Inactive item icon -->
+    <color name="bottom_nav_item_icon_color_active">#ffffff</color>
+    <color name="gray">#ECECEC</color> <!-- Active item icon -->
+
+    <!-- Styles -->
+    <style name="BottomNavTextStyleActive">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/bottom_nav_item_text_color_active</item>
+    </style>
+    <style name="BottomNavTextStyleInactive">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/bottom_nav_item_text_color_inactive</item>
+    </style>
 </resources>

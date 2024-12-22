@@ -1,23 +1,51 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="Theme.SoulBabble" parent="Theme.MaterialComponents.NoActionBar">
-        <!-- Primary brand color (blue). -->
-        <item name="colorPrimary">@color/blue_primary</item>
-        <item name="colorPrimaryVariant">@color/blue_secondary</item>
-        <item name="colorOnPrimary">@color/background_light</item>
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/text_on_primary</item>
 
-        <!-- Secondary brand color (orange accent). -->
-        <item name="colorSecondary">@color/accent_orange</item>
-        <item name="colorSecondaryVariant">@color/green_natural</item>
-        <item name="colorOnSecondary">@color/background_light</item>
+        <!-- Secondary color -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_variant</item>
+        <item name="colorOnSecondary">@color/text_on_secondary</item>
 
-        <!-- Background and text colors. -->
-        <item name="android:windowBackground">@color/background_light</item>
+        <!-- Background color -->
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="colorSurface">@color/background_light</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <!-- Text colors -->
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
 
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/blue_primary</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:navigationBarColor">@color/background_light</item>
 
+        <!-- Ripple effect color -->
+        <item name="colorControlHighlight">@color/ripple_color</item>
+
+        <!-- Bottom Navigation -->
+        <item name="bottomNavigationStyle">@style/BottomNavStyle</item>
+
+    </style>
+
+    <!-- Bottom Navigation Style -->
+    <style name="BottomNavStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_item_icon_color_inactive</item>
+        <item name="itemTextColor">@color/bottom_nav_item_text_color_inactive</item>
+        <item name="android:background">@color/bottom_nav_background</item>
+    </style>
+    <style name="RoundedImageViewShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="AppTheme.TransparentStatusBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Status bar transparan -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item> <!-- Ikon gelap di status bar -->
     </style>
 </resources>

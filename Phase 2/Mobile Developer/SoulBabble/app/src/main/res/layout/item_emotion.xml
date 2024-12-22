@@ -1,0 +1,40 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="4dp"
+    android:id="@+id/cardEmotion"
+    app:cardBackgroundColor="@color/background_light"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:gravity="center"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/gray">
+        <TextView
+            android:id="@+id/tvEmotionItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/background_dark"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            tools:text="🥲"
+            tools:ignore="TooDeepLayout" />
+        <TextView
+            android:id="@+id/tvTitleEmotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:textAlignment="center"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            tools:text="Sangat Buruk" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
