@@ -124,4 +124,12 @@ class EmotionWeekAdapter(
         emotions = newEmotions
         notifyDataSetChanged()
     }
+    fun selectItemByDay(dayOfWeek: String) {
+        val index = emotions.indexOfFirst { it.dayOfWeek == dayOfWeek }
+        if (index != -1) {
+            selectedPosition = index
+            notifyDataSetChanged() // Perbarui tampilan RecyclerView
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 package id.bangkit.soulbabble.api
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
@@ -40,32 +42,37 @@ class ApiClient {
 
 
     // Fungsi untuk mengirimkan data tracking mood (POST request)
-    fun sendTrackingMoodData(startDate: String, endDate: String, apiKey: String, token: String, callback: (String?) -> Unit) {
+    suspend fun sendTrackingMoodDataSuspend(
+        startDate: String,
+        endDate: String,
+        apiKey: String,
+        token: String
+    ): String? {
         val mediaType = "application/x-www-form-urlencoded".toMediaTypeOrNull()
         val body = RequestBody.create(mediaType, "startDate=$startDate&endDate=$endDate")
 
         val request = Request.Builder()
             .url("${baseUrl}getTrackingMoodData")  // Endpoint API untuk tracking mood
             .method("POST", body)
-            .addHeader("Authorization", "Bearer $token")  // Menggunakan token di header
+            .addHeader("Authorization", "Bearer $token")  // Menambahkan token di header
             .addHeader("api-key", apiKey)  // Menambahkan API Key ke header
             .addHeader("Content-Type", "application/x-www-form-urlencoded")
             .build()
 
-        // Mengirimkan permintaan di thread background
-        Thread {
+        return withContext(Dispatchers.IO) {
             try {
-                val response: Response = client.newCall(request).execute()
+                val response = client.newCall(request).execute()
 
                 if (response.isSuccessful) {
-                    callback(response.body?.string())  // Mengembalikan data respons
+                    response.body?.string()  // Mengembalikan data respons
                 } else {
-                    callback("Error: ${response.code}")  // Menangani status error
+                    throw IOException("Error: ${response.code} - ${response.message}")
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
-                callback("Network error occurred")
+                throw e  // Melempar ulang exception untuk ditangani di ViewModel
             }
-        }.start()  // Eksekusi permintaan di thread terpisah
+        }
     }
+
 }
