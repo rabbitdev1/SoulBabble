@@ -9,31 +9,38 @@ import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.model.OnboardingItem
 
-class OnboardingAdapter(private val items: List<OnboardingItem>) :
-    RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
+class OnboardingAdapter(
+    private val items: List<OnboardingItem>
+) : RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnboardingViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_onboarding, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val view = inflater.inflate(R.layout.item_onboarding, parent, false)
         return OnboardingViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: OnboardingViewHolder, position: Int) {
-        val item = items[position]
-        holder.bind(item)
+        val onboardingItem = items[position]
+        holder.bind(onboardingItem)
     }
 
     override fun getItemCount(): Int = items.size
 
+    /**
+     * ViewHolder untuk OnboardingAdapter.
+     */
     class OnboardingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val imageView: ImageView = view.findViewById(R.id.imageView)
-        private val textTitle: TextView = view.findViewById(R.id.textTitle)
-        private val textDescription: TextView = view.findViewById(R.id.textDescription)
+        private val titleTextView: TextView = view.findViewById(R.id.textTitle)
+        private val descriptionTextView: TextView = view.findViewById(R.id.textDescription)
 
+        /**
+         * Mengikat data ke item onboarding.
+         */
         fun bind(item: OnboardingItem) {
             imageView.setImageResource(item.image)
-            textTitle.text = item.title
-            textDescription.text = item.description
+            titleTextView.text = item.title
+            descriptionTextView.text = item.description
         }
     }
 }

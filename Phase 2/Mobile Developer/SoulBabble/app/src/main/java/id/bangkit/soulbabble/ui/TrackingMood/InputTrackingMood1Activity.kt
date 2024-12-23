@@ -8,56 +8,74 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.EmotionTypeAdapter
-import id.bangkit.soulbabble.model.EmotionType
+import id.bangkit.soulbabble.model.EmotionTypeItem
+import id.bangkit.soulbabble.utils.setupToolbar
 
 class InputTrackingMood1Activity : AppCompatActivity() {
 
-    // RecyclerView and Data Initialization
     private lateinit var recyclerView: RecyclerView
-    private val emotions = listOf(
-        EmotionType("Kecewa", false),
-        EmotionType("Frustrasi", false),
-        EmotionType("Bingung", false),
-        EmotionType("Bahagia", true),
-        EmotionType("Cemas", false),
-        EmotionType("Marah", false),
-        EmotionType("Kesal", false),
-        EmotionType("Sedih", false),
-        EmotionType("Tertarik", true),
-        EmotionType("Optimis", true),
-        EmotionType("Tenang", true),
-        EmotionType("Gembira", true),
-        EmotionType("Puas", true),
-        EmotionType("Nyaman", true),
-        EmotionType("Bergairah", true),
-        EmotionType("Aneh", false),
-        EmotionType("Euforis", true),
-        EmotionType("Tertantang", true),
-        EmotionType("Penuh Harapan", true),
-        EmotionType("Terinspirasi", true),
-        EmotionType("Panik", false),
-        EmotionType("Rindu", false),
-        EmotionType("Takut", false),
-        EmotionType("Senyum", true),
-        EmotionType("Terharu", true),
-        EmotionType("Bersyukur", true),
-        EmotionType("Malu", false),
-        EmotionType("Tersenyum", true),
-        EmotionType("Terkejut", false),
-        EmotionType("Gugup", false),
-        EmotionType("Gemas", true),
-        EmotionType("Terluka", false)
-    ).shuffled()
+    private lateinit var emotions: List<EmotionTypeItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_tracking_mood)
+        setContentView(R.layout.activity_input_tracking_mood1)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        id.bangkit.soulbabble.utils.setupToolbar(this, toolbar, title = "")
+        setupToolbar()
+        initializeEmotions()
         setupRecyclerView()
     }
 
+    /**
+     * Mengatur Toolbar.
+     */
+    private fun setupToolbar() {
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setupToolbar(this, toolbar, title = "")
+    }
+
+    /**
+     * Inisialisasi daftar emosi secara acak.
+     */
+    private fun initializeEmotions() {
+        emotions = listOf(
+            EmotionTypeItem("Kecewa", false),
+            EmotionTypeItem("Frustrasi", false),
+            EmotionTypeItem("Bingung", false),
+            EmotionTypeItem("Bahagia", true),
+            EmotionTypeItem("Cemas", false),
+            EmotionTypeItem("Marah", false),
+            EmotionTypeItem("Kesal", false),
+            EmotionTypeItem("Sedih", false),
+            EmotionTypeItem("Tertarik", true),
+            EmotionTypeItem("Optimis", true),
+            EmotionTypeItem("Tenang", true),
+            EmotionTypeItem("Gembira", true),
+            EmotionTypeItem("Puas", true),
+            EmotionTypeItem("Nyaman", true),
+            EmotionTypeItem("Bergairah", true),
+            EmotionTypeItem("Aneh", false),
+            EmotionTypeItem("Euforis", true),
+            EmotionTypeItem("Tertantang", true),
+            EmotionTypeItem("Penuh Harapan", true),
+            EmotionTypeItem("Terinspirasi", true),
+            EmotionTypeItem("Panik", false),
+            EmotionTypeItem("Rindu", false),
+            EmotionTypeItem("Takut", false),
+            EmotionTypeItem("Senyum", true),
+            EmotionTypeItem("Terharu", true),
+            EmotionTypeItem("Bersyukur", true),
+            EmotionTypeItem("Malu", false),
+            EmotionTypeItem("Tersenyum", true),
+            EmotionTypeItem("Terkejut", false),
+            EmotionTypeItem("Gugup", false),
+            EmotionTypeItem("Gemas", true),
+            EmotionTypeItem("Terluka", false)
+        ).shuffled()
+    }
+
+    /**
+     * Mengatur RecyclerView dan EmotionTypeAdapter.
+     */
     private fun setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerViewEmotion)
         recyclerView.layoutManager = FlexboxLayoutManager(this)
@@ -66,14 +84,20 @@ class InputTrackingMood1Activity : AppCompatActivity() {
         val emoticonTitle = intent.getStringExtra("title") ?: "No Title"
 
         val adapter = EmotionTypeAdapter(this, emotions) { emotion ->
-            // Handle click and navigate to InputTrackingMood2Activity
-            val intent = Intent(this, InputTrackingMood2Activity::class.java).apply {
-                putExtra("emoticon", emoticon)
-                putExtra("emoticonTitle", emoticonTitle)
-                putExtra("emotiontype", emotion.name)
-            }
-            startActivity(intent)
+            navigateToNextScreen(emoticon, emoticonTitle, emotion.name)
         }
         recyclerView.adapter = adapter
+    }
+
+    /**
+     * Navigasi ke InputTrackingMood2Activity dengan data yang diteruskan.
+     */
+    private fun navigateToNextScreen(emoticon: String, emoticonTitle: String, emotionType: String) {
+        val intent = Intent(this, InputTrackingMood2Activity::class.java).apply {
+            putExtra("emoticon", emoticon)
+            putExtra("emoticonTitle", emoticonTitle)
+            putExtra("emotiontype", emotionType)
+        }
+        startActivity(intent)
     }
 }

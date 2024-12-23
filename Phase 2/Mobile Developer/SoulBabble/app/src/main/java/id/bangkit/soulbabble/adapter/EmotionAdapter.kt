@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
@@ -14,38 +13,50 @@ import id.bangkit.soulbabble.model.EmotionItem
 import id.bangkit.soulbabble.ui.TrackingMood.InputTrackingMood1Activity
 
 class EmotionAdapter(
-    private val context: Context, private var emotions: List<EmotionItem>) :
-    RecyclerView.Adapter<EmotionAdapter.EmotionViewHolder>() {
+    private val context: Context,
+    private var emotions: List<EmotionItem>
+) : RecyclerView.Adapter<EmotionAdapter.EmotionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmotionViewHolder {
-        val view = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(context)
             .inflate(R.layout.item_emotion, parent, false)
         return EmotionViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: EmotionViewHolder, position: Int) {
-        val emotion = emotions[position]
-        holder.bind(emotion)
-        holder.cardView.setOnClickListener {
-            val intent = Intent(context, InputTrackingMood1Activity::class.java).apply {
-                putExtra("emotion", emotion.emotion)
-                putExtra("title", emotion.title)
-            }
-            context.startActivity(intent)
-        }
+        val emotionItem = emotions[position]
+        holder.bind(emotionItem)
 
+        // Set listener untuk klik pada CardView
+        holder.cardView.setOnClickListener {
+            handleEmotionClick(emotionItem)
+        }
     }
 
-    override fun getItemCount() = emotions.size
+    override fun getItemCount(): Int = emotions.size
 
+    /**
+     * ViewHolder untuk EmotionAdapter.
+     */
     class EmotionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardView: CardView = itemView.findViewById(R.id.cardEmotion)
-        private val emotionView: TextView = itemView.findViewById(R.id.tvEmotionItem)
-        private val textView: TextView = itemView.findViewById(R.id.tvTitleEmotion)
+        private val emotionTextView: TextView = itemView.findViewById(R.id.tvEmotionItem)
+        private val titleTextView: TextView = itemView.findViewById(R.id.tvTitleEmotion)
 
-        fun bind(emotion: EmotionItem) {
-            emotionView.text = emotion.emotion
-            textView.text = emotion.title
+        fun bind(emotionItem: EmotionItem) {
+            emotionTextView.text = emotionItem.emotion
+            titleTextView.text = emotionItem.title
         }
+    }
+
+    /**
+     * Menangani klik pada item emosi.
+     */
+    private fun handleEmotionClick(emotionItem: EmotionItem) {
+        val intent = Intent(context, InputTrackingMood1Activity::class.java).apply {
+            putExtra("emotion", emotionItem.emotion)
+            putExtra("title", emotionItem.title)
+        }
+        context.startActivity(intent)
     }
 }

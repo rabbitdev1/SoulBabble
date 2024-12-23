@@ -9,37 +9,49 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
 
-
 class QuestionsAdapter(
     private val questions: List<String>,
     private val onAnswersReady: (Map<Int, String>) -> Unit // Callback untuk jawaban
 ) : RecyclerView.Adapter<QuestionsAdapter.QuestionViewHolder>() {
 
-    private val answers: MutableMap<Int, String> = mutableMapOf() // Menyimpan jawaban
+    // Map untuk menyimpan jawaban dari pengguna
+    private val answers = mutableMapOf<Int, String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_question, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val view = inflater.inflate(R.layout.item_question, parent, false)
         return QuestionViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
-        holder.bind(questions[position], position)
+        val question = questions[position]
+        holder.bind(question, position)
     }
 
     override fun getItemCount(): Int = questions.size
 
+    /**
+     * ViewHolder untuk QuestionsAdapter.
+     */
     inner class QuestionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvQuestionTitle: TextView = itemView.findViewById(R.id.tvQuestionTitle)
-        private val etAnswer: EditText = itemView.findViewById(R.id.etQuestionDetail)
+        private val questionTitleTextView: TextView = itemView.findViewById(R.id.tvQuestionTitle)
+        private val answerEditText: EditText = itemView.findViewById(R.id.etQuestionDetail)
 
+        /**
+         * Mengikat data pertanyaan ke tampilan.
+         */
         fun bind(question: String, index: Int) {
-            tvQuestionTitle.text = question
-            etAnswer.hint = "Masukkan jawaban"
+            questionTitleTextView.text = question
+            answerEditText.hint = "Masukkan jawaban"
 
-            etAnswer.addTextChangedListener {
-                answers[index] = it.toString()
-                onAnswersReady(answers)
+            // Listener untuk perubahan teks pada EditText
+            answerEditText.addTextChangedListener { editable ->
+                answers[index] = editable.toString()
+                onAnswersReady(answers) // Callback untuk memperbarui jawaban
             }
+
+            // Mengatur ulang teks jawaban jika sebelumnya diisi
+            answerEditText.setText(answers[index] ?: "")
         }
     }
 }

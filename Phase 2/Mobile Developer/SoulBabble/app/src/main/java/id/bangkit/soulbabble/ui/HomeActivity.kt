@@ -16,16 +16,29 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Get the NavHostFragment
+        setupNavigation()
+        setupEdgeToEdgeDisplay()
+    }
+
+    /**
+     * Mengatur Navigation Component dengan BottomNavigationView.
+     */
+    private fun setupNavigation() {
+        // Mengambil NavHostFragment dari layout
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
-            ?: throw NullPointerException("NavHostFragment not found!")
+            ?: throw IllegalStateException("NavHostFragment not found in activity_home.xml")
 
-        // Get the NavController from the NavHostFragment
+        // Menghubungkan BottomNavigationView dengan NavController
         val navController = navHostFragment.navController
-
-        // Set up the BottomNavigationView with the NavController
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
+    }
+
+    /**
+     * Mengaktifkan tampilan edge-to-edge untuk aplikasi.
+     */
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun setupEdgeToEdgeDisplay() {
         window.setDecorFitsSystemWindows(false)
     }
 }

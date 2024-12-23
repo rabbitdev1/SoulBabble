@@ -2,19 +2,25 @@ package id.bangkit.soulbabble.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import id.bangkit.soulbabble.CheckInFragment
+import id.bangkit.soulbabble.ui.CheckInFragment
 
 class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    // Jumlah tab
-    override fun getItemCount(): Int = 2
+    // Daftar fragment untuk setiap tab
+    private val fragments: List<Fragment> = listOf(
+        CheckInFragment(), // Fragment untuk tab 1
+        CheckInFragment(), // Fragment untuk tab 2
+    )
 
-    // Fragment untuk setiap tab
+    // Jumlah tab
+    override fun getItemCount(): Int = fragments.size
+
+    // Fragment untuk setiap posisi tab
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> CheckInFragment()
-            1 -> CheckInFragment()
-            else -> throw IllegalStateException("Invalid position $position")
+        if (position in fragments.indices) {
+            return fragments[position]
+        } else {
+            throw IllegalStateException("Invalid position $position")
         }
     }
 }

@@ -1,6 +1,6 @@
 package id.bangkit.soulbabble.model
 
-data class EmotionType(
+data class EmotionTypeItem(
     val name: String,
     val isPositive: Boolean,
 )
