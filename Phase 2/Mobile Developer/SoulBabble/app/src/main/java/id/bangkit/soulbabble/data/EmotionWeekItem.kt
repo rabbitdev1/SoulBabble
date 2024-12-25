@@ -1,4 +1,4 @@
-package id.bangkit.soulbabble.model
+package id.bangkit.soulbabble.data
 
 data class EmotionWeekItem(
     val emotion: String,

@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.OnboardingAdapter
-import id.bangkit.soulbabble.model.OnboardingItem
+import id.bangkit.soulbabble.data.OnboardingItem
 
 class OnboardingActivity : AppCompatActivity() {
 

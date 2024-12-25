@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import id.bangkit.soulbabble.R
-import id.bangkit.soulbabble.model.RecommendationItem
+import id.bangkit.soulbabble.data.RecommendationItem
 
 class RecommendationAdapter(
     private val context: Context,
@@ -24,10 +23,8 @@ class RecommendationAdapter(
     }
 
     override fun onBindViewHolder(holder: RecommendationViewHolder, position: Int) {
-        val recommendation = recommendations[position]
-        holder.bind(recommendation)
-
-
+        val item = recommendations[position]
+        holder.bind(item)
     }
 
     override fun getItemCount(): Int = recommendations.size
@@ -36,7 +33,6 @@ class RecommendationAdapter(
      * ViewHolder untuk RecommendationAdapter.
      */
     inner class RecommendationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cardView: CardView = itemView.findViewById(R.id.cardRecommendation)
         private val recommendationImageView: ImageView = itemView.findViewById(R.id.ivRecommendationImage)
         private val recommendationTitleTextView: TextView = itemView.findViewById(R.id.tvRecommendationTitle)
         private val recommendationDescriptionTextView: TextView = itemView.findViewById(R.id.tvRecommendationDescription)
@@ -45,7 +41,13 @@ class RecommendationAdapter(
          * Mengikat data rekomendasi ke tampilan.
          */
         fun bind(recommendation: RecommendationItem) {
-            recommendationImageView.setImageResource(recommendation.imageResId)
+            // Menggunakan Picasso untuk memuat gambar
+            Picasso.get()
+                .load(recommendation.image)
+                .placeholder(R.drawable.ic_launcher_background)  // Gambar placeholder
+                .error(R.drawable.ic_launcher_background)        // Gambar jika terjadi error
+                .into(recommendationImageView)
+
             recommendationTitleTextView.text = recommendation.title
             recommendationDescriptionTextView.text = recommendation.description
         }

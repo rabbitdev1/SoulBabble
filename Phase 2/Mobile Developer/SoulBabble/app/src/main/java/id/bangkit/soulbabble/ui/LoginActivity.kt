@@ -7,9 +7,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.api.ApiClient
 import id.bangkit.soulbabble.utils.AuthStorage
+import id.bangkit.soulbabble.utils.LocalStorage
 import id.bangkit.soulbabble.utils.TextSpanUtil
 import org.json.JSONObject
 
@@ -81,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
             runOnUiThread {
                 progressBar.visibility = LinearLayout.GONE
                 if (response != null) {
-                    Toast.makeText(this, "Login Berhasil", Toast.LENGTH_LONG).show()
                     try {
                         val jsonResponse = JSONObject(response)
                         val status = jsonResponse.getInt("status")
@@ -95,8 +96,7 @@ class LoginActivity : AppCompatActivity() {
                             // Simpan data autentikasi ke SharedPreferences
                             AuthStorage.saveAuthData(this, uid, apiKey, token)
 
-                            // Lakukan navigasi ke HomeActivity setelah login sukses
-                            navigateToHome()
+                            sendUserData(uid, apiKey, token)
                         } else {
                             // Jika status bukan 200, tampilkan error
                             Toast.makeText(
@@ -111,6 +111,46 @@ class LoginActivity : AppCompatActivity() {
                     }
                 } else {
                     Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+    private fun sendUserData(uid: String, apiKey: String, token: String) {
+        apiClient.sendUserData(uid, apiKey, token, ){ response ->
+            runOnUiThread {
+                if (response != null) {
+                    // Tampilkan respon dari API
+                    Toast.makeText(this, "Login Berhasil", Toast.LENGTH_LONG).show()
+
+                    try {
+                        // Parsing JSON response
+                        val jsonResponse = JSONObject(response)
+                        val status = jsonResponse.getInt("status")
+
+                        if (status == 200) {
+                            // Mengambil data user dari response JSON
+                            val data = jsonResponse.getJSONObject("data")
+                            val fullName = data.getString("fullName")
+                            val email = data.getString("email")
+                            val photoUrl = data.getString("photoUrl")
+
+                            // Menyimpan data ke AuthStorage
+                            LocalStorage.saveAuthData(this, fullName, email, photoUrl)
+
+                            // Debug print response
+                            println(response)
+
+                            // Navigasi ke HomeActivity setelah berhasil
+                            navigateToHome()
+                        } else {
+                            Toast.makeText(this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        Toast.makeText(this, "Failed to parse user data", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Failed to send user data", Toast.LENGTH_SHORT).show()
                 }
             }
         }

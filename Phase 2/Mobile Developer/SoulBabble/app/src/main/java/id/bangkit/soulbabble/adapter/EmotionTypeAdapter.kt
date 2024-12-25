@@ -8,7 +8,7 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
-import id.bangkit.soulbabble.model.EmotionTypeItem
+import id.bangkit.soulbabble.data.EmotionTypeItem
 
 class EmotionTypeAdapter(
     private val context: Context,

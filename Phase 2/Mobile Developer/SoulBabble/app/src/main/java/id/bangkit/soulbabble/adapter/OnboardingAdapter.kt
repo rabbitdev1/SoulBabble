@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
-import id.bangkit.soulbabble.model.OnboardingItem
+import id.bangkit.soulbabble.data.OnboardingItem
 
 class OnboardingAdapter(
     private val items: List<OnboardingItem>

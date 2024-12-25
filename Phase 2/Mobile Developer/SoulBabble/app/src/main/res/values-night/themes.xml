@@ -38,6 +38,7 @@
         <item name="itemTextColor">@color/bottom_nav_item_text_color_inactive</item>
         <item name="android:background">@color/bottom_nav_background</item>
     </style>
+
     <style name="RoundedImageViewShape" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
@@ -47,5 +48,10 @@
         <!-- Status bar transparan -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item> <!-- Ikon gelap di status bar -->
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SoulBabble" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
 </resources>

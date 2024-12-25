@@ -2,14 +2,15 @@ package id.bangkit.soulbabble.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import id.bangkit.soulbabble.ui.CheckInFragment
+import id.bangkit.soulbabble.ui.MonthFragment
+import id.bangkit.soulbabble.ui.WeekFragment
 
 class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     // Daftar fragment untuk setiap tab
     private val fragments: List<Fragment> = listOf(
-        CheckInFragment(), // Fragment untuk tab 1
-        CheckInFragment(), // Fragment untuk tab 2
+        WeekFragment(), // Fragment untuk tab 1
+        MonthFragment(), // Fragment untuk tab 2
     )
 
     // Jumlah tab

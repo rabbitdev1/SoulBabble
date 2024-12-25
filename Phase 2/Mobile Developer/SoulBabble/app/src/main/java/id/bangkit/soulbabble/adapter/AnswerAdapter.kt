@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
-import id.bangkit.soulbabble.model.AnswerItem
+import id.bangkit.soulbabble.data.AnswerItem
 
 class AnswerAdapter(
     private val context: Context,

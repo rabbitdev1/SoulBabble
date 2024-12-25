@@ -1,4 +1,4 @@
-package id.bangkit.soulbabble.model
+package id.bangkit.soulbabble.data
 
 data class AnswerItem(
     val question: String,

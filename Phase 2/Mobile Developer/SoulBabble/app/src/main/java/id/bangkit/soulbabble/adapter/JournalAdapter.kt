@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
-import id.bangkit.soulbabble.model.JournalItem
+import id.bangkit.soulbabble.data.JournalItem
 
 class JournalAdapter(
     private val context: Context,

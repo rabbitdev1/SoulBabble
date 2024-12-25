@@ -1,6 +1,8 @@
 package id.bangkit.soulbabble.utils
 
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 
@@ -24,5 +26,11 @@ object DateUtils {
         val endDate = dateFormat.format(calendar.time)
 
         return Pair(startDate, endDate)
+    }
+
+    fun getTodayDate(): String {
+        val currentDate = LocalDate.now()  // Mendapatkan tanggal hari ini
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")  // Format yang diinginkan
+        return currentDate.format(formatter)  // Mengembalikan tanggal dalam format string
     }
 }

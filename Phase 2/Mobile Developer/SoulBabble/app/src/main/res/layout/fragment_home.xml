@@ -48,7 +48,7 @@
                     tools:text="Rizal Sujana" />
 
                 <TextView
-                    android:id="@+id/tvApiramationTopBar"
+                    android:id="@+id/tvApiramation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
@@ -70,7 +70,10 @@
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
@@ -117,7 +120,7 @@
                         android:padding="16dp">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/imgProfile"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginEnd="12dp"
@@ -140,15 +143,6 @@
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 tools:text="My Daily Journal" />
-
-                            <TextView
-                                android:id="@+id/tvApiramation"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_light"
-                                android:textColor="@color/text_on_primary"
-                                android:textSize="12sp"
-                                tools:text="Kemarin, 20:20" />
                         </LinearLayout>
 
                         <ImageView
@@ -165,6 +159,9 @@
                     </LinearLayout>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/insertTrackingMood"
+                        android:visibility="gone"
+                        tools:visibility="visible"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -201,6 +198,9 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/detailTrackingMood"
+                        android:visibility="gone"
+                        tools:visibility="visible"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -234,7 +234,7 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <TextView
-                                        android:id="@+id/tvEmotion"
+                                        android:id="@+id/tvEmoji"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
@@ -256,7 +256,7 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <TextView
-                                        android:id="@+id/tvJournalItemTitle"
+                                        android:id="@+id/tvEmotionTitle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/roboto_bold"
@@ -266,7 +266,7 @@
                                         tools:text="My Daily Journal" />
 
                                     <TextView
-                                        android:id="@+id/tvJournalItemTime"
+                                        android:id="@+id/tvEmotionMsg"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/roboto_light"
@@ -309,15 +309,54 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
+                    <LinearLayout
+                        android:id="@+id/detailRecommendationMEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            app:cardBackgroundColor="@color/background_light"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="4dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="16dp"
+                                android:gravity="center"
+                                tools:ignore="UselessLeaf">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="@string/kamu_belum_mengisi_emosi_saat_ini"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="50dp"
+                                    android:layout_marginBottom="8dp"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerViewRecommended"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:scrollbars="horizontal" />
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/item_recommendation"/>
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

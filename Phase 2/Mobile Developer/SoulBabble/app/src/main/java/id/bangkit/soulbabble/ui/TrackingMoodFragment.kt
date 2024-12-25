@@ -55,8 +55,8 @@ class TrackingMoodFragment : Fragment(R.layout.fragment_tracking_mood) {
         val tabLayout = view.findViewById<com.google.android.material.tabs.TabLayout>(R.id.tabLayout)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Insight"
-               1 -> "Check-in"
+                0 -> "Week"
+                1 -> "Month"
                 else -> null
             }
         }.attach()

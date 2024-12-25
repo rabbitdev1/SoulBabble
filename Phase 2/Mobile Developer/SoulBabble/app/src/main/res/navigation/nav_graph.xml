@@ -25,7 +25,7 @@
     android:id="@+id/checkInFragment"
     android:name="id.bangkit.soulbabble.CheckInFragment"
     android:label="fragment_check_in"
-    tools:layout="@layout/fragment_check_in" />
+    tools:layout="@layout/fragment_week" />
     <fragment
         android:id="@+id/journalingFragment"
         android:name="id.bangkit.soulbabble.ui.JournalingFragment"

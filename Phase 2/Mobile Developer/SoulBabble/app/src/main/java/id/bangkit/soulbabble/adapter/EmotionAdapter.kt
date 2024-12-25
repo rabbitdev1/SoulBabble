@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
-import id.bangkit.soulbabble.model.EmotionItem
+import id.bangkit.soulbabble.data.EmotionItem
 import id.bangkit.soulbabble.ui.TrackingMood.InputTrackingMood1Activity
 
 class EmotionAdapter(

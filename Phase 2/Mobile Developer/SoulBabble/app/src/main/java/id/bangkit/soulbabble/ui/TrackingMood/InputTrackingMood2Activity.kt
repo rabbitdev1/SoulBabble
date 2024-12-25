@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.EmotionTypeAdapter
-import id.bangkit.soulbabble.model.EmotionTypeItem
+import id.bangkit.soulbabble.data.EmotionTypeItem
 import id.bangkit.soulbabble.utils.setupToolbar
 
 class InputTrackingMood2Activity : AppCompatActivity() {
