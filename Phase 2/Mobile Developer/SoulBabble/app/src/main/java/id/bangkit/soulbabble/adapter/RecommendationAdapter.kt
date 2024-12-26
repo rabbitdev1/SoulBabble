@@ -1,6 +1,7 @@
 package id.bangkit.soulbabble.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.data.RecommendationItem
+import id.bangkit.soulbabble.ui.DetailRecommendationActivity // Ganti dengan nama aktivitas detail Anda
 
 class RecommendationAdapter(
     private val context: Context,
@@ -50,6 +52,13 @@ class RecommendationAdapter(
 
             recommendationTitleTextView.text = recommendation.title
             recommendationDescriptionTextView.text = recommendation.description
+
+            // Menambahkan listener untuk navigasi ke halaman detail
+            itemView.setOnClickListener {
+                val intent = Intent(context, DetailRecommendationActivity::class.java)
+                intent.putExtra("RECOMMENDATION_ID", recommendation.id) // Kirim data yang diperlukan
+                context.startActivity(intent)
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package id.bangkit.soulbabble.ui
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -23,6 +24,7 @@ import id.bangkit.soulbabble.data.EmotionItem
 import id.bangkit.soulbabble.data.JournalItem
 import id.bangkit.soulbabble.data.RecommendationItem
 import id.bangkit.soulbabble.model.TrackingMoodViewModel
+import id.bangkit.soulbabble.ui.Journaling.InputJournaling1Activity
 import id.bangkit.soulbabble.utils.AuthStorage
 import id.bangkit.soulbabble.utils.DateUtils.getTodayDate
 import id.bangkit.soulbabble.utils.LocalStorage
@@ -69,6 +71,12 @@ class JournalingFragment : Fragment(R.layout.fragment_journaling) {
         // Load Data
         loadData()
         setupRefreshListener()
+
+        val inputJournalingButton: View = view.findViewById(R.id.inputJournaling)
+        inputJournalingButton.setOnClickListener {
+            val intent = Intent(requireContext(), InputJournaling1Activity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupViews(view: View) {
@@ -139,6 +147,7 @@ class JournalingFragment : Fragment(R.layout.fragment_journaling) {
                     val recommendedAction = JSONObject(recommendedActionString)
 
                     // Extract title, desc, and image from the "recommendedAction" object
+                    val id = dataObject.optString("id","No ID")
                     val title = recommendedAction.optString("title", "No Title")
                     val desc = recommendedAction.optString("desc", "No Description")
                     val imageUrl = recommendedAction.optString("image", "")
@@ -146,6 +155,7 @@ class JournalingFragment : Fragment(R.layout.fragment_journaling) {
                     // Add the recommendation to the list
                     recommendations.add(
                         RecommendationItem(
+                            id=id,
                             image = imageUrl,
                             title = title,
                             description = desc
