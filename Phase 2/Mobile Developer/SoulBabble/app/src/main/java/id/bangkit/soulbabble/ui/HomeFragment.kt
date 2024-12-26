@@ -1,3 +1,4 @@
+
 package id.bangkit.soulbabble.ui
 
 import android.os.Bundle
@@ -22,18 +23,15 @@ import id.bangkit.soulbabble.adapter.JournalAdapter
 import id.bangkit.soulbabble.adapter.RecommendationAdapter
 import id.bangkit.soulbabble.data.EmotionItem
 import id.bangkit.soulbabble.data.JournalItem
-import id.bangkit.soulbabble.data.RecommendationItem
 import id.bangkit.soulbabble.model.TrackingMoodViewModel
 import id.bangkit.soulbabble.utils.AuthStorage
 import id.bangkit.soulbabble.utils.DateUtils.getTodayDate
 import id.bangkit.soulbabble.utils.LocalStorage
 import id.bangkit.soulbabble.utils.getStatusBarHeight
-import org.json.JSONException
-import org.json.JSONObject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    // View Components
+    private val trackingMoodViewModel: TrackingMoodViewModel by activityViewModels()
     private lateinit var recyclerViewEmotion: RecyclerView
     private lateinit var recyclerViewJournal: RecyclerView
     private lateinit var recyclerViewRecommended: RecyclerView
@@ -43,38 +41,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var detailTrackingMood: CardView
     private lateinit var insertTrackingMood: CardView
     private lateinit var detailRecommendationMEmpty: LinearLayout
-
-    // TextViews
     private lateinit var tvApiramation: TextView
     private lateinit var tvemoji: TextView
     private lateinit var tvEmotionMsg: TextView
     private lateinit var tvEmotionTitle: TextView
     private lateinit var tvFullName: TextView
     private lateinit var tvFullnameTopBar: TextView
-
-    // ImageView
     private lateinit var imgProfile: ImageView
-
-    // ViewModel
-    private val trackingMoodViewModel: TrackingMoodViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Setup Views and Listeners
         setupViews(view)
         setupRecyclerViews()
-        setupScrollListener()
-        displayUserData()
-
-        // Load Data
-        loadData()
         setupRefreshListener()
+        observeViewModel()
+
+        // Load Data jika belum ada
+        val apiKey = AuthStorage.getApiKey(requireContext()) ?: ""
+        val token = AuthStorage.getToken(requireContext()) ?: ""
+        val today = getTodayDate()
+
+        trackingMoodViewModel.loadRecommendations(apiKey, token)
+        trackingMoodViewModel.loadEmotionData(apiKey, token, today, today)
     }
 
-    /**
-     * Menginisialisasi komponen View.
-     */
     private fun setupViews(view: View) {
         // Inisialisasi Views
         nestedScrollView = view.findViewById(R.id.nestedScrollView)
@@ -101,15 +92,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         swipeRefreshLayout.setProgressViewOffset(true, 100, 200)
     }
 
-    /**
-     * Mengatur RecyclerViews untuk Emotion, Journal, dan Recommendation.
-     */
     private fun setupRecyclerViews() {
-        // Emotion RecyclerView
+        // Mengatur adapter dan layout manager untuk RecyclerViews
         recyclerViewEmotion.layoutManager = GridLayoutManager(requireContext(), 5)
         recyclerViewEmotion.adapter = EmotionAdapter(requireContext(), generateEmotionList())
 
-        // Journal RecyclerView
         recyclerViewJournal.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.HORIZONTAL,
@@ -117,184 +104,62 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         )
         recyclerViewJournal.adapter = JournalAdapter(requireContext(), generateJournalList())
 
-        // Recommendation RecyclerView
         recyclerViewRecommended.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.VERTICAL,
             false
         )
-
-        // Tambahkan efek Snap untuk RecyclerView Journal
         LinearSnapHelper().attachToRecyclerView(recyclerViewJournal)
     }
-
-    /**
-     * Mengatur listener untuk NestedScrollView.
-     */
-    private fun setupScrollListener() {
-        nestedScrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
-            if (scrollY > 200) {
-                if (scrollLinearView.visibility == View.GONE) {
-                    scrollLinearView.visibility = View.VISIBLE
-                    scrollLinearView.animate()
-                        .alpha(1f)
-                        .setDuration(300)
-                        .start()
-                }
-            } else {
-                if (scrollLinearView.visibility == View.VISIBLE) {
-                    scrollLinearView.animate()
-                        .alpha(0f)
-                        .setDuration(300)
-                        .withEndAction {
-                            scrollLinearView.visibility = View.GONE
-                        }
-                        .start()
-                }
-            }
-        }
-    }
-
-    /**
-     * Memuat data dari API atau sumber lainnya.
-     */
-    private fun loadData() {
-        val startDate = getTodayDate()
-        val endDate = startDate
-        val apiKey = AuthStorage.getApiKey(requireContext()) ?: ""
-        val token = AuthStorage.getToken(requireContext()) ?: ""
-
-        trackingMoodViewModel.sendTrackingMoodData(startDate, endDate, apiKey, token, ) { response ->
-            if (response != null) {
-                try {
-                    val jsonResponse = JSONObject(response)
-                    val dataArray = jsonResponse.getJSONArray("data")
-                    if (dataArray.length() > 0) {
-                        val dataObject = dataArray.getJSONObject(0)
-                        val resultedEmotionString = dataObject.getString("resultedEmotion")
-                        val resultedEmotion = JSONObject(resultedEmotionString)
-
-                        tvApiramation.text = resultedEmotion.getString("msgEmotion")
-                        tvEmotionMsg.text = resultedEmotion.getString("msgEmotion")
-                        tvEmotionTitle.text = dataObject.getString("emotionName")
-                        tvemoji.text = resultedEmotion.getString("emoji")
-                    }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-                detailTrackingMood.visibility = View.VISIBLE
-                insertTrackingMood.visibility = View.GONE
-            } else {
-                detailTrackingMood.visibility = View.GONE
-                insertTrackingMood.visibility = View.VISIBLE
-            }
-        }
-        trackingMoodViewModel.sendRecommendation(apiKey, token) { result ->
-            activity?.runOnUiThread {
-                if (result != null) {
-                    try {
-                        val recommendations = parseRecommendationResult(result)
-                        updateRecommendationList(recommendations)
-                        println(recommendations)
-                        detailRecommendationMEmpty.visibility = View.GONE
-                        recyclerViewRecommended.visibility =View.VISIBLE
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
-                        println("Error parsing recommendations: ${e.message}")
-                        detailRecommendationMEmpty.visibility = View.VISIBLE
-                        recyclerViewRecommended.visibility =View.GONE
-                    }
-                } else {
-                    println("Failed to fetch recommendations.")
-                    detailRecommendationMEmpty.visibility = View.VISIBLE
-                    recyclerViewRecommended.visibility =View.GONE
-                }
-            }
-        }
-    }
-    private fun updateRecommendationList(recommendations: List<RecommendationItem>) {
-        recyclerViewRecommended.adapter = RecommendationAdapter(requireContext(), recommendations)
-    }
-
-    private fun parseRecommendationResult(result: String): List<RecommendationItem> {
-        val recommendations = mutableListOf<RecommendationItem>()
-        val jsonResponse = JSONObject(result)
-        println(jsonResponse)
-
-        // Check if "data" key exists and is a JSONObject
-        if (jsonResponse.has("data")) {
-            val dataObject = jsonResponse.getJSONObject("data")
-            // Extract the "recommendedAction" field as a JSON string
-            val recommendedActionString = dataObject.optString("recommendedAction", "")
-            if (recommendedActionString.isNotEmpty()) {
-                try {
-                    // Parse "recommendedAction" as a JSONObject
-                    val recommendedAction = JSONObject(recommendedActionString)
-                    // Extract title, desc, and image from the "recommendedAction" object
-                    val id = dataObject.optString("id","No ID")
-                    val title = recommendedAction.optString("title", "No Title")
-                    val desc = recommendedAction.optString("desc", "No Description")
-                    val imageUrl = recommendedAction.optString("image", "")
-
-                    // Add the recommendation to the list
-                    recommendations.add(
-                        RecommendationItem(
-                            id=id,
-                            image = imageUrl,
-                            title = title,
-                            description = desc
-                        )
-                    )
-                } catch (e: Exception) {
-                    println("Error parsing recommendedAction: ${e.message}")
-                }
-            }
-        } else {
-            println("No 'data' key found in JSON response")
-        }
-
-        return recommendations
-    }
-
-    /**
-     * Menyegarkan konten pada SwipeRefreshLayout.
-     */
     private fun setupRefreshListener() {
         swipeRefreshLayout.setOnRefreshListener {
-            refreshContent()
+            val apiKey = AuthStorage.getApiKey(requireContext()) ?: ""
+            val token = AuthStorage.getToken(requireContext()) ?: ""
+            val today = getTodayDate()
+
+            // Refresh emotion data dan rekomendasi
+            trackingMoodViewModel.loadEmotionData(apiKey, token, today, today)
+            trackingMoodViewModel.loadRecommendations(apiKey, token)
+
+            // Tunggu hingga data selesai dimuat
+            trackingMoodViewModel.emotionData.observe(viewLifecycleOwner) {
+                if (swipeRefreshLayout.isRefreshing) {
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            }
+
+            trackingMoodViewModel.recommendations.observe(viewLifecycleOwner) {
+                if (swipeRefreshLayout.isRefreshing) {
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            }
+        }
+    }
+    private fun observeViewModel() {
+        // Observasi data emotion
+        trackingMoodViewModel.emotionData.observe(viewLifecycleOwner) { emotionData ->
+            tvApiramation.text = emotionData?.get("msgEmotion") ?: "No Message"
+            tvEmotionMsg.text = emotionData?.get("msgEmotion") ?: "No Message"
+            tvEmotionTitle.text = emotionData?.get("emotionName") ?: "No Emotion"
+            tvemoji.text = emotionData?.get("emoji") ?: "😊"
+
+            detailTrackingMood.visibility = View.VISIBLE
+            insertTrackingMood.visibility = View.GONE
+        }
+
+        // Observasi rekomendasi
+        trackingMoodViewModel.recommendations.observe(viewLifecycleOwner) { recommendations ->
+            recyclerViewRecommended.adapter = RecommendationAdapter(requireContext(), recommendations)
+            if (recommendations.isNotEmpty()) {
+                detailRecommendationMEmpty.visibility = View.GONE
+                recyclerViewRecommended.visibility = View.VISIBLE
+            } else {
+                detailRecommendationMEmpty.visibility = View.VISIBLE
+                recyclerViewRecommended.visibility = View.GONE
+            }
         }
     }
 
-    private fun refreshContent() {
-        loadData()
-        swipeRefreshLayout.isRefreshing = false
-    }
-
-    /**
-     * Menampilkan data pengguna.
-     */
-    private fun displayUserData() {
-        val userData = LocalStorage.getAuthData(requireContext())
-        val fullName = userData[LocalStorage.FULL_NAME]
-        val photoUrl = userData[LocalStorage.PHOTO_URL]
-
-        tvFullName.text = fullName ?: "Nama Tidak Tersedia"
-        tvFullnameTopBar.text = fullName ?: "Nama Tidak Tersedia"
-
-        if (!photoUrl.isNullOrEmpty()) {
-            Picasso.get()
-                .load(photoUrl)
-                .placeholder(R.drawable.ic_launcher_background)
-                .into(imgProfile)
-        } else {
-            imgProfile.setImageResource(R.drawable.ic_launcher_background)
-        }
-    }
-
-    /**
-     * Membuat daftar dummy untuk Emotion.
-     */
     private fun generateEmotionList(): List<EmotionItem> = listOf(
         EmotionItem("\uD83E\uDD72", "Sangat Buruk"),
         EmotionItem("\uD83E\uDD72", "Buruk"),
@@ -303,11 +168,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         EmotionItem("\uD83E\uDD72", "Sangat Baik")
     )
 
-    /**
-     * Membuat daftar dummy untuk Journal.
-     */
     private fun generateJournalList(): List<JournalItem> = listOf(
         JournalItem("\uD83E\uDD72", "Reflection", "Minggu Lalu, 15:00", "Belajar tentang kehidupan...")
     )
-
 }

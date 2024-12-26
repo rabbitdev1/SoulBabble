@@ -5,17 +5,16 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsetsController
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import id.bangkit.soulbabble.R
 
-class InputJournaling2Activity : AppCompatActivity() {
+class InputJournaling3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_input_journaling2)
+        setContentView(R.layout.activity_input_journaling3)
 
         // Mengatur warna status bar
         setupStatusBar()
@@ -27,6 +26,7 @@ class InputJournaling2Activity : AppCompatActivity() {
 
         // Terima data dari Intent
         val journalTitle = intent.getStringExtra("JOURNAL_TITLE") ?: "Judul tidak tersedia"
+        val journalContent1 = intent.getStringExtra("JOURNAL_CONTENT") ?: "Judul tidak tersedia"
 
         // Tombol Lanjutkan
         buttonNext.setOnClickListener {
@@ -38,10 +38,9 @@ class InputJournaling2Activity : AppCompatActivity() {
                 // Reset error
                 textInputLayout.error = null
 
-                // Kirim data ke halaman berikutnya
-                val intent = Intent(this, InputJournaling3Activity::class.java) // Ganti `NextActivity` dengan aktivitas tujuan
-                intent.putExtra("JOURNAL_TITLE", journalTitle) // Kirim kembali judul
-                intent.putExtra("JOURNAL_CONTENT", inputText) // Kirim konten jurnal
+                println("${journalTitle}=${journalContent1}=${inputText}")
+
+                val intent = Intent(this, SuccessJournalingActivity::class.java)
                 startActivity(intent)
             }
         }

@@ -50,6 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/list_journaling"
                     android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -88,11 +89,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="🥲"
+                                    android:text="📖"
                                     android:textColor="@color/background_dark"
                                     android:textSize="32sp"
                                     android:textStyle="bold"
-                                    tools:ignore="TooDeepLayout" />
+                                    tools:ignore="HardcodedText,TooDeepLayout" />
                             </FrameLayout>
 
                             <LinearLayout

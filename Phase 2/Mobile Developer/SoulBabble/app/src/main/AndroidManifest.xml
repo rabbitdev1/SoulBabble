@@ -17,6 +17,15 @@
         android:theme="@style/Theme.SoulBabble"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Journaling.ListJournalingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Journaling.SuccessJournalingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Journaling.InputJournaling3Activity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Journaling.InputJournaling2Activity"
             android:exported="false" />
         <activity

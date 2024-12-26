@@ -28,11 +28,12 @@ class InputJournaling1Activity : AppCompatActivity() {
             val inputText = etTitleJournaling.text.toString().trim()
 
             if (isValidTitle(inputText)) {
-                // Navigate to the next page if valid
-                val intent = Intent(this, InputJournaling2Activity::class.java) // Replace with your target activity
+                // Kirim data ke InputJournaling2Activity
+                val intent = Intent(this, InputJournaling2Activity::class.java)
+                intent.putExtra("JOURNAL_TITLE", inputText) // Kirim data sebagai extra
                 startActivity(intent)
             } else {
-                // Show error message
+                // Tampilkan pesan error
                 Toast.makeText(
                     this,
                     "Judul Jurnal setidaknya harus 2 Kata hingga 6 Kata",
@@ -40,6 +41,7 @@ class InputJournaling1Activity : AppCompatActivity() {
                 ).show()
             }
         }
+
     }
 
     /**

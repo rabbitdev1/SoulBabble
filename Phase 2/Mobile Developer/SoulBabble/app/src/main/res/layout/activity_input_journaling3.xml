@@ -46,7 +46,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Coba Ceritakan apa saja kegiatan kamu hari ini ?"
+                    android:text="Adakah hal baru yang kamu sadari dari
+kegiatanmu hari ini?"
                     android:textColor="@color/text_primary"
                     android:textSize="14sp"
                     tools:ignore="HardcodedText" />
@@ -84,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:backgroundTint="@color/primary"
-        android:text="@string/lanjutkan"
+        android:text="@string/selesai"
         android:textColor="@color/text_on_primary"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"

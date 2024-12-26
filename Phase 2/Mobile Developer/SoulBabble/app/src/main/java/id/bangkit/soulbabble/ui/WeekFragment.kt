@@ -105,69 +105,64 @@ class WeekFragment : Fragment(R.layout.fragment_week) {
             emotionWeekAdapter.updateEmotionList(emotionList)
             val today = getTodayDayOfWeek()
             emotionWeekAdapter.selectItemByDay(today)
+            val todayEmotion = emotionList.find { it.dayOfWeek == today }
+            println("lala ${todayEmotion}")
 
-            viewModel.emotionWeekList.observe(viewLifecycleOwner) { emotionList ->
-                // Cari data hari ini
-                val today = getTodayDayOfWeek()
-                val todayEmotion = emotionList.find { it.dayOfWeek == today }
+            if (todayEmotion != null && todayEmotion.resultedEmotion.isNotEmpty()) {
+                val resultedEmotionJson = JSONObject(todayEmotion.resultedEmotion)
 
-                if (todayEmotion != null) {
-                    val resultedEmotionJson = todayEmotion.resultedEmotion?.let { JSONObject(it) }
-                    val emoji = resultedEmotionJson?.optString("emoji", "No Emoji") ?: "No Emoji"
-                    val msgEmotion = resultedEmotionJson?.optString("msgEmotion", "") ?: ""
-                    val emotionalFactors = resultedEmotionJson?.optJSONArray("emotionalFactor") ?: null
-                    val emotionalFactors1 = emotionalFactors?.optString(0) ?: "Factor 1 not available"
-                    val emotionalFactors2 = emotionalFactors?.optString(1) ?: "Factor 2 not available"
-                    val emotionalFactors3 = emotionalFactors?.optString(2) ?: "Factor 3 not available"
+                val emoji = resultedEmotionJson?.optString("emoji", "No Emoji") ?: "No Emoji"
+                val msgEmotion = resultedEmotionJson?.optString("msgEmotion", "") ?: ""
+                val emotionalFactors = resultedEmotionJson?.optJSONArray("emotionalFactor") ?: null
+                val emotionalFactors1 = emotionalFactors?.optString(0) ?: "Factor 1 not available"
+                val emotionalFactors2 = emotionalFactors?.optString(1) ?: "Factor 2 not available"
+                val emotionalFactors3 = emotionalFactors?.optString(2) ?: "Factor 3 not available"
 
-                    val resultQuestions = mutableListOf<Pair<String, String>>()
-                    val recommendations = mutableListOf<Triple<String, String, String>>()
+                val resultQuestions = mutableListOf<Pair<String, String>>()
+                val recommendations = mutableListOf<Triple<String, String, String>>()
 
-                    // Extract questions and answers
-                    resultedEmotionJson?.optJSONArray("resultQuestion")?.let { questionsArray ->
-                        for (i in 0 until questionsArray.length()) {
-                            val questionObj = questionsArray.getJSONObject(i)
-                            resultQuestions.add(
-                                questionObj.getString("question") to questionObj.getString("answer")
-                            )
-                        }
+                resultedEmotionJson?.optJSONArray("resultQuestion")?.let { questionsArray ->
+                    for (i in 0 until questionsArray.length()) {
+                        val questionObj = questionsArray.getJSONObject(i)
+                        resultQuestions.add(
+                            questionObj.getString("question") to questionObj.getString("answer")
+                        )
                     }
-
-                    // Extract recommendations
-                    resultedEmotionJson?.optJSONArray("recommendations")?.let { recommendationsArray ->
-                        for (i in 0 until recommendationsArray.length()) {
-                            val recommendationObj = recommendationsArray.getJSONObject(i)
-                            recommendations.add(
-                                Triple(
-                                    recommendationObj.getString("title"),
-                                    recommendationObj.getString("image"),
-                                    recommendationObj.getString("desc")
-                                )
-                            )
-                        }
-                    }
-
-                    // Update UI elements
-                    tvEmotionDetail.text = emoji
-                    tvEmotionDetailTime.text = todayEmotion.createdAt
-                    tvEmotionDetailTitle.text = msgEmotion
-                    tvFactorialEmotion1.text = emotionalFactors1
-                    tvFactorialEmotion2.text = emotionalFactors2
-                    tvFactorialEmotion3.text = emotionalFactors3
-
-                    // Set visibility based on emoji presence
-                    val isEmojiEmpty = emoji == "No Emoji"
-                    detailTrackingMoodEmpty.visibility = if (isEmojiEmpty) View.VISIBLE else View.GONE
-                    detailTrackingMood.visibility = if (isEmojiEmpty) View.GONE else View.VISIBLE
-
-                    // Update Answer Adapter
-                    val answerList = generateAnswerList(resultQuestions, recommendations)
-                    recyclerViewAnswer.adapter = AnswerAdapter(requireContext(), answerList)
-                } else {
-                    println("Today emotion data is null")
-                    detailTrackingMoodEmpty.visibility = View.VISIBLE
-                    detailTrackingMood.visibility = View.GONE
                 }
+
+                // Extract recommendations
+                resultedEmotionJson?.optJSONArray("recommendations")?.let { recommendationsArray ->
+                    for (i in 0 until recommendationsArray.length()) {
+                        val recommendationObj = recommendationsArray.getJSONObject(i)
+                        recommendations.add(
+                            Triple(
+                                recommendationObj.getString("title"),
+                                recommendationObj.getString("image"),
+                                recommendationObj.getString("desc")
+                            )
+                        )
+                    }
+                }
+
+                tvEmotionDetail.text = emoji
+                tvEmotionDetailTime.text = todayEmotion.createdAt
+                tvEmotionDetailTitle.text = msgEmotion
+                tvFactorialEmotion1.text = emotionalFactors1
+                tvFactorialEmotion2.text = emotionalFactors2
+                tvFactorialEmotion3.text = emotionalFactors3
+
+                val isEmojiEmpty = emoji == "No Emoji"
+                detailTrackingMoodEmpty.visibility = if (isEmojiEmpty) View.VISIBLE else View.GONE
+                detailTrackingMood.visibility = if (isEmojiEmpty) View.GONE else View.VISIBLE
+
+                // Update Answer Adapter
+                val answerList = generateAnswerList(resultQuestions, recommendations)
+                recyclerViewAnswer.adapter = AnswerAdapter(requireContext(), answerList)
+            } else {
+                println("Today emotion data is null")
+                detailTrackingMoodEmpty.visibility = View.VISIBLE
+                detailTrackingMood.visibility = View.GONE
+                swipeRefreshLayout.isRefreshing = false
             }
         }
 
