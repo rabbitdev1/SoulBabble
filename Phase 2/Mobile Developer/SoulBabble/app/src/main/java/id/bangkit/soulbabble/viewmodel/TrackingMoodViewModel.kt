@@ -1,6 +1,5 @@
-package id.bangkit.soulbabble.model
+package id.bangkit.soulbabble.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

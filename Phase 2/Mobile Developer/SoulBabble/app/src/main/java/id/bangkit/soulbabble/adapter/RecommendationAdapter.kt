@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.data.RecommendationItem
-import id.bangkit.soulbabble.ui.DetailRecommendationActivity // Ganti dengan nama aktivitas detail Anda
+import id.bangkit.soulbabble.ui.Recommendation.DetailRecommendationActivity // Ganti dengan nama aktivitas detail Anda
 
 class RecommendationAdapter(
     private val context: Context,

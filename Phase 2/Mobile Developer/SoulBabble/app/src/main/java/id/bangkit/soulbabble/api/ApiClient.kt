@@ -136,5 +136,64 @@ class ApiClient {
             }
         }
     }
+    fun getJournalingData(apiKey: String, token: String): String? {
+        val mediaType = "application/x-www-form-urlencoded".toMediaTypeOrNull()
+        val body = RequestBody.create(mediaType, "=")
+        val request = Request.Builder()
+            .url("${baseUrl}getJournalingData")  // Endpoint API untuk tracking mood
+            .method("POST", body)
+            .addHeader("Authorization", "Bearer $token")
+            .addHeader("api-key", apiKey)
+            .addHeader("Content-Type", "application/x-www-form-urlencoded")
+            .build()
 
+        return try {
+            val response = client.newCall(request).execute()
+            if (response.isSuccessful) {
+                response.body?.string()
+            } else {
+                null
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
+    fun getDetailJournaling(
+        apiKey: String,
+        token: String,
+        journalId: String,
+        callback: (result: String?, error: String?) -> Unit
+    ) {
+        val url = "${baseUrl}getDetailJournaling"
+        val requestBody = FormBody.Builder()
+            .add("id", journalId)
+            .build()
+
+        val request = Request.Builder()
+            .url(url)
+            .addHeader("Authorization", "Bearer $token")
+            .addHeader("api-key", apiKey)
+            .addHeader("Content-Type", "application/x-www-form-urlencoded")
+            .post(requestBody)
+            .build()
+
+        // Kirim permintaan secara asinkron
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+                callback(null, e.message)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    response.body?.string()?.let {
+                        callback(it, null)
+                    } ?: callback(null, "Empty response")
+                } else {
+                    callback(null, "Error: ${response.code}")
+                }
+            }
+        })
+    }
 }

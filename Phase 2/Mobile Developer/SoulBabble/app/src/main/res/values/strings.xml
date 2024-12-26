@@ -76,4 +76,7 @@
     <string name="hebat_kamu_berhasil_menulis_jurnal_ini">Hebat, kamu berhasil \nmenulis jurnal ini!</string>
     <string name="kegiatan_jurnal_ini_dapat_membantumu_untuk_menjernihkan_pikiran_dan_melupakan_segala_emosi_yang_ada_jangan_berhenti_disini_ya">Kegiatan jurnal ini dapat membantumu untuk\nmenjernihkan pikiran dan melupakan segala emosi \nyang ada. Jangan berhenti disini ya!</string>
     <string name="review_journal">Review Journal</string>
+    <string name="coba_ceritakan_apa_saja_kegiatanmu_hari_ini">Coba ceritakan apa saja kegiatanmu hari ini</string>
+    <string name="adakah_hal_baru_yang_kamu_sadari_dari_kegiatanmu_hari_ini">Adakah hal baru yang kamu sadari dari kegiatanmu hari ini?</string>
+    <string name="todo">TODO</string>
 </resources>

@@ -2,14 +2,10 @@ package id.bangkit.soulbabble.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.mikephil.charting.charts.BarChart
@@ -19,17 +15,11 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import id.bangkit.soulbabble.R
-import id.bangkit.soulbabble.adapter.AnswerAdapter
-import id.bangkit.soulbabble.adapter.EmotionAdapter
 import id.bangkit.soulbabble.adapter.EmotionTotalAdapter
-import id.bangkit.soulbabble.adapter.EmotionWeekAdapter
-import id.bangkit.soulbabble.adapter.JournalAdapter
 import id.bangkit.soulbabble.data.EmotionTotalItem
-import id.bangkit.soulbabble.data.JournalItem
-import id.bangkit.soulbabble.model.WeekViewModel
+import id.bangkit.soulbabble.viewmodel.WeekViewModel
 import id.bangkit.soulbabble.utils.AuthStorage
 import id.bangkit.soulbabble.utils.DateUtils.getOneWeekRange
-import id.bangkit.soulbabble.utils.getStatusBarHeight
 
 class MonthFragment : Fragment(R.layout.fragment_month) {
     private val viewModel: WeekViewModel by viewModels()

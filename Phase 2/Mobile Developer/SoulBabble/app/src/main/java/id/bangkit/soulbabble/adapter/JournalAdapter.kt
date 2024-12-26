@@ -1,5 +1,6 @@
 package id.bangkit.soulbabble.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,12 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.data.JournalItem
+import android.content.Intent
+import id.bangkit.soulbabble.ui.Journaling.DetailJournalActivity
 
 class JournalAdapter(
     private val context: Context,
-    private val journals: List<JournalItem>,
+    private var journalList: List<JournalItem>
 ) : RecyclerView.Adapter<JournalAdapter.JournalViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JournalViewHolder {
@@ -22,12 +25,18 @@ class JournalAdapter(
     }
 
     override fun onBindViewHolder(holder: JournalViewHolder, position: Int) {
-        val journalItem = journals[position]
+        val journalItem = journalList[position]
         holder.bind(journalItem)
 
+        // Tambahkan klik listener
+        holder.cardView.setOnClickListener {
+            val intent = Intent(context, DetailJournalActivity::class.java)
+            intent.putExtra("JOURNAL_ID", journalItem.id) // Kirim ID jurnal ke halaman detail
+            context.startActivity(intent) // Mulai aktivitas detail
+        }
     }
 
-    override fun getItemCount(): Int = journals.size
+    override fun getItemCount(): Int = journalList.size
 
     /**
      * ViewHolder untuk JournalAdapter.
@@ -48,5 +57,11 @@ class JournalAdapter(
             contentTextView.text = journalItem.content
             timeTextView.text = journalItem.time
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newJournalList: List<JournalItem>) {
+        journalList = newJournalList
+        notifyDataSetChanged()
     }
 }

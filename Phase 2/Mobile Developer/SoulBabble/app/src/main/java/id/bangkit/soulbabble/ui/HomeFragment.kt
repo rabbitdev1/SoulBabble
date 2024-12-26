@@ -1,37 +1,41 @@
 
 package id.bangkit.soulbabble.ui
 
+import JournalingViewModel
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.squareup.picasso.Picasso
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.EmotionAdapter
 import id.bangkit.soulbabble.adapter.JournalAdapter
 import id.bangkit.soulbabble.adapter.RecommendationAdapter
 import id.bangkit.soulbabble.data.EmotionItem
 import id.bangkit.soulbabble.data.JournalItem
-import id.bangkit.soulbabble.model.TrackingMoodViewModel
+import id.bangkit.soulbabble.viewmodel.TrackingMoodViewModel
 import id.bangkit.soulbabble.utils.AuthStorage
 import id.bangkit.soulbabble.utils.DateUtils.getTodayDate
-import id.bangkit.soulbabble.utils.LocalStorage
 import id.bangkit.soulbabble.utils.getStatusBarHeight
+import org.json.JSONException
+import org.json.JSONObject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val trackingMoodViewModel: TrackingMoodViewModel by activityViewModels()
+    private val journalingViewModel: JournalingViewModel by viewModels()
     private lateinit var recyclerViewEmotion: RecyclerView
     private lateinit var recyclerViewJournal: RecyclerView
     private lateinit var recyclerViewRecommended: RecyclerView
@@ -64,6 +68,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         trackingMoodViewModel.loadRecommendations(apiKey, token)
         trackingMoodViewModel.loadEmotionData(apiKey, token, today, today)
+        journalingViewModel.fetchJournalingData(apiKey, token)
     }
 
     private fun setupViews(view: View) {
@@ -102,7 +107,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             LinearLayoutManager.HORIZONTAL,
             false
         )
-        recyclerViewJournal.adapter = JournalAdapter(requireContext(), generateJournalList())
 
         recyclerViewRecommended.layoutManager = LinearLayoutManager(
             requireContext(),
@@ -158,6 +162,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 recyclerViewRecommended.visibility = View.GONE
             }
         }
+
+        journalingViewModel.journalingData.observe(viewLifecycleOwner) { data ->
+            val journalItems = parseJournalData(data)
+            updateRecyclerView(journalItems)
+
+            swipeRefreshLayout.isRefreshing = false // Hentikan animasi refresh setelah selesai
+        }
+
+        journalingViewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+            Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_SHORT).show()
+            swipeRefreshLayout.isRefreshing = false // Hentikan animasi refresh jika ada kesalahan
+        }
+
     }
 
     private fun generateEmotionList(): List<EmotionItem> = listOf(
@@ -168,7 +185,65 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         EmotionItem("\uD83E\uDD72", "Sangat Baik")
     )
 
-    private fun generateJournalList(): List<JournalItem> = listOf(
-        JournalItem("\uD83E\uDD72", "Reflection", "Minggu Lalu, 15:00", "Belajar tentang kehidupan...")
-    )
+    private fun updateRecyclerView(journalItems: List<JournalItem>) {
+        recyclerViewJournal.adapter = JournalAdapter(requireContext(), journalItems)
+
+    }
+    private fun parseJournalData(data: JSONObject): List<JournalItem> {
+        val items = mutableListOf<JournalItem>()
+        val journalData = data.getJSONObject("data")
+
+        val journalId = data.optString("id", "default_value")
+        val journalTitle = journalData.optString("title")
+        val journalContent = journalData.optString("content")
+        val createdAt = journalData.optString("createdAt")
+
+        println("Raw content: $journalContent") // Debugging untuk memeriksa konten mentah
+
+        // Parsing content yang berupa JSON string
+        val parsedContent = try {
+            if (journalContent.isNullOrEmpty()) {
+                throw JSONException("Content is empty or null.")
+            }
+            // Hilangkan trailing comma dengan manipulasi string
+            val sanitizedContent = journalContent.trim()
+                .removeSuffix("}")
+                .removeSuffix(",")
+                .plus("}")
+
+            println("Sanitized content: $sanitizedContent") // Debugging untuk memeriksa konten yang telah dibersihkan
+
+            // Parsing JSON
+            val contentJson = JSONObject(sanitizedContent)
+
+            // Ambil hanya `jurnal1`
+            val jurnal1 = contentJson.optString("jurnal1")
+
+            // Batasi teks hingga 30 kata
+            if (jurnal1.isNotEmpty()) {
+                val words = jurnal1.split(" ")
+                if (words.size > 30) {
+                    words.take(30).joinToString(" ") + "..."
+                } else {
+                    jurnal1
+                }
+            } else {
+                "No content for jurnal1."
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            "Unable to parse content: ${e.message}"
+        }
+        // Tambahkan data ke daftar JournalItem
+        items.add(
+            JournalItem(
+                journalId,
+                "\uD83D\uDE0A", // Emoji sebagai contoh
+                journalTitle,
+                createdAt,
+                parsedContent
+            )
+        )
+        return items
+    }
 }

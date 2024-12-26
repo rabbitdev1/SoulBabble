@@ -21,7 +21,7 @@ import id.bangkit.soulbabble.adapter.EmotionWeekAdapter
 import id.bangkit.soulbabble.data.AnswerItem
 import id.bangkit.soulbabble.utils.AuthStorage
 import id.bangkit.soulbabble.utils.DateUtils.getOneWeekRange
-import id.bangkit.soulbabble.model.WeekViewModel
+import id.bangkit.soulbabble.viewmodel.WeekViewModel
 import org.json.JSONObject
 import java.util.Calendar
 

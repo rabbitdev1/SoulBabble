@@ -16,7 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.RecommendationAdapter
 import id.bangkit.soulbabble.data.RecommendationItem
-import id.bangkit.soulbabble.model.TrackingMoodViewModel
+import id.bangkit.soulbabble.viewmodel.TrackingMoodViewModel
 import id.bangkit.soulbabble.ui.Journaling.InputJournaling1Activity
 import id.bangkit.soulbabble.ui.Journaling.ListJournalingActivity
 import id.bangkit.soulbabble.utils.AuthStorage

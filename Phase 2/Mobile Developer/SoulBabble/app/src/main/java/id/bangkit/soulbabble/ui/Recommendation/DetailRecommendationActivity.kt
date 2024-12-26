@@ -1,4 +1,4 @@
-package id.bangkit.soulbabble.ui
+package id.bangkit.soulbabble.ui.Recommendation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

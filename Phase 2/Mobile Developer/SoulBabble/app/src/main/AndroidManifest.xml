@@ -17,6 +17,9 @@
         android:theme="@style/Theme.SoulBabble"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Journaling.DetailJournalActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Journaling.ListJournalingActivity"
             android:exported="false" />
         <activity
@@ -32,7 +35,7 @@
             android:name=".ui.Journaling.InputJournaling1Activity"
             android:exported="false" />
         <activity
-            android:name=".ui.DetailRecommendationActivity"
+            android:name=".ui.Recommendation.DetailRecommendationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MonthFragment"
