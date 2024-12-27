@@ -137,9 +137,6 @@ class LoginActivity : AppCompatActivity() {
                             // Menyimpan data ke AuthStorage
                             LocalStorage.saveAuthData(this, fullName, email, photoUrl)
 
-                            // Debug print response
-                            println(response)
-
                             // Navigasi ke HomeActivity setelah berhasil
                             navigateToHome()
                         } else {

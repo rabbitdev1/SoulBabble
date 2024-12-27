@@ -29,7 +29,6 @@ class MonthFragment : Fragment(R.layout.fragment_month) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        println("View Created, initializing RecyclerView...")
         setupViews(view)
         setupRecyclerViews()
 

@@ -85,7 +85,6 @@ class ListJournalingActivity : AppCompatActivity() {
         val analysisResult = journalData.optString("analysisResult")
         val createdAt = journalData.optString("createdAt")
 
-        println("Raw content: $journalContent") // Debugging untuk memeriksa konten mentah
 
         // Parsing content yang berupa JSON string
         val parsedContent = try {
@@ -98,7 +97,6 @@ class ListJournalingActivity : AppCompatActivity() {
                 .removeSuffix(",")
                 .plus("}")
 
-            println("Sanitized content: $sanitizedContent") // Debugging untuk memeriksa konten yang telah dibersihkan
 
             // Parsing JSON
             val contentJson = JSONObject(sanitizedContent)

@@ -82,9 +82,6 @@ class NotificationActivity : AppCompatActivity() {
             val journalId = journalData.optString("id", "")
             val journalTitle = journalData.optString("content", "No Content")
             val createdAt = journalData.optString("createdAt", "Unknown Date")
-            println(journalId)
-            println(journalTitle)
-            println(createdAt)
 //            // Tambahkan data ke daftar NotificationItem
             items.add(
                 NotificationItem(

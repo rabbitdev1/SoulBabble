@@ -9,7 +9,7 @@ export const getJorunalData = async (req, res) => {
     });
   }
   try {
-    const data = await journalingModel.findOne({
+    const data = await journalingModel.findAll({
       where: {  apiKey: apiKey },
       attributes: ["id","title","content", "analysisResult", "createdAt"],
     });

@@ -94,15 +94,8 @@ class InputQuestionsActivity : AppCompatActivity() {
         val emotionType = intent.getStringExtra("emotiontype") ?: "No Title"
         val emotionSource = intent.getStringExtra("emotionSource") ?: "No Title"
 
-        println("Emoticon: $emoticon")
-        println("Emoticon Title: $emoticonTitle")
-        println("Emotion Type: $emotionType")
-        println("Emotion Source: $emotionSource")
-
         questions.forEachIndexed { index, question ->
             val answer = answers[index] ?: "Belum dijawab"
-            println("Pertanyaan: $question")
-            println("Jawaban: $answer")
         }
 
         Toast.makeText(this, "Data berhasil divalidasi!", Toast.LENGTH_SHORT).show()

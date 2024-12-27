@@ -106,7 +106,6 @@ class WeekFragment : Fragment(R.layout.fragment_week) {
             val today = getTodayDayOfWeek()
             emotionWeekAdapter.selectItemByDay(today)
             val todayEmotion = emotionList.find { it.dayOfWeek == today }
-            println("lala ${todayEmotion}")
 
             if (todayEmotion != null && todayEmotion.resultedEmotion.isNotEmpty()) {
                 val resultedEmotionJson = JSONObject(todayEmotion.resultedEmotion)
@@ -159,7 +158,6 @@ class WeekFragment : Fragment(R.layout.fragment_week) {
                 val answerList = generateAnswerList(resultQuestions, recommendations)
                 recyclerViewAnswer.adapter = AnswerAdapter(requireContext(), answerList)
             } else {
-                println("Today emotion data is null")
                 detailTrackingMoodEmpty.visibility = View.VISIBLE
                 detailTrackingMood.visibility = View.GONE
                 swipeRefreshLayout.isRefreshing = false
@@ -196,7 +194,6 @@ class WeekFragment : Fragment(R.layout.fragment_week) {
             tvFactorialEmotion2.text = emotionalFactors2
             tvFactorialEmotion3.text = emotionalFactors3
 
-            println("isEmojiEmpty in Fragment: $isEmojiEmpty")
             detailTrackingMoodEmpty.visibility = if (isEmojiEmpty) View.VISIBLE else View.GONE
             detailTrackingMood.visibility = if (isEmojiEmpty) View.GONE else View.VISIBLE
 
