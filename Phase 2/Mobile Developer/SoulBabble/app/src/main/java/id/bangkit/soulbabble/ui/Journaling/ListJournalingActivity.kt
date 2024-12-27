@@ -34,6 +34,7 @@ class ListJournalingActivity : AppCompatActivity() {
         // Observasi data dari ViewModel
         journalingViewModel.journalingData.observe(this) { data ->
             val journalItems = parseJournalData(data)
+            println("lala ${data}")
             updateRecyclerView(journalItems)
             swipeRefreshLayout.isRefreshing = false // Hentikan animasi refresh setelah selesai
         }
@@ -77,58 +78,53 @@ class ListJournalingActivity : AppCompatActivity() {
     private fun parseJournalData(data: JSONObject): List<JournalItem> {
         val items = mutableListOf<JournalItem>()
 
-        // Ambil data utama dari JSON
-        val journalData = data.getJSONObject("data")
-        val journalId = data.optString("id", "default_value")
-        val journalTitle = journalData.optString("title")
-        val journalContent = journalData.optString("content")
-        val analysisResult = journalData.optString("analysisResult")
-        val createdAt = journalData.optString("createdAt")
+        // Ambil array data dari JSON
+        val journalArray = data.getJSONArray("data")
 
-
-        // Parsing content yang berupa JSON string
-        val parsedContent = try {
-            if (journalContent.isNullOrEmpty()) {
-                throw JSONException("Content is empty or null.")
-            }
-            // Hilangkan trailing comma dengan manipulasi string
-            val sanitizedContent = journalContent.trim()
-                .removeSuffix("}")
-                .removeSuffix(",")
-                .plus("}")
-
-
-            // Parsing JSON
-            val contentJson = JSONObject(sanitizedContent)
-
-            // Ambil hanya `jurnal1`
-            val jurnal1 = contentJson.optString("jurnal1")
-
-            // Batasi teks hingga 30 kata
-            if (jurnal1.isNotEmpty()) {
-                val words = jurnal1.split(" ")
-                if (words.size > 30) {
-                    words.take(30).joinToString(" ") + "..."
-                } else {
-                    jurnal1
+        for (i in 0 until journalArray.length()) {
+            val journalData = journalArray.getJSONObject(i)
+            val journalId = journalData.optInt("id").toString()
+            val journalTitle = journalData.optString("title")
+            val journalContent = journalData.optString("content")
+            val analysisResult = journalData.optString("analysisResult")
+            val createdAt = journalData.optString("createdAt")
+            // Parsing content yang berupa JSON string
+            val parsedContent = try {
+                if (journalContent.isNullOrEmpty()) {
+                    throw JSONException("Content is empty or null.")
                 }
-            } else {
-                "No content for jurnal1."
+                val sanitizedContent = journalContent.trim()
+                    .removeSuffix("}")
+                    .removeSuffix(",")
+                    .plus("}")
+                val contentJson = JSONObject(sanitizedContent)
+                val jurnal1 = contentJson.optString("jurnal1")
+                // Batasi teks hingga 30 kata
+                if (jurnal1.isNotEmpty()) {
+                    val words = jurnal1.split(" ")
+                    if (words.size > 30) {
+                        words.take(30).joinToString(" ") + "..."
+                    } else {
+                        jurnal1
+                    }
+                } else {
+                    "No content for jurnal1."
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                "Unable to parse content: ${e.message}"
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            "Unable to parse content: ${e.message}"
-        }
-        // Tambahkan data ke daftar JournalItem
-        items.add(
-            JournalItem(
-                journalId,
-                "\uD83D\uDE0A", // Emoji sebagai contoh
-                journalTitle,
-                createdAt,
-                "$parsedContent"
+            // Tambahkan data ke daftar JournalItem
+            items.add(
+                JournalItem(
+                    journalId,
+                    "\uD83D\uDE0A", // Emoji sebagai contoh
+                    journalTitle,
+                    createdAt,
+                    "$parsedContent"
+                )
             )
-        )
+        }
         return items
     }
 }

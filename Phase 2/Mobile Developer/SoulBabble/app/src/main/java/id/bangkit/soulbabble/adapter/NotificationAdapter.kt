@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import formatRelativeDate
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.data.NotificationItem
 
@@ -39,7 +40,7 @@ class NotificationAdapter(
         fun bind(notificationItem: NotificationItem) {
             titleTextView.text = notificationItem.title
             contentTextView.text = notificationItem.content
-            timeTextView.text = notificationItem.time
+            timeTextView.text = formatRelativeDate(notificationItem.time)
         }
     }
 

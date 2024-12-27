@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_margin="16dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/secondary"
+        android:backgroundTint="@color/primary"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +50,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="@string/soulbabble"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/text_on_primary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:gravity="center"
                 android:text="@string/masuk_dengan"
-                android:textColor="@color/text_secondary"
+                android:textColor="@color/text_on_primary"
                 android:textSize="12sp" />
 
             <Button
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/text_on_primary"
-                android:drawableLeft="@android:drawable/ic_delete"
+                android:drawableLeft="@drawable/ic_google"
                 android:drawablePadding="0dp"
                 android:elevation="0dp"
                 android:fontFamily="@font/roboto_light"
@@ -96,7 +96,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:gravity="center"
                 android:text="@string/dengan_masuk_ke_halaman_ini_kamu_menyetujui_syarat_ketentuan_dan_kebijakan_privasi"
-                android:textColor="@color/text_secondary"
+                android:textColor="@color/text_on_primary"
                 android:textSize="12sp" />
 
         </LinearLayout>

@@ -22,6 +22,7 @@ class JournalingViewModel : ViewModel() {
                 val responseString = apiClient.getJournalingData(apiKey, token)
                 if (responseString != null) {
                     val json = JSONObject(responseString)
+                    println(json)
                     withContext(Dispatchers.Main) { _journalingData.value = json }
                 } else {
                     withContext(Dispatchers.Main) { _error.value = "Failed to fetch data from server." }

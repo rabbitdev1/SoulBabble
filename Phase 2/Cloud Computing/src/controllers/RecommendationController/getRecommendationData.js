@@ -9,7 +9,7 @@ export const getRecommedationData = async (req, res) => {
     });
   }
   try {
-    const data = await recommendationsModel.findOne({
+    const data = await recommendationsModel.findAll({
       where: {  apiKey: apiKey },
       attributes: ["id","recommendedAction", "url","type", "createdAt"],
     });

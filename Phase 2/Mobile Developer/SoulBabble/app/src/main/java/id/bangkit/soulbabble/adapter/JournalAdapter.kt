@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.data.JournalItem
 import android.content.Intent
+import formatRelativeDate
 import id.bangkit.soulbabble.ui.Journaling.DetailJournalActivity
 
 class JournalAdapter(
@@ -55,7 +56,7 @@ class JournalAdapter(
             emotionTextView.text = journalItem.emotion
             titleTextView.text = journalItem.title
             contentTextView.text = journalItem.content
-            timeTextView.text = journalItem.time
+            timeTextView.text = formatRelativeDate(journalItem.time)
         }
     }
 

@@ -27,61 +27,79 @@ class TrackingMoodViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val result = apiClient.fetchRecommendationData(apiKey, token)
-                onResult(result)
+                onResult(result) // Berhasil
             } catch (e: Exception) {
                 e.printStackTrace()
-                onResult(null) // Mengembalikan null jika terjadi error
+                onResult(null) // Gagal
             }
         }
     }
 
-    fun loadRecommendations(apiKey: String, token: String) {
-        // Jika data sudah ada, tidak perlu memuat ulang
-        if (_recommendations.value != null) return
 
-        // Simulasi panggilan API atau metode Anda untuk mengambil data
+    fun loadRecommendations(apiKey: String, token: String) {
+        if (_recommendations.value != null) return // Jika data sudah ada, tidak perlu memuat ulang
+
         sendRecommendation(apiKey, token) { result ->
             if (result != null) {
                 try {
-                    val parsedRecommendations = parseRecommendationResult(result)
-                    _recommendations.postValue(parsedRecommendations)
+                    val jsonData = JSONObject(result)
+                    val parsedRecommendations = parseRecommendationResult(jsonData)
+                    _recommendations.postValue(parsedRecommendations) // Memperbarui LiveData
                 } catch (e: JSONException) {
                     e.printStackTrace()
+                    println("Error parsing recommendations: ${e.message}")
                 }
+            } else {
+                println("No result from API or an error occurred.")
             }
         }
     }
 
-    private fun parseRecommendationResult(result: String): List<RecommendationItem> {
+    private fun parseRecommendationResult(data: JSONObject): List<RecommendationItem> {
         val recommendations = mutableListOf<RecommendationItem>()
-        val jsonResponse = JSONObject(result)
 
-        if (jsonResponse.has("data")) {
-            val dataObject = jsonResponse.getJSONObject("data")
-            val recommendedActionString = dataObject.optString("recommendedAction", "")
-            if (recommendedActionString.isNotEmpty()) {
-                try {
+        // Ambil array data dari JSON
+        val recommendationArray = data.getJSONArray("data")
+
+        for (i in 0 until recommendationArray.length()) {
+            val recommendationData = recommendationArray.getJSONObject(i)
+            val recommendationId = recommendationData.optInt("id").toString()
+            val url = recommendationData.optString("url", "No URL")
+            val type = recommendationData.optString("type", "Unknown Type")
+            val createdAt = recommendationData.optString("createdAt", "")
+
+            // Parsing recommendedAction yang berupa JSON string
+            val recommendedActionString = recommendationData.optString("recommendedAction", "")
+            val (title, desc, image) = try {
+                if (recommendedActionString.isNotEmpty()) {
                     val recommendedAction = JSONObject(recommendedActionString)
-                    val id = dataObject.optString("id", "No ID")
-                    val title = recommendedAction.optString("title", "No Title")
-                    val desc = recommendedAction.optString("desc", "No Description")
-                    val imageUrl = recommendedAction.optString("image", "")
-
-                    recommendations.add(
-                        RecommendationItem(
-                            id = id,
-                            image = imageUrl,
-                            title = title,
-                            description = desc
-                        )
+                    Triple(
+                        recommendedAction.optString("title", "No Title"),
+                        recommendedAction.optString("desc", "No Description"),
+                        recommendedAction.optString("image", "")
                     )
-                } catch (e: Exception) {
-                    println("Error parsing recommendedAction: ${e.message}")
+                } else {
+                    Triple("No Title", "No Description", "")
                 }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Triple("Error Title", "Error Description", "")
             }
+
+            // Tambahkan data ke daftar RecommendationItem
+            recommendations.add(
+                RecommendationItem(
+                    recommendationId,
+                    title,
+                    desc,
+                    image,
+                )
+            )
         }
+
         return recommendations
     }
+
     fun loadEmotionData(apiKey: String, token: String, startDate: String, endDate: String) {
         // Cegah pemuatan ulang data
         if (_emotionData.value != null) return
@@ -96,7 +114,6 @@ class TrackingMoodViewModel : ViewModel() {
             }
         }
     }
-
     private fun parseEmotionResult(result: String): Map<String, String> {
         val emotionData = mutableMapOf<String, String>()
         val jsonResponse = JSONObject(result)

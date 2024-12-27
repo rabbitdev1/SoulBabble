@@ -30,7 +30,6 @@ class WeekViewModel : ViewModel() {
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
-
     fun fetchTrackingMoodData(startDate: String, endDate: String, apiKey: String, token: String,
                               context: Context
     ) {

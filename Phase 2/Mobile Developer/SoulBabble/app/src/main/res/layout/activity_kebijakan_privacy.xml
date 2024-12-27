@@ -20,43 +20,68 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary"
+            android:title="@string/kebijakan_privasi"
             app:titleTextColor="@color/background_light" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
-        android:layout_width="0dp"
+    <!-- Konten -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <LinearLayout
+            <!-- Judul -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp"
-                    android:text="@string/informasi_umum" />
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:text="Kebijakan Privasi SoulBabble" />
 
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <!-- Paragraf 1 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"
+                android:text="SoulBabble berkomitmen untuk melindungi privasi Anda. Kami mengumpulkan data seperti informasi akun (nama, email, foto profil), data aktivitas (tracking mood dan jurnal), dan data teknis (jenis perangkat, sistem operasi) untuk memberikan pengalaman terbaik kepada pengguna. Data ini digunakan untuk memberikan layanan utama, menyediakan rekomendasi yang relevan, dan meningkatkan performa aplikasi. Kami memastikan data Anda dienkripsi dan disimpan di server yang aman." />
+
+            <!-- Paragraf 2 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"
+                android:text="Kami tidak menjual atau membagikan informasi pribadi Anda kepada pihak ketiga kecuali diperlukan untuk memenuhi kewajiban hukum atau menyediakan layanan melalui mitra terpercaya. Anda memiliki kendali penuh atas data Anda, termasuk hak untuk mengakses, mengubah, atau menghapus data pribadi Anda. Untuk melindungi pengguna di bawah usia 13 tahun, kami tidak mengumpulkan informasi tanpa persetujuan orang tua." />
+
+            <!-- Paragraf 3 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"
+                android:text="Kebijakan ini dapat diperbarui dari waktu ke waktu, dan kami akan memberi tahu Anda jika ada perubahan signifikan. Jika Anda memiliki pertanyaan atau membutuhkan bantuan terkait kebijakan privasi ini, silakan hubungi kami melalui email di support@soulbabble.com atau telepon di +62 812-3456-7890." />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

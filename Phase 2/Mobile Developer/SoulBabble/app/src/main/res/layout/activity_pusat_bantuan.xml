@@ -20,43 +20,105 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary"
+            android:title="@string/pusat_bantuan"
             app:titleTextColor="@color/background_light" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
+    <!-- Konten dengan SwipeRefresh -->
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
+            <!-- Linear Layout untuk Konten -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:padding="16dp">
+
+                <!-- Selamat Datang -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Selamat Datang di SoulBabble" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
                     android:textColor="@color/text_secondary"
-                    android:textSize="12sp"
-                    android:text="@string/informasi_umum" />
+                    android:textSize="14sp"
+                    android:text="SoulBabble membantu Anda melacak suasana hati dan mencatat pengalaman sehari-hari dengan fitur Tracking Mood dan Journaling." />
+
+                <!-- Cara Penggunaan -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Cara Menggunakan SoulBabble" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:text="1. Pilih fitur Tracking Mood untuk mencatat suasana hati Anda.\n2. Gunakan fitur Journaling untuk menulis pengalaman harian.\n3. Lihat statistik emosi Anda di menu Insight.\n4. Jelajahi rekomendasi berdasarkan suasana hati Anda." />
+
+                <!-- Fitur Utama -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Fitur Utama SoulBabble" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:text="- Tracking Mood Harian: Rekam suasana hati dan faktor pemicunya dengan mudah.\n- Journaling Tanpa Batas: Catat momen, pengalaman, atau refleksi harian kapan saja.\n- Rekomendasi Pribadi: Dapatkan saran film, buku, atau aktivitas berdasarkan suasana hati Anda.\n- Statistik Emosi: Lihat pola emosi Anda selama minggu, bulan, atau tahun terakhir." />
+
+                <!-- FAQ -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="FAQ (Pertanyaan yang Sering Diajukan)" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:text="Q: Apakah aplikasi ini gratis?\nA: Ya, SoulBabble tersedia secara gratis dengan fitur utama.\n\nQ: Bagaimana cara melihat jurnal saya sebelumnya?\nA: Anda dapat melihat jurnal di menu Journaling.\n\nQ: Bagaimana data saya dijamin aman?\nA: Data Anda dienkripsi dan hanya dapat diakses melalui akun Anda." />
+
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

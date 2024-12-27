@@ -15,6 +15,7 @@ import id.bangkit.soulbabble.api.ApiClient
 import id.bangkit.soulbabble.utils.AuthStorage
 import org.json.JSONObject
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import formatRelativeDate
 import id.bangkit.soulbabble.ui.HomeActivity
 import id.bangkit.soulbabble.utils.setupToolbar
 
@@ -101,7 +102,7 @@ class DetailJournalActivity : AppCompatActivity() {
                         setupToolbar(this, toolbar, title = title)
 
                         tvTitle.text = title
-                        tvCreatedAt.text = createdAt
+                        tvCreatedAt.text = formatRelativeDate(createdAt)
                         tvJournalContent1.text = jurnal1
                         tvJournalContent2.text = jurnal2
                     } catch (e: Exception) {

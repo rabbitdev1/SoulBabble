@@ -41,9 +41,34 @@ class InputTrackingMood2Activity : AppCompatActivity() {
             EmotionTypeItem("Sekolah", true),
             EmotionTypeItem("Pekerjaan", true),
             EmotionTypeItem("Keluarga", true),
-            EmotionTypeItem("Hubungan Sosial", true),
-            EmotionTypeItem("Kesehatan", true)
+            EmotionTypeItem("Pertemanan", true),
+            EmotionTypeItem("Lingkungan", true),
+            EmotionTypeItem("Kesehatan", true),
+            EmotionTypeItem("Keuangan", true),
+            EmotionTypeItem("Cinta", true),
+            EmotionTypeItem("Relasi Sosial", true),
+            EmotionTypeItem("Kegiatan Ekstrakurikuler", true),
+            EmotionTypeItem("Media Sosial", true),
+            EmotionTypeItem("Kebebasan Pribadi", true),
+            EmotionTypeItem("Pendidikan", true),
+            EmotionTypeItem("Keluarga Besar", true),
+            EmotionTypeItem("Masyarakat", true),
+            EmotionTypeItem("Hobi", true),
+            EmotionTypeItem("Perjalanan", true),
+            EmotionTypeItem("Kreativitas", true),
+            EmotionTypeItem("Komunitas", true),
+            EmotionTypeItem("Budaya", true),
+            EmotionTypeItem("Kepercayaan Diri", true),
+            EmotionTypeItem("Teknologi", true),
+            EmotionTypeItem("Aktivitas Fisik", true),
+            EmotionTypeItem("Kesenian", true),
+            EmotionTypeItem("Kebudayaan", true),
+            EmotionTypeItem("Kebijakan Publik", true),
+            EmotionTypeItem("Kesehatan Mental", true),
+            EmotionTypeItem("Kehidupan", true),
+            EmotionTypeItem("Pengalaman", true)
         ).shuffled()
+
     }
 
     /**

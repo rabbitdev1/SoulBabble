@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import formatRelativeDate
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.AnswerAdapter
 import id.bangkit.soulbabble.adapter.EmotionWeekAdapter
@@ -188,7 +189,7 @@ class WeekFragment : Fragment(R.layout.fragment_week) {
         recyclerViewEmotionWeek.layoutManager = GridLayoutManager(requireContext(), 7)
         emotionWeekAdapter = EmotionWeekAdapter(requireContext(), listOf()) { isEmojiEmpty, emoji, emotionalFactors1,emotionalFactors2,emotionalFactors3,createAt, msgEmotion, resultQuestions, recommendations ->
             tvEmotionDetail.text = emoji
-            tvEmotionDetailTime.text = createAt
+            tvEmotionDetailTime.text = formatRelativeDate(createAt)
             tvEmotionDetailTitle.text = msgEmotion
             tvFactorialEmotion1.text = emotionalFactors1
             tvFactorialEmotion2.text = emotionalFactors2

@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.squareup.picasso.Picasso
+import formatRelativeDate
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.api.ApiClient
 import id.bangkit.soulbabble.utils.AuthStorage
@@ -93,7 +94,7 @@ class DetailRecommendationActivity : AppCompatActivity() {
                         id.bangkit.soulbabble.utils.setupToolbar(this, toolbar, title = title)
 
                         tvTitle.text = title
-                        tvCreatedAt.text = createdAt
+                        tvCreatedAt.text = formatRelativeDate(createdAt)
                         tvContent.text = desc
 //                        image.text = image
                         Picasso.get()

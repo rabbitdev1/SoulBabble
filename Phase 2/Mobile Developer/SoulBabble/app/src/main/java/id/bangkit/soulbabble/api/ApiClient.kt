@@ -70,9 +70,6 @@ class ApiClient {
             }
         }.start()  // Eksekusi permintaan di thread terpisah
     }
-
-
-    // Fungsi untuk mengirimkan data tracking mood (POST request)
     suspend fun sendTrackingMoodDataSuspend(
         startDate: String,
         endDate: String,
@@ -105,37 +102,33 @@ class ApiClient {
             }
         }
     }
-
-
-    suspend fun fetchRecommendationData(
-        apiKey: String,
-        token: String,  ): String? {
+    suspend fun fetchRecommendationData(apiKey: String, token: String): String? {
         val mediaType = "application/x-www-form-urlencoded".toMediaTypeOrNull()
         val body = RequestBody.create(mediaType, "=")
 
         val request = Request.Builder()
-            .url("${baseUrl}getRecommedationData")  // Endpoint API untuk tracking mood
+            .url("${baseUrl}getRecommedationData")  // Endpoint API
             .method("POST", body)
-            .addHeader("Authorization", "Bearer $token")  // Menambahkan token di header
-            .addHeader("api-key", apiKey)  // Menambahkan API Key ke header
+            .addHeader("Authorization", "Bearer $token")
+            .addHeader("api-key", apiKey)
             .addHeader("Content-Type", "application/x-www-form-urlencoded")
             .build()
 
         return withContext(Dispatchers.IO) {
             try {
                 val response = client.newCall(request).execute()
-
                 if (response.isSuccessful) {
-                    response.body?.string()  // Mengembalikan data respons
+                    response.body?.string() // Mengembalikan JSON response dalam bentuk string
                 } else {
-                    throw IOException("Error: ${response.code} - ${response.message}")
+                    null // Mengembalikan null jika respons tidak berhasil
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
-                throw e  // Melempar ulang exception untuk ditangani di ViewModel
+                null // Mengembalikan null jika terjadi kesalahan jaringan
             }
         }
     }
+
     fun getJournalingData(apiKey: String, token: String): String? {
         val mediaType = "application/x-www-form-urlencoded".toMediaTypeOrNull()
         val body = RequestBody.create(mediaType, "=")

@@ -15,8 +15,11 @@ import id.bangkit.soulbabble.ui.Recommendation.DetailRecommendationActivity // G
 
 class RecommendationAdapter(
     private val context: Context,
-    private val recommendations: List<RecommendationItem>,
+    recommendations: List<RecommendationItem>,
 ) : RecyclerView.Adapter<RecommendationAdapter.RecommendationViewHolder>() {
+
+    // Data yang sudah diacak
+    private val shuffledRecommendations = recommendations.shuffled()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendationViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -25,11 +28,11 @@ class RecommendationAdapter(
     }
 
     override fun onBindViewHolder(holder: RecommendationViewHolder, position: Int) {
-        val item = recommendations[position]
+        val item = shuffledRecommendations[position]
         holder.bind(item)
     }
 
-    override fun getItemCount(): Int = recommendations.size
+    override fun getItemCount(): Int = shuffledRecommendations.size
 
     /**
      * ViewHolder untuk RecommendationAdapter.

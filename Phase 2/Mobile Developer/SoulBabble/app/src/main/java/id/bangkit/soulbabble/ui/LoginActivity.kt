@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.api.ApiClient
+import id.bangkit.soulbabble.ui.Profile.KebijakanPrivacyActivity
+import id.bangkit.soulbabble.ui.Profile.PusatBantuanActivity
+import id.bangkit.soulbabble.ui.Profile.SyaratdanKetentuanActivity
 import id.bangkit.soulbabble.utils.AuthStorage
 import id.bangkit.soulbabble.utils.LocalStorage
 import id.bangkit.soulbabble.utils.TextSpanUtil
@@ -51,11 +54,13 @@ class LoginActivity : AppCompatActivity() {
         val spannable = TextSpanUtil.createTermsAndPrivacySpan(this) { clickablePart ->
             when (clickablePart) {
                 TextSpanUtil.ClickablePart.TERMS -> {
-                    Toast.makeText(this, "Klik pada Syarat Ketentuan", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, SyaratdanKetentuanActivity::class.java)
+                    startActivity(intent)
                 }
 
                 TextSpanUtil.ClickablePart.PRIVACY -> {
-                    Toast.makeText(this, "Klik pada Kebijakan Privasi", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, KebijakanPrivacyActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
