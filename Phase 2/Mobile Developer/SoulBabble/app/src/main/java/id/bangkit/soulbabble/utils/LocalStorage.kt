@@ -4,7 +4,7 @@ import android.content.Context
 
 object LocalStorage {
 
-    private const val PREF_NAME = "auth_preferences"
+     const val PREF_NAME = "auth_preferences"
     const val FULL_NAME = "full_name"
     const val EMAIL = "email"
     const val PHOTO_URL = "photo_url"

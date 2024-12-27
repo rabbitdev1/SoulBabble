@@ -1,6 +1,7 @@
 package id.bangkit.soulbabble.ui.Journaling
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -14,6 +15,8 @@ import id.bangkit.soulbabble.api.ApiClient
 import id.bangkit.soulbabble.utils.AuthStorage
 import org.json.JSONObject
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import id.bangkit.soulbabble.ui.HomeActivity
+import id.bangkit.soulbabble.utils.setupToolbar
 
 class DetailJournalActivity : AppCompatActivity() {
 
@@ -95,7 +98,7 @@ class DetailJournalActivity : AppCompatActivity() {
                         val jurnal2 = contentJson.optString("jurnal2", "No content for jurnal2.")
 
                         // Tampilkan data di TextViews
-                        id.bangkit.soulbabble.utils.setupToolbar(this, toolbar, title = title)
+                        setupToolbar(this, toolbar, title = title)
 
                         tvTitle.text = title
                         tvCreatedAt.text = createdAt
@@ -109,4 +112,5 @@ class DetailJournalActivity : AppCompatActivity() {
             }
         }
     }
+
 }

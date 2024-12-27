@@ -79,4 +79,9 @@
     <string name="coba_ceritakan_apa_saja_kegiatanmu_hari_ini">Coba ceritakan apa saja kegiatanmu hari ini</string>
     <string name="adakah_hal_baru_yang_kamu_sadari_dari_kegiatanmu_hari_ini">Adakah hal baru yang kamu sadari dari kegiatanmu hari ini?</string>
     <string name="todo">TODO</string>
+    <string name="informasi_umum">Informasi Umum</string>
+    <string name="pusat_bantuan">Pusat Bantuan</string>
+    <string name="syarat_dan_ketentuan">Syarat dan Ketentuan</string>
+    <string name="kebijakan_privasi">Kebijakan Privasi</string>
+    <string name="keluar_akun">Keluar Akun</string>
 </resources>

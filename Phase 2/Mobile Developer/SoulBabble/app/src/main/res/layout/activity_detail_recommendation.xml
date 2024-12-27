@@ -20,7 +20,7 @@
         app:titleTextColor="@android:color/white" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+        android:id="@+id/swipeRefreshLayoutDetailRecommendation"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,11 +34,12 @@
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dataShow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/ivRecommendationImage"
+                    android:id="@+id/imgContent"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:contentDescription="@string/todo"
@@ -60,7 +61,7 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivRecommendationImage">
+                    app:layout_constraintTop_toBottomOf="@+id/imgContent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -72,8 +73,8 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/tvJournalTitle"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/tvRecommendationTitle"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_bold"
                             android:textColor="@color/text_primary"
@@ -82,8 +83,8 @@
                             tools:text="My Daily Journal" />
 
                         <TextView
-                            android:id="@+id/tvJournalTime"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/tvRecommendationTime"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_light"
                             android:textColor="@color/text_secondary"
@@ -92,8 +93,8 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tvJournalDetailTitle"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvRecommendationContent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/roboto"

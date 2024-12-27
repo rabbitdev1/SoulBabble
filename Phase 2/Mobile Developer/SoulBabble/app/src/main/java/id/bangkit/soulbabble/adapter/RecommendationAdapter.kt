@@ -43,6 +43,7 @@ class RecommendationAdapter(
          * Mengikat data rekomendasi ke tampilan.
          */
         fun bind(recommendation: RecommendationItem) {
+            println(recommendation.image)
             // Menggunakan Picasso untuk memuat gambar
             Picasso.get()
                 .load(recommendation.image)

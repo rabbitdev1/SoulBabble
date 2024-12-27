@@ -17,6 +17,18 @@
         android:theme="@style/Theme.SoulBabble"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Notification.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Profile.SyaratdanKetentuanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Profile.KebijakanPrivacyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Profile.PusatBantuanActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Journaling.DetailJournalActivity"
             android:exported="false" />
         <activity

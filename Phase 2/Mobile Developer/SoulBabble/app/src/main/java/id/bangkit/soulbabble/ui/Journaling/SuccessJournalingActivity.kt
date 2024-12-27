@@ -24,17 +24,15 @@ class SuccessJournalingActivity : AppCompatActivity() {
 
         // Tombol Lanjutkan
         buttonNext.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java) // Ganti ke HomeActivity
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+            val intent = Intent(this, DetailJournalActivity::class.java)
+            intent.putExtra("JOURNAL_ID", "1") // Kirim ID jurnal ke halaman detail
+            startActivity(intent) // Mulai aktivitas detail
             finish() // Tutup SuccessJournalingActivity
         }
     }
 
     private fun setupStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.primary)
-        }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.primary)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.setSystemBarsAppearance(
                 WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS.inv(),
@@ -46,7 +44,7 @@ class SuccessJournalingActivity : AppCompatActivity() {
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // Kembali ke halaman Home
-        val intent = Intent(this, HomeActivity::class.java) // Ganti ke HomeActivity
+        val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         finish() // Tutup SuccessJournalingActivity

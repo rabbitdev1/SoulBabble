@@ -2,6 +2,7 @@
 package id.bangkit.soulbabble.ui
 
 import JournalingViewModel
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -19,15 +20,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.squareup.picasso.Picasso
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.EmotionAdapter
 import id.bangkit.soulbabble.adapter.JournalAdapter
 import id.bangkit.soulbabble.adapter.RecommendationAdapter
 import id.bangkit.soulbabble.data.EmotionItem
 import id.bangkit.soulbabble.data.JournalItem
+import id.bangkit.soulbabble.ui.Notification.NotificationActivity
+import id.bangkit.soulbabble.ui.Profile.SyaratdanKetentuanActivity
 import id.bangkit.soulbabble.viewmodel.TrackingMoodViewModel
 import id.bangkit.soulbabble.utils.AuthStorage
 import id.bangkit.soulbabble.utils.DateUtils.getTodayDate
+import id.bangkit.soulbabble.utils.LocalStorage
+import id.bangkit.soulbabble.utils.LocalStorage.getAuthData
 import id.bangkit.soulbabble.utils.getStatusBarHeight
 import org.json.JSONException
 import org.json.JSONObject
@@ -52,6 +58,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var tvFullName: TextView
     private lateinit var tvFullnameTopBar: TextView
     private lateinit var imgProfile: ImageView
+    private lateinit var notificationIconTopBar: ImageView
+    private lateinit var notificationIcon: ImageView
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -89,12 +98,41 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         tvFullnameTopBar = view.findViewById(R.id.tvFullnameTopBar)
         imgProfile = view.findViewById(R.id.imgProfile)
         detailRecommendationMEmpty = view.findViewById(R.id.detailRecommendationMEmpty)
+        notificationIconTopBar = view.findViewById(R.id.notificationIconTopBar)
+        notificationIcon = view.findViewById(R.id.notificationIcon)
 
+        notificationIconTopBar.setOnClickListener {
+            val intent = Intent(requireContext(), NotificationActivity::class.java)
+            startActivity(intent)
+        }
+        notificationIcon.setOnClickListener {
+            val intent = Intent(requireContext(), NotificationActivity::class.java)
+            startActivity(intent)
+        }
         // Atur padding untuk scrollLinearView berdasarkan tinggi status bar
         scrollLinearView.setPadding(16, getStatusBarHeight(requireContext()), 16, 16)
 
         // Atur SwipeRefreshLayout
         swipeRefreshLayout.setProgressViewOffset(true, 100, 200)
+
+        val authData = getAuthData(requireContext())
+        val fullName = authData["full_name"] ?: "Unknown Name"
+        val fullNameTopBar = authData["full_name"] ?: "Unknown Name"
+        val profileImage = authData["photo_url"] ?: null // Biarkan null jika tidak ada URL
+
+        tvFullName.text = fullName
+        tvFullnameTopBar.text = fullNameTopBar
+
+        if (profileImage != null) {
+            Picasso.get()
+                .load(profileImage) // URL gambar
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .into(imgProfile) // ImageView target
+        } else {
+            imgProfile.setImageResource(R.drawable.ic_launcher_background)
+        }
+
     }
 
     private fun setupRecyclerViews() {
