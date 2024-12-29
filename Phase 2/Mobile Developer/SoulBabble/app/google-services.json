@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "658400014376",
+    "project_id": "soulbabble-32bd0",
+    "storage_bucket": "soulbabble-32bd0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658400014376:android:d3d3a441abf713870cc51d",
+        "android_client_info": {
+          "package_name": "id.bangkit.soulbabble"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658400014376-rgn8hqeqinvceb0oskgr963ll8ojdmug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.bangkit.soulbabble",
+            "certificate_hash": "a846be74a43cccea34155a25c9d1c561509e496e"
+          }
+        },
+        {
+          "client_id": "658400014376-erhkp2an2rn2inicnq92pgklfofs7f7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZfLXPSQi6EjBk4f752VJiwSy6j8nwMzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658400014376-erhkp2an2rn2inicnq92pgklfofs7f7q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

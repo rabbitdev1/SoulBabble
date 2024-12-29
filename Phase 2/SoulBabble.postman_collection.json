@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "6cd5978e-7f95-451d-b95d-a218289cb5df",
+		"_postman_id": "0fb9577d-b2bc-4d29-b005-2cbcdabbfab0",
 		"name": "SoulBabble",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "32773827",
-		"_collection_link": "https://gotiktoks.postman.co/workspace/Bisacash-v3~763feb03-790f-4c30-a749-68ba5541cf40/collection/13052065-6cd5978e-7f95-451d-b95d-a218289cb5df?action=share&source=collection_link&creator=32773827"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40646991",
+		"_collection_link": "https://speeding-water-272425.postman.co/workspace/Team-Workspace~f6b6e735-2cda-443e-88b1-8340d8c24a17/collection/40646991-0fb9577d-b2bc-4d29-b005-2cbcdabbfab0?action=share&source=collection_link&creator=40646991"
 	},
 	"item": [
 		{
@@ -43,7 +43,17 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/handleLogin",
+				"url": {
+					"raw": "http://localhost:3001/handleLogin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"handleLogin"
+					]
+				},
 				"description": "### /handleLogin\n\nThis endpoint is used to handle the login process.\n\n#### Request\n\n- Method: POST\n    \n- URL: `http://localhost:3001/handleLogin`\n    \n- Body (x-www-form-urlencoded):\n    \n    - `UID` (text)\n        \n    - `fullName` (text)\n        \n    - `email` (text)\n        \n    - `photoUrl` (text)\n        \n\n#### Response\n\nThe response of this request can be documented as a JSON schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"status\": {\n      \"type\": \"number\"\n    },\n    \"msg\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"UID\": {\n          \"type\": \"string\"\n        },\n        \"apiKey\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n\n ```"
 			},
 			"response": [
@@ -83,7 +93,17 @@
 								}
 							]
 						},
-						"url": "http://localhost:3001/handleLogin"
+						"url": {
+							"raw": "http://localhost:3001/handleLogin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"handleLogin"
+							]
+						}
 					},
 					"status": "OK",
 					"code": 200,
@@ -107,11 +127,11 @@
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"138-RVHyFGyjukJJ+hRP9jGPuEIubd0\""
+							"value": "W/\"138-N5+5VhyfEtJBSHyTqgv71OPqW4s\""
 						},
 						{
 							"key": "Date",
-							"value": "Tue, 24 Dec 2024 12:57:24 GMT"
+							"value": "Fri, 27 Dec 2024 08:54:07 GMT"
 						},
 						{
 							"key": "Connection",
@@ -123,7 +143,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"status\": 200,\n    \"msg\": \"User logged in successfully\",\n    \"data\": {\n        \"UID\": \"12345678\",\n        \"apiKey\": \"APWVZCUEIUQDLZQGOMXC\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1MDQ1MDQ0LCJleHAiOjE3MzUxMzE0NDR9.H72kvOuOkgstDV0u9s5yRgKJ4aYCgIKEavipuMTwg4U\"\n    }\n}"
+					"body": "{\n    \"status\": 200,\n    \"msg\": \"User logged in successfully\",\n    \"data\": {\n        \"UID\": \"12345678\",\n        \"apiKey\": \"APWVZCUEIUQDLZQGOMXC\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1Mjg5NjQ3LCJleHAiOjE3MzUzNzYwNDd9.YrVTuNCPRUIWeAaWZ9ve9GtrwwVknOPBcBCAmD_iMVs\"\n    }\n}"
 				}
 			]
 		},
@@ -156,7 +176,17 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/user"
+				"url": {
+					"raw": "http://localhost:3001/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user"
+					]
+				}
 			},
 			"response": [
 				{
@@ -171,7 +201,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM0OTQ2NDY0LCJleHAiOjE3MzUwMzI4NjR9.9OEiqYO_e3ttMoNCVNb6Lquu3EjT-T2VS5Jjwz-b2Uo",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1Mjg5NjQ3LCJleHAiOjE3MzUzNzYwNDd9.YrVTuNCPRUIWeAaWZ9ve9GtrwwVknOPBcBCAmD_iMVs",
 								"type": "text"
 							}
 						],
@@ -185,7 +215,17 @@
 								}
 							]
 						},
-						"url": "http://localhost:3001/user"
+						"url": {
+							"raw": "http://localhost:3001/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user"
+							]
+						}
 					},
 					"status": "OK",
 					"code": 200,
@@ -205,15 +245,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "153"
+							"value": "239"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"99-sFe5DkI334HAr5mXT4DyAnpPpTA\""
+							"value": "W/\"ef-NYrgl0s6p3THf3Chd0J3xhhYEvI\""
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 23 Dec 2024 19:14:20 GMT"
+							"value": "Fri, 27 Dec 2024 08:54:38 GMT"
 						},
 						{
 							"key": "Connection",
@@ -225,7 +265,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully\",\n    \"data\": {\n        \"fullName\": \"John Doe\",\n        \"email\": \"johndoe@example.com\",\n        \"photoUrl\": \"http://example.com/photo.jpg\"\n    }\n}"
+					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully\",\n    \"data\": {\n        \"fullName\": \"Rizal Sujana\",\n        \"email\": \"zalsujana07@gmail.com\",\n        \"photoUrl\": \"https://lh3.googleusercontent.com/a/ACg8ocKF14IBY_twrlLJjnW157Fsvzyh5x892M-_mgfjtCOEurPGrxUr=s192-c-rg-br100\"\n    }\n}"
 				}
 			]
 		},
@@ -250,7 +290,17 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/getEmotion"
+				"url": {
+					"raw": "http://localhost:3001/getEmotion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"getEmotion"
+					]
+				}
 			},
 			"response": []
 		},
@@ -274,9 +324,92 @@
 					"mode": "urlencoded",
 					"urlencoded": []
 				},
-				"url": "http://localhost:3001/getJournalingData"
+				"url": {
+					"raw": "http://localhost:3001/getJournalingData",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"getJournalingData"
+					]
+				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "getJournalingData",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1Mjg5NjQ3LCJleHAiOjE3MzUzNzYwNDd9.YrVTuNCPRUIWeAaWZ9ve9GtrwwVknOPBcBCAmD_iMVs",
+								"type": "text"
+							},
+							{
+								"key": "api-key",
+								"value": "APWVZCUEIUQDLZQGOMXC",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3001/getJournalingData",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"getJournalingData"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2013"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7dd-E5Q6FwnV9794Y8lTJSg5ytST3bw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Dec 2024 09:32:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully.\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Refleksi Panjang Hari Ini dan Hal-Hal yang Membuat Saya Bersyukur\",\n            \"content\": \"{\\\"jurnal1\\\":\\\"Hari ini saya memulai pagi dengan segelas kopi hangat dan sebuah buku inspiratif. Pekerjaan berjalan cukup lancar meskipun ada beberapa tantangan yang harus dihadapi. Saya juga belajar tentang pentingnya menjaga komunikasi dengan rekan kerja.\\\",\\\"jurnal2\\\":\\\"Sore ini saya pergi berjalan-jalan ke taman. Angin sepoi-sepoi dan suara burung membuat suasana sangat damai. Saya juga menulis beberapa ide baru untuk proyek yang sedang saya kerjakan. Hari ini benar-benar mengingatkan saya untuk tetap bersyukur.\\\"}\",\n            \"analysisResult\": \"Sangat Baik\",\n            \"createdAt\": \"2024-12-24T19:40:41.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Pengalaman Berharga dan Refleksi Mingguan\",\n            \"content\": \"{\\\"jurnal1\\\":\\\"Minggu ini dipenuhi dengan banyak pelajaran baru. Saya menghadiri dua seminar yang membahas pengembangan diri dan bagaimana cara menjadi pribadi yang lebih baik. Saya merasa semakin termotivasi untuk melangkah ke depan.\\\",\\\"jurnal2\\\":\\\"Pada akhir pekan, saya menghabiskan waktu bersama keluarga. Kami membuat hidangan spesial dan bermain bersama di halaman belakang. Pengalaman ini membuat saya merasa sangat dekat dengan keluarga dan memahami pentingnya meluangkan waktu untuk mereka.\\\"}\",\n            \"analysisResult\": \"Baik\",\n            \"createdAt\": \"2024-12-25T19:40:41.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Hari-Hari Penuh Tantangan dan Pelajaran\",\n            \"content\": \"{\\\"jurnal1\\\":\\\"Pagi ini dimulai dengan banyak tugas mendadak yang perlu diselesaikan. Saya merasa sedikit kewalahan, tetapi dengan bantuan tim, semuanya bisa diselesaikan tepat waktu. Saya belajar untuk lebih mengatur prioritas.\\\",\\\"jurnal2\\\":\\\"Di malam hari, saya merefleksikan semua yang terjadi hari ini. Saya menyadari bahwa tantangan adalah bagian dari perjalanan dan justru menjadi kesempatan untuk belajar. Saya berterima kasih kepada semua orang yang mendukung saya hari ini.\\\"}\",\n            \"analysisResult\": \"Baik\",\n            \"createdAt\": \"2024-12-26T19:40:41.000Z\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "getDetailJournaling",
@@ -304,9 +437,98 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/getDetailJournaling"
+				"url": {
+					"raw": "http://localhost:3001/getDetailJournaling",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"getDetailJournaling"
+					]
+				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "getDetailJournaling",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1Mjg5NjQ3LCJleHAiOjE3MzUzNzYwNDd9.YrVTuNCPRUIWeAaWZ9ve9GtrwwVknOPBcBCAmD_iMVs",
+								"type": "text"
+							},
+							{
+								"key": "api-key",
+								"value": "APWVZCUEIUQDLZQGOMXC",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/getDetailJournaling",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"getDetailJournaling"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "750"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2ee-XKsnUR9BdkO5eU4rtZ9zHQcYD7o\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Dec 2024 09:06:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully.\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Refleksi Panjang Hari Ini dan Hal-Hal yang Membuat Saya Bersyukur\",\n        \"content\": \"{\\\"jurnal1\\\":\\\"Hari ini saya memulai pagi dengan segelas kopi hangat dan sebuah buku inspiratif. Pekerjaan berjalan cukup lancar meskipun ada beberapa tantangan yang harus dihadapi. Saya juga belajar tentang pentingnya menjaga komunikasi dengan rekan kerja.\\\",\\\"jurnal2\\\":\\\"Sore ini saya pergi berjalan-jalan ke taman. Angin sepoi-sepoi dan suara burung membuat suasana sangat damai. Saya juga menulis beberapa ide baru untuk proyek yang sedang saya kerjakan. Hari ini benar-benar mengingatkan saya untuk tetap bersyukur.\\\"}\",\n        \"analysisResult\": \"Sangat Baik\",\n        \"createdAt\": \"2024-12-24T19:40:41.000Z\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "getRecommendationData",
@@ -335,7 +557,17 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/getRecommedationData"
+				"url": {
+					"raw": "http://localhost:3001/getRecommedationData",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"getRecommedationData"
+					]
+				}
 			},
 			"response": [
 				{
@@ -345,7 +577,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1MDQ1MDQ0LCJleHAiOjE3MzUxMzE0NDR9.H72kvOuOkgstDV0u9s5yRgKJ4aYCgIKEavipuMTwg4U",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1Mjg5NjQ3LCJleHAiOjE3MzUzNzYwNDd9.YrVTuNCPRUIWeAaWZ9ve9GtrwwVknOPBcBCAmD_iMVs",
 								"type": "text"
 							},
 							{
@@ -365,7 +597,17 @@
 								}
 							]
 						},
-						"url": "http://localhost:3001/getRecommedationData"
+						"url": {
+							"raw": "http://localhost:3001/getRecommedationData",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"getRecommedationData"
+							]
+						}
 					},
 					"status": "OK",
 					"code": 200,
@@ -385,15 +627,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "597"
+							"value": "1503"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"255-b2SBB69kIr44ix0sjitWeCxo9sc\""
+							"value": "W/\"5df-gJxBjIMCXOOmIS6wblnDaoM0Lk8\""
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 25 Dec 2024 03:29:27 GMT"
+							"value": "Fri, 27 Dec 2024 09:42:57 GMT"
 						},
 						{
 							"key": "Connection",
@@ -405,7 +647,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully.\",\n    \"data\": {\n        \"id\": 1,\n        \"recommendedAction\": \"{\\n            \\\"title\\\": \\\"Rekomendasi Film\\\",\\n            \\\"desc\\\": \\\"Film dengan cerita yang menarik dan inspiratif. Cerita film ini mengikuti perjalanan seorang tokoh yang berjuang menghadapi berbagai rintangan dalam hidupnya. Penuh dengan pesan moral, humor, dan momen yang menyentuh hati, film ini cocok untuk ditonton bersama keluarga atau teman dekat.\\\",\\n            \\\"image\\\": \\\"https://example.com/images/film1.jpg\\\"\\n        }\",\n        \"url\": \"asdasd\",\n        \"type\": \"book\",\n        \"createdAt\": \"2024-12-17T10:49:09.000Z\"\n    }\n}"
+					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully.\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"recommendedAction\": \"{\\\"title\\\":\\\"The Pursuit of Happyness\\\",\\\"desc\\\":\\\"Film ini menceritakan perjalanan seorang ayah yang berjuang untuk mengatasi kesulitan hidup demi memberikan masa depan yang lebih baik untuk anaknya. Film penuh inspirasi dan pelajaran hidup yang mengajarkan tentang ketekunan dan cinta tanpa syarat.\\\",\\\"image\\\":\\\"https://picsum.photos/id/237/200/300\\\"}\",\n            \"url\": \"\\\"https://example.com/movie-recommendation\\\"\",\n            \"type\": \"movie\",\n            \"createdAt\": \"2024-12-17T10:49:09.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"recommendedAction\": \"{\\\"title\\\":\\\"Atomic Habits\\\",\\\"desc\\\":\\\"Buku ini memberikan panduan praktis tentang cara membangun kebiasaan baik dan menghancurkan kebiasaan buruk. Ditulis oleh James Clear, buku ini penuh dengan contoh nyata dan strategi yang dapat diterapkan untuk meraih perubahan besar dalam hidup.\\\",\\\"image\\\":\\\"https://picsum.photos/id/1012/200/300\\\"}\",\n            \"url\": \"\\\"https://example.com/movie-recommendation\\\"\",\n            \"type\": \"book\",\n            \"createdAt\": \"2024-12-17T10:49:09.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"recommendedAction\": \"{\\\"title\\\":\\\"How I Built This\\\",\\\"desc\\\":\\\"Podcast ini mengisahkan perjalanan para pengusaha dan inovator dalam membangun bisnis mereka dari nol. Dengan cerita yang inspiratif dan wawasan mendalam, podcast ini cocok untuk siapa saja yang ingin belajar tentang kewirausahaan.\\\",\\\"image\\\":\\\"https://picsum.photos/id/1005/200/300\\\"},\",\n            \"url\": \"\\\"https://example.com/movie-recommendation\\\"\",\n            \"type\": \"podcash\",\n            \"createdAt\": \"2024-12-17T10:49:09.000Z\"\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -435,9 +677,98 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/getDetailRecommedation"
+				"url": {
+					"raw": "http://localhost:3001/getDetailRecommedation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"getDetailRecommedation"
+					]
+				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "getDetailRecommendation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1Mjg5NjQ3LCJleHAiOjE3MzUzNzYwNDd9.YrVTuNCPRUIWeAaWZ9ve9GtrwwVknOPBcBCAmD_iMVs",
+								"type": "text"
+							},
+							{
+								"key": "api-key",
+								"value": "APWVZCUEIUQDLZQGOMXC",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/getDetailRecommedation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"getDetailRecommedation"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "529"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"211-vwEQvPS4Ox/OorU0207jj1sJIBg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Dec 2024 11:19:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully.\",\n    \"data\": {\n        \"id\": 3,\n        \"recommendedAction\": \"{\\\"title\\\":\\\"How I Built This\\\",\\\"desc\\\":\\\"Podcast ini mengisahkan perjalanan para pengusaha dan inovator dalam membangun bisnis mereka dari nol. Dengan cerita yang inspiratif dan wawasan mendalam, podcast ini cocok untuk siapa saja yang ingin belajar tentang kewirausahaan.\\\",\\\"image\\\":\\\"https://picsum.photos/id/1005/200/300\\\"},\",\n        \"url\": \"\\\"https://example.com/movie-recommendation\\\"\",\n        \"type\": \"podcash\",\n        \"createdAt\": \"2024-12-17T10:49:09.000Z\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "getTrackingMoodData",
@@ -470,7 +801,17 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/getTrackingMoodData"
+				"url": {
+					"raw": "http://localhost:3001/getTrackingMoodData",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"getTrackingMoodData"
+					]
+				}
 			},
 			"response": [
 				{
@@ -480,7 +821,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1MDQ1MDQ0LCJleHAiOjE3MzUxMzE0NDR9.H72kvOuOkgstDV0u9s5yRgKJ4aYCgIKEavipuMTwg4U",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1Mjg5NjQ3LCJleHAiOjE3MzUzNzYwNDd9.YrVTuNCPRUIWeAaWZ9ve9GtrwwVknOPBcBCAmD_iMVs",
 								"type": "text"
 							},
 							{
@@ -494,17 +835,27 @@
 							"urlencoded": [
 								{
 									"key": "startDate",
-									"value": "17-12-2024",
+									"value": "22-12-2024",
 									"type": "text"
 								},
 								{
 									"key": "endDate",
-									"value": "30-12-2024",
+									"value": "28-12-2024",
 									"type": "text"
 								}
 							]
 						},
-						"url": "http://localhost:3001/getTrackingMoodData"
+						"url": {
+							"raw": "http://localhost:3001/getTrackingMoodData",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"getTrackingMoodData"
+							]
+						}
 					},
 					"status": "OK",
 					"code": 200,
@@ -524,15 +875,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "10273"
+							"value": "5247"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"2821-HF2X9MG2FkkIisjZJ5ZJi4VpfUg\""
+							"value": "W/\"147f-y9LSdjuQfyL3VBj+30+fjHnWLAs\""
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 25 Dec 2024 03:29:38 GMT"
+							"value": "Fri, 27 Dec 2024 13:00:14 GMT"
 						},
 						{
 							"key": "Connection",
@@ -544,7 +895,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully.\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"emotionName\": \"Sangat Baik\",\n            \"resultedEmotion\": \"{\\n        \\\"emoji\\\": \\\"😊\\\",\\n        \\\"emotionalFactor\\\": [\\n          \\\"Sangat Baik\\\",\\n          \\\"Menyenangkan\\\",\\n          \\\"Sekolah\\\"\\n        ],\\n        \\\"resultQuestion\\\": [\\n          {\\n            \\\"question\\\": \\\"Apa yang membuat kamu marah?\\\",\\n            \\\"answer\\\": \\\"Tugas sekolah yang terlalu banyak dan mendesak.\\\"\\n          },\\n          {\\n            \\\"question\\\": \\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\n            \\\"answer\\\": \\\"Saya merasa sangat tertekan dan sulit untuk berkonsentrasi.\\\"\\n          },\\n          {\\n            \\\"question\\\": \\\"Apa yang bisa membantu kamu mengatasi perasaan ini?\\\",\\n            \\\"answer\\\": \\\"Mengatur waktu dengan lebih baik dan meminta bantuan teman atau guru.\\\"\\n          },\\n          {\\n            \\\"question\\\": \\\"Apakah kamu ingin membagikan pengalaman ini kepada seseorang?\\\",\\n            \\\"answer\\\": \\\"Ya, saya ingin berbicara dengan teman dekat atau konselor sekolah.\\\"\\n          }\\n        ],\\n        \\\"msgEmotion\\\": \\\"Kamu merasa percaya diri dan berharap yang terbaik untuk masa depan.\\\",\\n        \\\"recommendations\\\": [\\n          {\\n            \\\"title\\\": \\\"Cinta di Langit Biru\\\",\\n            \\\"image\\\": \\\"https://example.com/cinta_di_langit_biru.jpg\\\",\\n            \\\"desc\\\": \\\"Film romantis yang ringan dan bisa membantu meredakan perasaan malu dan gugup.\\\"\\n          },\\n          {\\n            \\\"title\\\": \\\"Dendam Siapa Takut\\\",\\n            \\\"image\\\": \\\"https://example.com/dendam_siapatakut.jpg\\\",\\n            \\\"desc\\\": \\\"Film yang penuh dengan ketegangan dan konflik yang bisa menyalurkan emosi marah dan kesal.\\\"\\n          },\\n          {\\n            \\\"title\\\": \\\"Garis Waktu\\\",\\n            \\\"image\\\": \\\"https://example.com/garis_waktu.jpg\\\",\\n            \\\"desc\\\": \\\"Film yang penuh dengan kejutan, tantangan, dan bisa membuatmu merasa gemas dan terharu.\\\"\\n          },\\n          {\\n            \\\"title\\\": \\\"Gundala\\\",\\n            \\\"image\\\": \\\"https://example.com/gundala.jpg\\\",\\n            \\\"desc\\\": \\\"Film superhero Indonesia yang penuh dengan harapan dan cerita yang menarik.\\\"\\n          },\\n          {\\n            \\\"title\\\": \\\"Dilan 1990\\\",\\n            \\\"image\\\": \\\"https://example.com/dilan_1990.jpg\\\",\\n            \\\"desc\\\": \\\"Film romantis yang menggugah emosi, cocok untuk yang sedang merasa kecewa dan sedih.\\\"\\n          }\\n        ]\\n      }\",\n            \"createdAt\": \"2024-12-22T11:12:29.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"emotionName\": \"Sangat Buruk\",\n            \"resultedEmotion\": \"{\\r\\n        \\\"emoji\\\": \\\"😠\\\",\\r\\n        \\\"emotionalFactor\\\": [\\r\\n          \\\"Sangat Buruk\\\",\\r\\n          \\\"Menyebalkan\\\",\\r\\n          \\\"Sekolah\\\"\\r\\n        ],\\r\\n        \\\"resultQuestion\\\": [\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apa yang membuat kamu marah?\\\",\\r\\n            \\\"answer\\\": \\\"Tugas sekolah yang terlalu banyak dan mendesak.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\r\\n            \\\"answer\\\": \\\"Saya merasa sangat tertekan dan sulit untuk berkonsentrasi.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apa yang bisa membantu kamu mengatasi perasaan ini?\\\",\\r\\n            \\\"answer\\\": \\\"Mengatur waktu dengan lebih baik dan meminta bantuan teman atau guru.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apakah kamu ingin membagikan pengalaman ini kepada seseorang?\\\",\\r\\n            \\\"answer\\\": \\\"Ya, saya ingin berbicara dengan teman dekat atau konselor sekolah.\\\"\\r\\n          }\\r\\n        ],\\r\\n        \\\"msgEmotion\\\": \\\"Kamu merasa percaya diri dan berharap yang terbaik untuk masa depan.\\\",\\r\\n        \\\"recommendations\\\": [\\r\\n          {\\r\\n            \\\"title\\\": \\\"Cinta di Langit Biru\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/cinta_di_langit_biru.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film romantis yang ringan dan bisa membantu meredakan perasaan malu dan gugup.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Dendam Siapa Takut\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/dendam_siapatakut.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film yang penuh dengan ketegangan dan konflik yang bisa menyalurkan emosi marah dan kesal.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Garis Waktu\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/garis_waktu.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film yang penuh dengan kejutan, tantangan, dan bisa membuatmu merasa gemas dan terharu.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Gundala\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/gundala.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film superhero Indonesia yang penuh dengan harapan dan cerita yang menarik.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Dilan 1990\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/dilan_1990.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film romantis yang menggugah emosi, cocok untuk yang sedang merasa kecewa dan sedih.\\\"\\r\\n          }\\r\\n        ]\\r\\n      }\",\n            \"createdAt\": \"2024-12-23T11:12:29.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"emotionName\": \"Sangat Buruk\",\n            \"resultedEmotion\": \"{\\r\\n        \\\"emoji\\\": \\\"😠\\\",\\r\\n        \\\"emotionalFactor\\\": [\\r\\n          \\\"Sangat Buruk\\\",\\r\\n          \\\"Menyebalkan\\\",\\r\\n          \\\"Sekolah\\\"\\r\\n        ],\\r\\n        \\\"resultQuestion\\\": [\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apa yang membuat kamu marah?\\\",\\r\\n            \\\"answer\\\": \\\"Tugas sekolah yang terlalu banyak dan mendesak.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\r\\n            \\\"answer\\\": \\\"Saya merasa sangat tertekan dan sulit untuk berkonsentrasi.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apa yang bisa membantu kamu mengatasi perasaan ini?\\\",\\r\\n            \\\"answer\\\": \\\"Mengatur waktu dengan lebih baik dan meminta bantuan teman atau guru.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apakah kamu ingin membagikan pengalaman ini kepada seseorang?\\\",\\r\\n            \\\"answer\\\": \\\"Ya, saya ingin berbicara dengan teman dekat atau konselor sekolah.\\\"\\r\\n          }\\r\\n        ],\\r\\n        \\\"msgEmotion\\\": \\\"Kamu merasa percaya diri dan berharap yang terbaik untuk masa depan.\\\",\\r\\n        \\\"recommendations\\\": [\\r\\n          {\\r\\n            \\\"title\\\": \\\"Cinta di Langit Biru\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/cinta_di_langit_biru.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film romantis yang ringan dan bisa membantu meredakan perasaan malu dan gugup.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Dendam Siapa Takut\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/dendam_siapatakut.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film yang penuh dengan ketegangan dan konflik yang bisa menyalurkan emosi marah dan kesal.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Garis Waktu\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/garis_waktu.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film yang penuh dengan kejutan, tantangan, dan bisa membuatmu merasa gemas dan terharu.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Gundala\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/gundala.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film superhero Indonesia yang penuh dengan harapan dan cerita yang menarik.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Dilan 1990\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/dilan_1990.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film romantis yang menggugah emosi, cocok untuk yang sedang merasa kecewa dan sedih.\\\"\\r\\n          }\\r\\n        ]\\r\\n      }\",\n            \"createdAt\": \"2024-12-25T11:12:29.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"emotionName\": \"Sangat Buruk\",\n            \"resultedEmotion\": \"{\\r\\n        \\\"emoji\\\": \\\"😠\\\",\\r\\n        \\\"emotionalFactor\\\": [\\r\\n          \\\"Sangat Buruk\\\",\\r\\n          \\\"Menyebalkan\\\",\\r\\n          \\\"Sekolah\\\"\\r\\n        ],\\r\\n        \\\"resultQuestion\\\": [\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apa yang membuat kamu marah?\\\",\\r\\n            \\\"answer\\\": \\\"Tugas sekolah yang terlalu banyak dan mendesak.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\r\\n            \\\"answer\\\": \\\"Saya merasa sangat tertekan dan sulit untuk berkonsentrasi.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apa yang bisa membantu kamu mengatasi perasaan ini?\\\",\\r\\n            \\\"answer\\\": \\\"Mengatur waktu dengan lebih baik dan meminta bantuan teman atau guru.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"question\\\": \\\"Apakah kamu ingin membagikan pengalaman ini kepada seseorang?\\\",\\r\\n            \\\"answer\\\": \\\"Ya, saya ingin berbicara dengan teman dekat atau konselor sekolah.\\\"\\r\\n          }\\r\\n        ],\\r\\n        \\\"msgEmotion\\\": \\\"Kamu merasa percaya diri dan berharap yang terbaik untuk masa depan.\\\",\\r\\n        \\\"recommendations\\\": [\\r\\n          {\\r\\n            \\\"title\\\": \\\"Cinta di Langit Biru\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/cinta_di_langit_biru.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film romantis yang ringan dan bisa membantu meredakan perasaan malu dan gugup.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Dendam Siapa Takut\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/dendam_siapatakut.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film yang penuh dengan ketegangan dan konflik yang bisa menyalurkan emosi marah dan kesal.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Garis Waktu\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/garis_waktu.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film yang penuh dengan kejutan, tantangan, dan bisa membuatmu merasa gemas dan terharu.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Gundala\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/gundala.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film superhero Indonesia yang penuh dengan harapan dan cerita yang menarik.\\\"\\r\\n          },\\r\\n          {\\r\\n            \\\"title\\\": \\\"Dilan 1990\\\",\\r\\n            \\\"image\\\": \\\"https://example.com/dilan_1990.jpg\\\",\\r\\n            \\\"desc\\\": \\\"Film romantis yang menggugah emosi, cocok untuk yang sedang merasa kecewa dan sedih.\\\"\\r\\n          }\\r\\n        ]\\r\\n      }\",\n            \"createdAt\": \"2024-12-17T11:12:29.000Z\"\n        }\n    ]\n}"
+					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully.\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"emotionName\": \"Sangat Buruk\",\n            \"resultedEmotion\": \"{\\\"emoji\\\":\\\"😠\\\",\\\"emotionalFactor\\\":[\\\"Sangat Buruk\\\",\\\"Menyebalkan\\\",\\\"Sekolah\\\"],\\\"resultQuestion\\\":[{\\\"question\\\":\\\"Apa yang membuat kamu marah?\\\",\\\"answer\\\":\\\"Tugas sekolah yang terlalu banyak dan mendesak.\\\"},{\\\"question\\\":\\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\\"answer\\\":\\\"Saya merasa sangat tertekan dan sulit untuk berkonsentrasi.\\\"},{\\\"question\\\":\\\"Apa yang bisa membantu kamu mengatasi perasaan ini?\\\",\\\"answer\\\":\\\"Mengatur waktu dengan lebih baik dan meminta bantuan teman atau guru.\\\"},{\\\"question\\\":\\\"Apakah kamu ingin membagikan pengalaman ini kepada seseorang?\\\",\\\"answer\\\":\\\"Ya, saya ingin berbicara dengan teman dekat atau konselor sekolah.\\\"}],\\\"msgEmotion\\\":\\\"Kamu merasa percaya diri dan berharap yang terbaik untuk masa depan.\\\",\\\"recommendations\\\":[{\\\"title\\\":\\\"Cinta di Langit Biru\\\",\\\"image\\\":\\\"https://example.com/cinta_di_langit_biru.jpg\\\",\\\"desc\\\":\\\"Film romantis yang ringan dan bisa membantu meredakan perasaan malu dan gugup.\\\"},{\\\"title\\\":\\\"Dendam Siapa Takut\\\",\\\"image\\\":\\\"https://example.com/dendam_siapatakut.jpg\\\",\\\"desc\\\":\\\"Film yang penuh dengan ketegangan dan konflik yang bisa menyalurkan emosi marah dan kesal.\\\"},{\\\"title\\\":\\\"Garis Waktu\\\",\\\"image\\\":\\\"https://example.com/garis_waktu.jpg\\\",\\\"desc\\\":\\\"Film yang penuh dengan kejutan, tantangan, dan bisa membuatmu merasa gemas dan terharu.\\\"},{\\\"title\\\":\\\"Gundala\\\",\\\"image\\\":\\\"https://example.com/gundala.jpg\\\",\\\"desc\\\":\\\"Film superhero Indonesia yang penuh dengan harapan dan cerita yang menarik.\\\"},{\\\"title\\\":\\\"Dilan 1990\\\",\\\"image\\\":\\\"https://example.com/dilan_1990.jpg\\\",\\\"desc\\\":\\\"Film romantis yang menggugah emosi, cocok untuk yang sedang merasa kecewa dan sedih.\\\"}]}\",\n            \"createdAt\": \"2024-12-26T11:12:29.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"emotionName\": \"Buruk\",\n            \"resultedEmotion\": \"{\\\"emoji\\\":\\\"😠\\\",\\\"emotionalFactor\\\":[\\\"Buruk\\\",\\\"Menyebalkan\\\",\\\"Sekolah\\\"],\\\"resultQuestion\\\":[{\\\"question\\\":\\\"Apa yang membuat kamu merasa sangat buruk?\\\",\\\"answer\\\":\\\"Tugas sekolah yang menumpuk tanpa ada waktu istirahat.\\\"},{\\\"question\\\":\\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\\"answer\\\":\\\"Saya merasa putus asa dan tidak bisa fokus.\\\"},{\\\"question\\\":\\\"Apa yang bisa membantu kamu mengatasi perasaan ini?\\\",\\\"answer\\\":\\\"Beristirahat sejenak dan berbicara dengan teman.\\\"}],\\\"msgEmotion\\\":\\\"Kamu merasa sangat terbebani dengan situasi ini.\\\",\\\"recommendations\\\":[{\\\"title\\\":\\\"Film Penyemangat\\\",\\\"image\\\":\\\"https://example.com/motivasi.jpg\\\",\\\"desc\\\":\\\"Film yang memberikan semangat untuk bangkit kembali.\\\"}]}\",\n            \"createdAt\": \"2024-12-22T11:12:29.000Z\"\n        },\n        {\n            \"id\": 5,\n            \"emotionName\": \"Netral\",\n            \"resultedEmotion\": \"{\\\"emoji\\\":\\\"😐\\\",\\\"emotionalFactor\\\":[\\\"Rutinitas\\\",\\\"Biasa Saja\\\",\\\"Rumah\\\"],\\\"resultQuestion\\\":[{\\\"question\\\":\\\"Apa yang membuat kamu merasa netral?\\\",\\\"answer\\\":\\\"Hari ini berjalan seperti biasa tanpa kejadian berarti.\\\"},{\\\"question\\\":\\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\\"answer\\\":\\\"Saya merasa biasa saja, tidak ada yang terlalu menyenangkan atau menyedihkan.\\\"},{\\\"question\\\":\\\"Apa yang bisa membantu kamu meningkatkan suasana hati?\\\",\\\"answer\\\":\\\"Melakukan hobi atau mencoba sesuatu yang baru.\\\"}],\\\"msgEmotion\\\":\\\"Kamu menjalani hari dengan tenang tanpa banyak gangguan.\\\",\\\"recommendations\\\":[{\\\"title\\\":\\\"Podcast Inspirasi\\\",\\\"image\\\":\\\"https://example.com/inspirasi.jpg\\\",\\\"desc\\\":\\\"Podcast yang memberikan wawasan baru dan inspirasi.\\\"}]}\",\n            \"createdAt\": \"2024-12-23T11:12:29.000Z\"\n        },\n        {\n            \"id\": 6,\n            \"emotionName\": \"Baik\",\n            \"resultedEmotion\": \"{\\\"emoji\\\":\\\"😊\\\",\\\"emotionalFactor\\\":[\\\"Kegembiraan\\\",\\\"Penghargaan\\\",\\\"Keluarga\\\"],\\\"resultQuestion\\\":[{\\\"question\\\":\\\"Apa yang membuat kamu merasa baik?\\\",\\\"answer\\\":\\\"Menghabiskan waktu bersama keluarga yang menyenangkan.\\\"},{\\\"question\\\":\\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\\"answer\\\":\\\"Saya merasa lebih bahagia dan berenergi.\\\"},{\\\"question\\\":\\\"Apa yang bisa membantu kamu mempertahankan suasana hati ini?\\\",\\\"answer\\\":\\\"Melanjutkan aktivitas positif dan menghargai momen ini.\\\"}],\\\"msgEmotion\\\":\\\"Kamu menikmati hari ini dengan suasana hati yang baik.\\\",\\\"recommendations\\\":[{\\\"title\\\":\\\"Film Keluarga\\\",\\\"image\\\":\\\"https://example.com/keluarga.jpg\\\",\\\"desc\\\":\\\"Film yang cocok untuk ditonton bersama orang-orang terdekat.\\\"}]}\",\n            \"createdAt\": \"2024-12-24T11:12:29.000Z\"\n        },\n        {\n            \"id\": 7,\n            \"emotionName\": \"Sangat Baik\",\n            \"resultedEmotion\": \"{\\\"emoji\\\":\\\"😃\\\",\\\"emotionalFactor\\\":[\\\"Keberhasilan\\\",\\\"Kemenangan\\\",\\\"Pekerjaan\\\"],\\\"resultQuestion\\\":[{\\\"question\\\":\\\"Apa yang membuat kamu merasa sangat baik?\\\",\\\"answer\\\":\\\"Mencapai target besar di tempat kerja.\\\"},{\\\"question\\\":\\\"Bagaimana situasi ini memengaruhi perasaan kamu?\\\",\\\"answer\\\":\\\"Saya merasa sangat bangga dan puas dengan hasil kerja keras.\\\"},{\\\"question\\\":\\\"Apa yang bisa membantu kamu mempertahankan suasana hati ini?\\\",\\\"answer\\\":\\\"Merayakan pencapaian ini dengan orang-orang terdekat.\\\"}],\\\"msgEmotion\\\":\\\"Kamu merasa sangat percaya diri dan siap untuk tantangan berikutnya.\\\",\\\"recommendations\\\":[{\\\"title\\\":\\\"Film Inspiratif\\\",\\\"image\\\":\\\"https://example.com/inspirasi_film.jpg\\\",\\\"desc\\\":\\\"Film yang menginspirasi untuk terus melangkah maju.\\\"}]}\",\n            \"createdAt\": \"2024-12-25T11:12:29.000Z\"\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -579,9 +930,103 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/getNotification"
+				"url": {
+					"raw": "http://localhost:3001/getNotification",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"getNotification"
+					]
+				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "getNotification",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiIxMjM0NTY3OCIsImFwaUtleSI6IkFQV1ZaQ1VFSVVRRExaUUdPTVhDIiwiaWF0IjoxNzM1Mjg5NjQ3LCJleHAiOjE3MzUzNzYwNDd9.YrVTuNCPRUIWeAaWZ9ve9GtrwwVknOPBcBCAmD_iMVs",
+								"type": "text"
+							},
+							{
+								"key": "api-key",
+								"value": "APWVZCUEIUQDLZQGOMXC",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "startDate",
+									"value": "17-12-2024",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "30-12-2024",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/getNotification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"getNotification"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "987"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3db-a76scr1IAkmzLw4UpxLItUtfje8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Dec 2024 10:37:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"msg\": \"Data retrieved successfully.\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"content\": \"Lakukan tracking mood untuk hari ini dan catat emosi yang kamu rasakan.\",\n            \"type\": 0,\n            \"status\": 1,\n            \"createdAt\": \"2024-12-25T00:00:00.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"content\": \"Jangan lupa untuk membuat jurnal singkat tentang apa yang kamu syukuri hari ini.\",\n            \"type\": 0,\n            \"status\": 1,\n            \"createdAt\": \"2024-12-26T00:00:00.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"content\": \"Catat suasana hati kamu selama bekerja atau belajar hari ini.\",\n            \"type\": 0,\n            \"status\": 1,\n            \"createdAt\": \"2024-12-27T00:00:00.000Z\"\n        },\n        {\n            \"id\": 5,\n            \"content\": \"Refleksikan momen terbaik yang terjadi di tengah aktivitasmu hari ini.\",\n            \"type\": 0,\n            \"status\": 1,\n            \"createdAt\": \"2024-12-28T00:00:00.000Z\"\n        },\n        {\n            \"id\": 6,\n            \"content\": \"Bagikan pengalaman yang membuat kamu merasa bahagia atau sedih hari ini dalam jurnalmu.\",\n            \"type\": 0,\n            \"status\": 1,\n            \"createdAt\": \"2024-12-29T00:00:00.000Z\"\n        },\n        {\n            \"id\": 7,\n            \"content\": \"Luangkan waktu untuk menulis apa yang kamu pelajari selama seminggu ini.\",\n            \"type\": 0,\n            \"status\": 1,\n            \"createdAt\": \"2024-12-30T00:00:00.000Z\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "setTrackingMood",
@@ -619,7 +1064,17 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/setEmotion"
+				"url": {
+					"raw": "http://localhost:3001/setEmotion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"setEmotion"
+					]
+				}
 			},
 			"response": []
 		},
@@ -709,7 +1164,17 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/setProcessNLP"
+				"url": {
+					"raw": "http://localhost:3001/setProcessNLP",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"setProcessNLP"
+					]
+				}
 			},
 			"response": []
 		},
@@ -739,7 +1204,17 @@
 						}
 					]
 				},
-				"url": "http://localhost:3001/getRecommendations"
+				"url": {
+					"raw": "http://localhost:3001/getRecommendations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"getRecommendations"
+					]
+				}
 			},
 			"response": []
 		}

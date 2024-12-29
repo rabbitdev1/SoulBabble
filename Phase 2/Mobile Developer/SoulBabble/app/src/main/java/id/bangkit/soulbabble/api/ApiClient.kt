@@ -11,7 +11,7 @@ import java.io.IOException
 class ApiClient {
 
     private val client = OkHttpClient()
-    private val baseUrl = "https://ab1da06a-1109-49b6-85a7-0789b198bb57.mock.pstmn.io/"  // Ganti dengan URL server Anda
+    private val baseUrl = "https://b74bbf98-e820-4175-8369-6b07a1d32ab7.mock.pstmn.io/"  // Ganti dengan URL server Anda
 
     // Fungsi untuk mengirimkan data login (POST request)
     fun sendLoginRequest(uid: String, fullName: String, email: String, photoUrl: String, callback: (String?) -> Unit) {

@@ -2,8 +2,8 @@ package id.bangkit.soulbabble.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import id.bangkit.soulbabble.ui.MonthFragment
-import id.bangkit.soulbabble.ui.WeekFragment
+import id.bangkit.soulbabble.ui.TopTab.MonthFragment
+import id.bangkit.soulbabble.ui.TopTab.WeekFragment
 
 class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 

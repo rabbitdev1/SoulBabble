@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk tools:overrideLibrary="androidx.security.identity.credential" />
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SoulBabble"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.Profile.DetailProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.Notification.NotificationActivity"
             android:exported="false" />
@@ -50,10 +53,6 @@
             android:name=".ui.Recommendation.DetailRecommendationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MonthFragment"
-            android:exported="false"
-            android:theme="@style/Theme.SoulBabble" />
-        <activity
             android:name=".ui.TrackingMood.InputQuestionsActivity"
             android:exported="false" />
         <activity
@@ -85,6 +84,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <receiver android:name=".receiver.AlarmReceiver" android:exported="true" />
     </application>
 
 </manifest>

@@ -1,16 +1,19 @@
 package id.bangkit.soulbabble.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.OnboardingAdapter
 import id.bangkit.soulbabble.data.OnboardingItem
+import id.bangkit.soulbabble.utils.StatusBarUtils
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -20,10 +23,12 @@ class OnboardingActivity : AppCompatActivity() {
     private lateinit var textSkip: TextView
     private lateinit var dotsIndicator: DotsIndicator
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
 
+        StatusBarUtils.setupStatusBar(window, this, R.color.primary)
         initializeViews()
         setupViewPager()
         setupButtons()

@@ -2,20 +2,25 @@ package id.bangkit.soulbabble.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.utils.AuthStorage // Import AuthStorage
+import id.bangkit.soulbabble.utils.StatusBarUtils
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        StatusBarUtils.setupStatusBar(window, this, R.color.primary)
         val splashDuration = 3000L // Duration for the splash screen to show (3 seconds)
 
         // Handler untuk menunggu beberapa waktu sebelum berpindah aktivitas

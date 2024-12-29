@@ -1,9 +1,11 @@
 package id.bangkit.soulbabble.ui.Notification
 
 import NotificationViewModel
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +15,7 @@ import id.bangkit.soulbabble.R
 import id.bangkit.soulbabble.adapter.NotificationAdapter
 import id.bangkit.soulbabble.data.NotificationItem
 import id.bangkit.soulbabble.utils.AuthStorage
+import id.bangkit.soulbabble.utils.StatusBarUtils
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -22,10 +25,12 @@ class NotificationActivity : AppCompatActivity() {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private val notificationViewModel: NotificationViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
 
+        StatusBarUtils.setupStatusBar(window, this, R.color.primary)
         // Inisialisasi Views
         recyclerViewListNotification = findViewById(R.id.recyclerViewListNotification)
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)

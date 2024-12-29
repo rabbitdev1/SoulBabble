@@ -8,12 +8,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="id.bangkit.soulbabble.ui.HomeFragment"
+        android:name="id.bangkit.soulbabble.ui.BottomTab.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/trackingMoodFragment"
-        android:name="id.bangkit.soulbabble.ui.TrackingMoodFragment"
+        android:name="id.bangkit.soulbabble.ui.BottomTab.TrackingMoodFragment"
         android:label="fragment_tracking_mood"
         tools:layout="@layout/fragment_tracking_mood">
         <action
@@ -28,12 +28,12 @@
     tools:layout="@layout/fragment_week" />
     <fragment
         android:id="@+id/journalingFragment"
-        android:name="id.bangkit.soulbabble.ui.JournalingFragment"
+        android:name="id.bangkit.soulbabble.ui.BottomTab.JournalingFragment"
         android:label="fragment_journaling"
         tools:layout="@layout/fragment_journaling" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="id.bangkit.soulbabble.ui.ProfileFragment"
+        android:name="id.bangkit.soulbabble.ui.BottomTab.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
