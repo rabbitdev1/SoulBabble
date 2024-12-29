@@ -36,17 +36,31 @@ export const getRecommendations = async (req, res) => {
           error,
         });
       }
+      const jsonRegex = /{[^]*}/; 
+      const matches = result.match(jsonRegex);
 
-      try {
-        // Parsing hasil JSON dari Python
-        const parsedResult = JSON.parse(result);
-        return res.status(200).json(parsedResult);
-      } catch (parseError) {
-        console.error('Error parsing Python output:', parseError.message);
+      if (matches && matches[0]) {
+        const cleanedResult = matches[0];  // Ambil hasil pertama dari regex
+
+        try {
+          // Parsing hasil JSON
+          const parsedResult = JSON.parse(cleanedResult);
+          console.log('Parsed result:', parsedResult);
+
+          return res.status(200).json(parsedResult);
+        } catch (parseError) {
+          console.error('Error parsing Python result:', parseError.message);
+          return res.status(500).json({
+            status: 500,
+            msg: 'Error parsing Python result',
+            error: parseError.message,
+          });
+        }
+      } else {
+        console.error('No valid JSON found in Python output.');
         return res.status(500).json({
           status: 500,
-          msg: 'Error parsing Python result',
-          error: parseError.message,
+          msg: 'Error: No valid JSON in output',
         });
       }
     });
