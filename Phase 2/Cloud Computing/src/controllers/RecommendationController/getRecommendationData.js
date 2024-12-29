@@ -10,8 +10,9 @@ export const getRecommedationData = async (req, res) => {
   }
   try {
     const data = await recommendationsModel.findAll({
-      where: {  apiKey: apiKey },
-      attributes: ["id","recommendedAction", "url","type", "createdAt"],
+      where: { apiKey: apiKey },
+      attributes: ["id", "recommendedAction", "url", "type", "createdAt"],
+      limit: 10, // Limit results to 10 items
     });
     if (!data || data.length === 0) {
       return res.status(404).json({
