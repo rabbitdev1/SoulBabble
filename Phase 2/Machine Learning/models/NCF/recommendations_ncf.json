@@ -1,0 +1,35 @@
+{
+    "msgEmotion": "Kamu Ada sesuatu yang mengganggu, membuat hati menjadi kesal. dan Kekhawatiran tentang sesuatu yang belum pasti mengganggu pikiran. dan Ide-ide baru bermunculan, memberi dorongan untuk bergerak maju.",
+    "recommendation": [
+        {
+            "title": "Pantai Patihan",
+            "image": "https://picsum.photos/seed/514/200/300",
+            "desc": "Pantai ini terletak di daerah Srigading, Sanden dan cukup dekat dengan Pantai Goa Cemara. Tempatnya juga asyik banget buat foto-foto, nggak beda jauh dengan Pandasari.",
+            "type": "destinasi"
+        },
+        {
+            "title": "Badai Pasti Berlalu",
+            "image": "https://picsum.photos/seed/802/200/300",
+            "desc": "The story of a brokenhearted woman who becomes cold and bitter, a medical student who was placing a bet with his pals to win her heart, and an odd guy but had once studied abroad who forces her to marry him in order to protect her family.",
+            "type": "buku"
+        },
+        {
+            "title": "Badai Pasti Berlalu",
+            "image": "https://picsum.photos/seed/815/200/300",
+            "desc": "Based on the famous novel, this is a story about Siska, a young woman, who gets heartbroken, as her fiancé broke off their engagement. Her brother introduces her to his friend Leo, who is ...",
+            "type": "buku"
+        },
+        {
+            "title": "Pantai Sanglen",
+            "image": "https://picsum.photos/seed/759/200/300",
+            "desc": "Pantai Sanglen. Lokasinya berada di Desa Kemadang, Gunung Kidul. Pantai indah yang satu ini memang terdengar asing di telinga, namun ternyata pantai ini menyimpan keindahan yang sangat menenangkan. Keadaan ombaknya diam-diam menghanyutkan membuat kita harus berhati-hati jika ingin bermain air ketika sedang pasang, namun ketika surut kamu dapat bemain ombak di sekitar pantainya. Tak jauh dari area pantai terdapat sebuah bukit dengan hiasan pepohonan yang masih rindang serta berwarna hijau alam, kamu dapat naik ke atas bukit melalui tangga yang sudah disediakan.",
+            "type": "destinasi"
+        },
+        {
+            "title": "Tebing Breksi",
+            "image": "https://picsum.photos/seed/899/200/300",
+            "desc": "Tebing Breksi merupakan tempat wisata yang berada di wilayah Kabupaten Sleman. Lokasinya berada di sebelah selatan Candi Prambanan dan berdekatan dengan Candi Ijo serta Kompleks Keraton Boko. Lokasi Wisata Tebing Breksi tepatnya berada di Desa Sambirejo, Prambanan, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55572.",
+            "type": "destinasi"
+        }
+    ]
+}
